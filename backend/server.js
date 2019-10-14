@@ -1,16 +1,20 @@
-let express = require("express");
-let app     = express();
-let bodyParser = require("body-parser");
-let cors = require("cors");
-app.use(bodyParser.json({limit: '10mb'}))
-app.use(bodyParser.urlencoded({extended: true, limit: '128kb'}))
+var express = require('express')
+var path = require('path')
+var bodyParser = require('body-parser')
 
+var tasks = require('./routes/tasks.js')
+var cors = require('cors')
+
+var port = 3000
+
+var app = express()
 app.use(cors())
-app.post("/login", function(req, res){
-  console.log(req.body);
-  res.json({success: true})
-})
 
-app.listen(8080, function(){
-  console.log("Hello World!")
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use('/api', tasks)
+
+app.listen(port, function() {
+  console.log('Server started on port ' + port)
 })
