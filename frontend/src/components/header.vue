@@ -3,7 +3,7 @@
     <div class="hcontainer">
       <nav class="nav">
         <div class="logo">
-          <nuxt-link to="#"><img src="../assets/logo.jpg"></nuxt-link>
+          <nuxt-link to="#"><img src="../assets/logo.jpg" class="logo"></nuxt-link>
         </div>
         <div id="title"><span>Монгол Адууны Тамга</span></div>
         <div class="nav-bar">
@@ -130,7 +130,7 @@
   a:hover{
       color:black;
   }
-  img{
+  .logo{
       width: 50%;
       border-radius: 50%;
   }

@@ -1,57 +1,136 @@
 <template>
 <div class="container">
-    <form>
+    <form v-on:submit.prevent="addNewTask()" action="/Login" enctype="multipart/form-data">
         <div class="form-group">
             <label for="formGroupExampleInput">Эцэг/Эхийн нэр</label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+            <input v-model="lastname" type="text" class="form-control" id="formGroupExampleInput" placeholder="lastname">
         </div>
         <div class="form-group">
             <label for="formGroupExampleInput2">Өөрийн нэр</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+            <input v-model="firstname" type="text" class="form-control" id="formGroupExampleInput2" placeholder="firstname">
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Мэйл хаяг</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                <input v-model="mail" type="email" class="form-control" id="inputEmail4" placeholder="Email">
             </div>
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Нууц үг</label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                <input v-model="password" type="password" class="form-control" id="inputPassword4" placeholder="Нууц үг">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputAddress">Тамганы нэр</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Аймгаа/Дүүрэг/ оруул">
+            <label for="inputname">Тамганы нэр</label>
+            <input v-model="stamp_name" type="text" class="form-control" id="inputAddress" placeholder="Энд бичнэ үү">
         </div>
         <div class="form-group">
             <label for="inputAddress2">Тамганы талаарх дэлгэрэнгүй мэдээлэл</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Сум, баг оруул">
+            <input v-model="define" type="text" class="form-control" id="inputAddress2" placeholder="Энд бичнэ үү">
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
-                <label for="inputState">State</label>
-                <select id="inputState" class="form-control">
+                <label for="inputState">Аймаг/Дүүрэг</label>
+                <select v-model="aimag" id="inputState" class="form-control">
                     <option selected>Аймаг...</option>
                     <option>Архангай</option>
                     <option>Булган</option>
                     <option>Баянхонгор</option>
                     <option>Говь-Алтай</option>
+                    <option>Чингэлтэй</option>
                 </select>
             </div>
             <div class="form-group col-md-6">
-                <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="inputCity">
+                <label for="inputCity">Сум, багийн мэдээлэл</label>
+                <input v-model="location" type="text" class="form-control" id="inputCity">
             </div>
         </div>
         <div class="form-group">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <input class="form-check-input" type="checkbox" id="gridCheck" required>
                 <label class="form-check-label" for="gridCheck">
-                    Check me out
+                    Оруулсан мэдээлэл үнэн
                 </label>
+            </div>
+        </div>
+        <div class="input-group">
+            <div class="custom-file">
+                <input @change="onSelect" type="file" class="custom-file-input" id="inputGroupFile04" ref="file">
+                <label class="custom-file-label" for="inputGroupFile04">Зургаа оруул</label>
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Бүртгүүлэх</button>
     </form>
 </div>
 </template>
+
+<script>
+import axios from 'axios'
+
+export default {
+  name: 'FileUpload',
+  data () {
+    return {
+      todos: [],
+      id: '',
+      lastname: '',
+      firstname: '',
+      stamp_name: '',
+      mail: '',
+      password: '',
+      location: '',
+      date: '',
+      selectedFile: null,
+      define: '',
+      aimag: ''
+    }
+  },
+
+  methods: {
+    addNewTask () {
+      // const formData = new FormData()
+      // formData.append('file', this.file)
+      axios.post('/api/task', {
+        lastname: this.lastname,
+        firstname: this.firstname,
+        stamp_name: this.stamp_name,
+        mail: this.mail,
+        password: this.password,
+        location: this.location,
+        date: this.date,
+        define: this.define,
+        photo: this.file,
+        aimag: this.aimag
+      }).then((res) => {
+        this.selectedFile = ''
+        this.lastname = ''
+        this.firstname = ''
+        this.stamp_name = ''
+        this.mail = ''
+        this.password = ''
+        this.location = ''
+        this.date = ''
+        this.define = ''
+        this.photo = ''
+        this.aimag = ''
+        this.getTasks()
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    onSelect () {
+      const file = this.$refs.file.files[0]
+      this.file = file
+    }
+  }
+}
+</script>
+
+<style>
+.photo {
+    width: 64px;
+    height: 64px;
+}
+button{
+  margin-top: 20px;
+}
+</style>

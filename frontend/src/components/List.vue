@@ -21,17 +21,16 @@
                 </td>
                 </tr>
             </table>
+        
+        <div class="card" style="width: 18rem; margin:20px" v-for="(todo) in todos" v-bind:key="todo.id" v-bind:define="todo.define" v-bind:firstname="todo.firstname" v-bind:date="todo.date" v-bind:stampname="todo.stamp_name">
+          <img src="../assets/logo.jpg" class="card-img-top" alt="tamga">
+          <div class="card-body">
+            <h5 class="card-title">{{todo.stamp_name}}</h5>
+            <p class="card-text">{{todo.define}}</p>
+            <a href="#" class="btn btn-primary">Дэлгэрэнгүй</a>
+          </div>
         </div>
-        <ul class="list-unstyled">
-          <li v-for="(todo) in todos" v-bind:key="todo.id" v-bind:title="todo.lastname" v-bind:firstname="todo.firstname" v-bind:date="todo.date" v-bind:stampname="todo.stamp_name" class="media">
-            <img src="../assets/logo.jpg" class="mr-3 photo" alt="tamga">
-            <div class="media-body">
-              <h5 class="mt-0 mb-1">{{todo.stamp_name}}</h5>
-              {{todo.id}}
-              <span class="tcol-md-3 offset-md-3">{{todo.date}}</span>
-            </div>
-          </li>
-        </ul>
+        </div>
     </div>
 </template>
 <script>
@@ -155,5 +154,11 @@ export default {
 .photo{
   width: 64px;
   height: 64px;
+}
+.row{
+  grid-template-columns: auto auto auto;
+  width:90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

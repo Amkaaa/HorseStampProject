@@ -2,12 +2,12 @@
     <form action="/action_page.php" class="justify-content-md-center">
     <div class="container ">
         <div class="form-group col col-lg-4">
-            <label for="email">Email address:</label>
-            <input type="email" class="form-control" id="email">
+            <label for="email">Имэйл Хаяг: </label>
+            <input type="email" class="form-control" id="email" required>
         </div>
         <div class="form-group col-lg-4">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd">
+            <label for="pwd">Нууц үг:</label>
+            <input type="password" class="form-control" id="pwd" required>
         </div>
         <div class="form-group form-check">
             <label class="form-check-label">
@@ -15,6 +15,7 @@
             </label>
         </div>
         <button type="submit" class="btn btn-primary">Нэвтрэх</button>
+        <router-link to="register"><button type="submit" class="btn btn-secondary">Бүртгүүлэх</button></router-link>
     </div>
     </form>
 </template>

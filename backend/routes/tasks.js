@@ -1,6 +1,16 @@
 var express = require('express')
+var multer = require('multer')
 var router = express.Router()
+const path = require('path')
 const Task = require('../model/Task')
+const app = express()
+const cors = require('cors')
+app.use(cors())
+
+//init upload 
+const upload = multer({
+  
+});
 
 // Get All Tasks
 router.get('/tasks', (req, res, next) => {
@@ -14,15 +24,26 @@ router.get('/tasks', (req, res, next) => {
 })
 
 router.post('/task', (req, res, next) => {
-  if (!req.body.lastname) {
+  const userData = {
+    firstname : req.body.firstname,
+    lastname :  req.body.lastname,
+    location :  req.body.location,
+    password :  req.body.password,
+    stamp_name :  req.body.stamp_name,
+    define :  req.body.define,
+    photo : req.body.photo,
+    mail : req.body.mail,
+    aimag : req.body.aimag
+  }
+  if (!userData) {
     res.status(400)
     res.json({
       error: 'Bad Data'
     })
   } else {
-    Task.create(req.body)
+    Task.create(userData)
       .then(() => {
-        res.send('Task Added!')
+        res.send('Task Added!'+req.body.firstname)
       })
       .catch(err => {
         res.send('error: ' + err)

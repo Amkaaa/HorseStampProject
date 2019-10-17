@@ -32,6 +32,12 @@ module.exports = db.sequelize.define(
     },
     photo: {
       type: Sequelize.STRING
+    },
+    define:{
+      type: Sequelize.STRING
+    },
+    aimag: {
+      type: Sequelize.STRING
     }
   },
   {
