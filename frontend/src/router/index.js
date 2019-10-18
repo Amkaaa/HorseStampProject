@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from '@/components/Login'
 import List from '@/components/List'
 import burtgeh from '@/components/burtgeh'
+import profile from '@/components/profile'
 
 Vue.use(Router)
 
@@ -14,7 +15,7 @@ export default new Router({
       component: Login
     },
     {
-      path: '/List',
+      path: '/list',
       name: 'List',
       component: List
     },
@@ -27,6 +28,11 @@ export default new Router({
       path: '/register',
       name: 'burtgeh',
       component: burtgeh
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: profile
     }
   ]
 })

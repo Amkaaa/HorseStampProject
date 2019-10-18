@@ -11,13 +11,54 @@
             <li class="nav-item"><router-link to="List">Нүүр</router-link></li>
             <li class="nav-item"><router-link to="register">Бүртгэх</router-link></li>
             <li class="nav-item"><a class="button"><router-link to="Login">Нэвтрэх</router-link></a></li>
+            <li v-if="auth=='loggedin'" class="nav-item"><a class="button"><router-link to="/">Гарах</router-link></a></li>
+            <li v-if="auth=='loggedin'" class="nav-item"><a class="button"><router-link v-on:click="logout">Profile</router-link></a></li>
           </ul>
+          <!-- <ul class="navbar-nav">
+        <li class="nav-item">
+          <router-link class="nav-link" to="List">Home</router-link>
+        </li>
+
+        <li v-if="auth=='' && (token==null || token==undefined)" class="nav-item">
+          <router-link class="nav-link" to="Login">Login</router-link>
+        </li>
+        <li v-if="auth=='' && (token==null || token==undefined)" class="nav-item">
+          <router-link class="nav-link" to="register">Register</router-link>
+        </li>
+        <li v-if="auth=='loggedin' || token!=null || token!=undefined" class="nav-item">
+          <router-link class="nav-link" to="profile">Profile</router-link>
+        </li>
+        <li v-if="auth=='loggedin' || token!=null || token!=undefined" class="nav-item">
+          <a class="nav-link" href="" v-on:click="logout">Logout</a>
+        </li>
+      </ul> -->
         </div>
       </nav>
     </div>
   </header>
 </template>
 
+<script>
+// import EventBus from './EventBus'
+// export default {
+//   data () {
+//     return {
+//       auth: '',
+//       user: ''
+//     }
+//   },
+//   methods: {
+//     logout () {
+//       localStorage.removeItem('usertoken')
+//     }
+//   },
+//   mounted () {
+//     EventBus.$on('logged-in', status => {
+//       this.auth = status
+//     })
+//   }
+// }
+</script>
 <style>
 @media only screen and (min-width: 960px){
   .header{

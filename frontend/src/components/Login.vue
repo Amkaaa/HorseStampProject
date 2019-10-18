@@ -1,13 +1,13 @@
 <template>
-    <form action="/action_page.php" class="justify-content-md-center">
+    <form v-on:submit.prevent="list" class="justify-content-md-center">
     <div class="container ">
         <div class="form-group col col-lg-4">
             <label for="email">Имэйл Хаяг: </label>
-            <input type="email" class="form-control" id="email" required>
+            <input type="email" v-model="mail" class="form-control" id="email" name="mail" required>
         </div>
         <div class="form-group col-lg-4">
             <label for="pwd">Нууц үг:</label>
-            <input type="password" class="form-control" id="pwd" required>
+            <input type="password" v-model="password" class="form-control" id="pwd" required>
         </div>
         <div class="form-group form-check">
             <label class="form-check-label">
@@ -15,7 +15,7 @@
             </label>
         </div>
         <button type="submit" class="btn btn-primary">Нэвтрэх</button>
-        <router-link to="register"><button type="submit" class="btn btn-secondary">Бүртгүүлэх</button></router-link>
+        <router-link to="register"><button type="button" class="btn btn-secondary">Бүртгүүлэх</button></router-link>
     </div>
     </form>
 </template>
@@ -27,3 +27,37 @@
     margin-right: auto;
 }
 </style>
+<script>
+// import axios from 'axios'
+// import router from '../router'
+// import EventBus from './EventBus'
+// export default {
+//   data () {
+//     return {
+//       mail: '',
+//       password: ''
+//     }
+//   },
+//   methods: {
+//     login () {
+//       axios.post('/api/Login',
+//         {
+//           mail: this.mail,
+//           password: this.password
+//         }
+//       ).then(res => {
+//         localStorage.setItem('usertoken', res.data)
+//         this.mail = ''
+//         this.password = ''
+//         router.push({ name: 'Profile' })
+//       }).catch((err) => {
+//         console.log(err)
+//       })
+//       this.emitMethod()
+//     },
+//     emitMethod () {
+//       EventBus.$emit('logged-in', 'loggedin')
+//     }
+//   }
+// }
+</script>

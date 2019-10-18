@@ -3,8 +3,11 @@ var multer = require('multer')
 var router = express.Router()
 const path = require('path')
 const Task = require('../model/Task')
+const tamga = require('../model/tamga')
 const app = express()
 const cors = require('cors')
+const bcrypt = require('bcrypt')
+const jwt = require("jsonwebtoken")
 app.use(cors())
 
 //init upload 
@@ -12,6 +15,7 @@ const upload = multer({
   
 });
 
+process.env.SECRET_KEY = 'secret'
 // Get All Tasks
 router.get('/tasks', (req, res, next) => {
   Task.findAll()
@@ -22,7 +26,15 @@ router.get('/tasks', (req, res, next) => {
       res.send('error: ' + err)
     })
 })
-
+router.get('/stamps', (req, res, next) => {
+  tamga.findAll()
+    .then(stamps => {
+      res.json(stamps)
+    })
+    .catch(err => {
+      res.send('error: ' + err)
+    })
+})
 router.post('/task', (req, res, next) => {
   const userData = {
     firstname : req.body.firstname,
@@ -35,15 +47,67 @@ router.post('/task', (req, res, next) => {
     mail : req.body.mail,
     aimag : req.body.aimag
   }
-  if (!userData) {
+
+  Task.findOne({
+    where: {
+      mail: req.body.mail
+    }
+  })
+    .then(tasks => {
+      if(!tasks){
+          Task.create(userData)
+          .then(tasks =>{
+            res.json({ status: tasks.mail + 'registered'})
+          })
+          .catch(err => {
+            res.send('error: ' + err)
+          })
+      }else{
+        res.json({error: 'User already exists'})
+      }
+    })
+    .catch(err => {
+      res.send('error: ' + err)
+    })
+})
+router.post('/login',(req, res) => {
+  Task.findOne({
+    where: {
+      mail: req.body.mail,
+      password: req.body.password
+    }
+  })
+  .then(tasks => {
+    if(tasks) {
+      //res.send(req.body.password)
+      let token = jwt.sign(tasks.dataValues, process.env.SECRET_KEY,{
+        expiresIn: 1440
+      })
+      res.send(token)
+    }else{
+      res.status(400).json({error: "User does not exits"})
+    }
+  })
+  .catch(err => {
+    res.status(400).json({error: err})
+  })
+})
+router.post('/tamga', (req, res, next) => {
+  const tamgaData = {
+    stampname :  req.body.stampname,
+    define :  req.body.define,
+    photo : req.body.photo,
+    userid : req.body.photo
+  }
+  if (!tamgaData) {
     res.status(400)
     res.json({
       error: 'Bad Data'
     })
   } else {
-    Task.create(userData)
+    tamga.create(tamgaData)
       .then(() => {
-        res.send('Task Added!'+req.body.firstname)
+        res.send('Task Added!'+req.body.stampname)
       })
       .catch(err => {
         res.send('error: ' + err)
@@ -53,6 +117,19 @@ router.post('/task', (req, res, next) => {
 
 router.delete('/task/:id', (req, res, next) => {
   Task.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(() => {
+      res.send('Task deleted!')
+    })
+    .catch(err => {
+      res.send('error: ' + err)
+    })
+})
+router.delete('/tamga/:id', (req, res, next) => {
+  tamga.destroy({
     where: {
       id: req.params.id
     }
@@ -74,14 +151,14 @@ router.put('/task/:id', (req, res, next) => {
     })
   } else {
     Task.update(
-      { lastname: req.body.lastname },
-      { firstname: req.body.firstname},
-      { stamp_name: req.body.stamp_name},
-      { mail: req.body.mail},
-      { password: req.body.password},
-      { location: req.body.location},
-      { date: req.body.date},
-      { define: req.body.define},
+      { lastname: req.body.lastname,
+       firstname: req.body.firstname,
+       stamp_name: req.body.stamp_name,
+       mail: req.body.mail,
+       password: req.body.password,
+       location: req.body.location,
+       date: req.body.date,
+       define: req.body.define},
       { where: { id: req.params.id } }
     )
       .then(() => {
@@ -90,5 +167,24 @@ router.put('/task/:id', (req, res, next) => {
       .error(err => handleError(err))
   }
 })
-
+router.put('/tamga/:id', (req, res, next) => {
+  if (!req.body.lastname) {
+    res.status(400)
+    res.json({
+      error: 'Bad Data'
+    })
+  } else {
+    tamga.update(
+      { stamp_name: req.body.stamp_name},
+      { location: req.body.location},
+      { define: req.body.define},
+      { userid: req.body.userid},
+      { where: { id: req.params.id } }
+    )
+      .then(() => {
+        res.send('Task Updated!')
+      })
+      .error(err => handleError(err))
+  }
+})
 module.exports = router

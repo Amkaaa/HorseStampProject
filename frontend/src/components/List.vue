@@ -21,7 +21,6 @@
                 </td>
                 </tr>
             </table>
-        
         <div class="card" style="width: 18rem; margin:20px" v-for="(todo) in todos" v-bind:key="todo.id" v-bind:define="todo.define" v-bind:firstname="todo.firstname" v-bind:date="todo.date" v-bind:stampname="todo.stamp_name">
           <img src="../assets/logo.jpg" class="card-img-top" alt="tamga">
           <div class="card-body">

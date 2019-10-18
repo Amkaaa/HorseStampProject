@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-    <form v-on:submit.prevent="addNewTask()" action="/Login" enctype="multipart/form-data">
+    <form v-on:submit.prevent="list" enctype="multipart/form-data">
         <div class="form-group">
             <label for="formGroupExampleInput">Эцэг/Эхийн нэр</label>
             <input v-model="lastname" type="text" class="form-control" id="formGroupExampleInput" placeholder="lastname">
