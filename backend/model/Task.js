@@ -30,7 +30,7 @@ module.exports = db.sequelize.define(
     date: {
       type: Sequelize.DATEONLY
     },
-    photo: {
+    stampImage: {
       type: Sequelize.STRING
     },
     define:{

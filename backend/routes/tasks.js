@@ -1,19 +1,44 @@
 var express = require('express')
 var multer = require('multer')
 var router = express.Router()
-const path = require('path')
+//const path = require('path')
 const Task = require('../model/Task')
 const tamga = require('../model/tamga')
 const app = express()
 const cors = require('cors')
-const bcrypt = require('bcrypt')
+//const bcrypt = require('bcrypt')
 const jwt = require("jsonwebtoken")
+const storage = multer.diskStorage({
+  destination: function(req, file, cb){
+    cb(null, './uploads/')
+  },
+  filename: function(req, file, cb){
+    cb(null, Date.now() + file.originalname)
+  }
+})
+const fileFilter = (res, file, cb)=>{
+  // reject file
+  if(file.mimetype == 'image/jpeg' || file.mimetype == 'image/png'){
+    cb(null, true)
+  }else{
+    cb(null, false)
+  }
+}
+const path = (res, file, cb)=>{
+  if(file.path!=NULL){
+    cb(null, true)
+  }
+}
+const upload = multer({
+  storage: storage, 
+  limits: {
+    fileSize: 1024*1024*5
+  },
+  fileFilter: fileFilter,
+  path: path
+})
 app.use(cors())
 
-//init upload 
-const upload = multer({
-  
-});
 
 process.env.SECRET_KEY = 'secret'
 // Get All Tasks
@@ -35,7 +60,8 @@ router.get('/stamps', (req, res, next) => {
       res.send('error: ' + err)
     })
 })
-router.post('/task', (req, res, next) => {
+router.post('/task', upload.single('stampImage'),(req, res, next) => {
+  //res.json(req.file);
   const userData = {
     firstname : req.body.firstname,
     lastname :  req.body.lastname,
@@ -43,7 +69,7 @@ router.post('/task', (req, res, next) => {
     password :  req.body.password,
     stamp_name :  req.body.stamp_name,
     define :  req.body.define,
-    photo : req.body.photo,
+    stampImage : req.file.path,
     mail : req.body.mail,
     aimag : req.body.aimag
   }

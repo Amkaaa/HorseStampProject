@@ -15,7 +15,8 @@ module.exports = db.sequelize.define(
       type: Sequelize.DATE
     },
     photo: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      required: true
     },
     define:{
       type: Sequelize.STRING
