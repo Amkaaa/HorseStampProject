@@ -24,18 +24,12 @@ const fileFilter = (res, file, cb)=>{
     cb(null, false)
   }
 }
-const path = (res, file, cb)=>{
-  if(file.path!=NULL){
-    cb(null, true)
-  }
-}
 const upload = multer({
   storage: storage, 
   limits: {
     fileSize: 1024*1024*5
   },
   fileFilter: fileFilter,
-  path: path
 })
 app.use(cors())
 

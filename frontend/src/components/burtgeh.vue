@@ -90,17 +90,17 @@
         <div class="custom-file">
           <input
             type="file"
+            id="file"
+            ref="stampImage"
             class="custom-file-input"
             name="stampImage"
-            ref="file"
-            id="file"
-            v-on:change="handleFilesUpload()"
+            @change="handleFilesUpload($event)"
+            multiple
           />
           <label class="custom-file-label" for="inputGroupFile04">Зургаа оруул</label>
         </div>
       </div>
-      <img v-bind:src="imagePreview" v-show="showPreview"/>
-      <button v-on:click="submitFile()" type="submit" class="btn btn-primary">Бүртгүүлэх</button>
+      <button type="submit" class="btn btn-primary">Бүртгүүлэх</button>
     </form>
   </div>
 </template>
@@ -122,16 +122,20 @@ export default {
       stampImage: '',
       define: '',
       aimag: '',
-      file: ''
+      files: []
     }
   },
 
   methods: {
+    handleFileUpload (event) {
+      this.files = this.$refd.stampImage.files
+    },
     addNewTask () {
-      const formData = new FormData()
-      formData.append('file', this.file)
       axios
-        .post('/api/task', this.file.stampImage, {
+        .post('/api/task', this.files, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
           lastname: this.lastname,
           firstname: this.firstname,
           stamp_name: this.stamp_name,
@@ -140,7 +144,7 @@ export default {
           location: this.location,
           date: this.date,
           define: this.define,
-          file: this.file,
+          stampImage: this.files.path,
           aimag: this.aimag
         })
         .then(res => {
@@ -154,14 +158,10 @@ export default {
           this.define = ''
           this.stampImage = ''
           this.aimag = ''
-          this.getTasks()
         })
         .catch(err => {
           console.log(err)
         })
-    },
-    handleFileUpload () {
-      this.file = this.$refs.file.files[0]
     }
   }
 }

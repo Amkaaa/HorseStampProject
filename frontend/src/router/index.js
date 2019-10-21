@@ -4,9 +4,9 @@ import Login from '@/components/Login'
 import List from '@/components/List'
 import burtgeh from '@/components/burtgeh'
 import profile from '@/components/profile'
-
+import photo from '@/components/photo'
+import stamp from '@/components/stamp'
 Vue.use(Router)
-
 export default new Router({
   routes: [
     {
@@ -33,6 +33,16 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: profile
+    },
+    {
+      path: '/photo',
+      name: 'photo',
+      component: photo
+    },
+    {
+      path: '/stamp',
+      name: 'stamp',
+      component: stamp
     }
   ]
 })
