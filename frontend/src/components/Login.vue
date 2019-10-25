@@ -1,5 +1,5 @@
 <template>
-    <form v-on:submit.prevent="list" class="justify-content-md-center">
+    <form v-on:submit.prevent="login()" class="justify-content-md-center">
     <div class="container ">
         <div class="form-group col col-lg-4">
             <label for="email">Имэйл Хаяг: </label>
@@ -28,36 +28,36 @@
 }
 </style>
 <script>
-// import axios from 'axios'
-// import router from '../router'
-// import EventBus from './EventBus'
-// export default {
-//   data () {
-//     return {
-//       mail: '',
-//       password: ''
-//     }
-//   },
-//   methods: {
-//     login () {
-//       axios.post('/api/Login',
-//         {
-//           mail: this.mail,
-//           password: this.password
-//         }
-//       ).then(res => {
-//         localStorage.setItem('usertoken', res.data)
-//         this.mail = ''
-//         this.password = ''
-//         router.push({ name: 'Profile' })
-//       }).catch((err) => {
-//         console.log(err)
-//       })
-//       this.emitMethod()
-//     },
-//     emitMethod () {
-//       EventBus.$emit('logged-in', 'loggedin')
-//     }
-//   }
-// }
+import axios from 'axios'
+import router from '../router'
+import EventBus from './EventBus'
+export default {
+  data () {
+    return {
+      mail: '',
+      password: ''
+    }
+  },
+  methods: {
+    login () {
+      axios.post('/api/Login',
+        {
+          mail: this.mail,
+          password: this.password
+        }
+      ).then(res => {
+        localStorage.setItem('usertoken', res.data)
+        this.mail = ''
+        this.password = ''
+        router.push({ name: 'Profile' })
+      }).catch((err) => {
+        console.log(err)
+      })
+      this.emitMethod()
+    },
+    emitMethod () {
+      EventBus.$emit('logged-in', 'loggedin')
+    }
+  }
+}
 </script>

@@ -107,10 +107,7 @@ router.post('/login',(req, res) => {
   .then(tasks => {
     if(tasks) {
       //res.send(req.body.password)
-      let token = jwt.sign(tasks.dataValues, process.env.SECRET_KEY,{
-        expiresIn: 1440
-      })
-      res.send(token)
+      res.send(true)
     }else{
       res.status(400).json({error: "User does not exits"})
     }
