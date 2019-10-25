@@ -1,26 +1,36 @@
 <template>
-  <div class="container">
-    <div class="large-12 medium-12 small-12 cell">
-      <label>File
-        <input v-model="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
-      </label>
-      <button v-on:click="submitFile()">Submit</button>
+    <div>
+      <form action="">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Мэйл хаяг</label>
+                <input v-model="mail" type="email" class="form-control" id="inputEmail4" placeholder="Email">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Нууц үг</label>
+                <input v-model="password" type="password" class="form-control" id="inputPassword4" placeholder="Нууц үг">
+            </div>
+        </div>
+        <input type="file" ref="file" id="file" v-on:change="handlingPhoto">
+        <button type="submit" v-on:click="submitPhoto"></button>
+        </form>
     </div>
-  </div>
 </template>
 <script>
 import axios from 'axios'
 export default {
-  /*
-    Defines the data used by the component
-  */
   data () {
     return {
-      file: ''
+      file: '',
+      mail: '',
+      password: ''
     }
   },
   methods: {
-    submitFile () {
+    handlingPhoto () {
+      this.file = this.$refs.file.files[0]
+    },
+    submitPhoto () {
       let formData = new FormData()
       formData.append('file', this.file)
       axios.post('/api/task',
@@ -28,17 +38,16 @@ export default {
         {
           headers: {
             'Content-Type': 'multipart/form-data'
-          }
+          },
+          mail: this.mail,
+          password: this.password
         }
-      ).then(function () {
-        console.log('SUCCESS!!')
+      ).then(function (data) {
+        console.log(data.data)
       })
         .catch(function () {
           console.log('FAILURE!!')
         })
-    },
-    handleFileUpload () {
-      this.file = this.$refs.file.files[0]
     }
   }
 }

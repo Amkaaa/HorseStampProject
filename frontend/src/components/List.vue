@@ -21,12 +21,14 @@
                 </td>
                 </tr>
             </table>
-        <div class="card" style="width: 18rem; margin:20px" v-for="(todo) in todos" v-bind:key="todo.id" v-bind:define="todo.define" v-bind:firstname="todo.firstname" v-bind:date="todo.date" v-bind:stampname="todo.stamp_name">
-          <img src="../assets/logo.jpg" class="card-img-top" alt="tamga">
+        <div class="card" style="width: 18rem; margin:20px" v-for="(todo) in todos" v-bind:key="todo.id" v-bind:define="todo.define" v-bind:firstname="todo.firstname" v-bind:date="todo.date" v-bind:stampname="todo.stamp_name" v-bind:stampImage="todo.stampImage">
+          <!--<img :link="require('../assets/tamga/'+todo.stampImage)" class="card-img-top" alt="tamga">-->
           <div class="card-body">
             <h5 class="card-title">{{todo.stamp_name}}</h5>
             <p class="card-text">{{todo.define}}</p>
-            <a href="#" class="btn btn-primary">Дэлгэрэнгүй</a>
+            <router-link :to="/stamp/+todo.id+' /'+todo.stamp_name+' /'+todo.define+' /'+todo.date+'/'">
+            <a class="btn btn-primary">Дэлгэрэнгүй</a>
+            </router-link>
           </div>
         </div>
         </div>
@@ -47,7 +49,8 @@ export default {
       password: '',
       location: '',
       date: '',
-      photo: '',
+      stampImage: '',
+      upload: 'http://localhost:8000/uploads/1571908394930__.png',
       isEdit: false
     }
   },
@@ -55,6 +58,10 @@ export default {
     this.getTasks()
   },
   methods: {
+    // getImgUrl (put) {
+    //   var images = require.context('../assets/tamga/', false, /\.png$/)
+    //   return images('./' + put)
+    // },
     getTasks () {
       axios.get('/api/tasks').then(
         result => {

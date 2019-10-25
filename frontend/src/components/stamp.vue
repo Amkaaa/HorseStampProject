@@ -8,13 +8,10 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">Тамганы нэр: Хас</h5>
-                        <h5 class="card-title">Бүртгэгдсэн огноо: 2019-10-22</h5>
-                        <h5 class="card-title">Хэрэглэгчдийн тоо: 20</h5>
-                        <p class="card-text">Бусад мэдээлэл: This is a wider card with
-                            supporting text below as a natural lead-in to
-                            additional content. This content is a little bit
-                            longer.</p>
+                        <h5 class="card-title">Тамганы нэр: {{$route.params.name}}</h5>
+                        <h5 class="card-title">Бүртгэгдсэн огноо: {{$route.params.date}}</h5>
+                        <h5 class="card-title">Хэрэглэгчдийн тоо: {{$route.params.id}}</h5>
+                        <p class="card-text">Бусад мэдээлэл: {{$route.params.define}}</p>
                     </div>
                 </div>
             </div>

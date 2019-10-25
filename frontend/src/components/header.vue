@@ -8,9 +8,9 @@
         <div id="title"><span>Монгол Адууны Тамга</span></div>
         <div class="nav-bar">
           <ul class="list">
-            <li class="nav-item"><router-link to="List">Нүүр</router-link></li>
-            <li class="nav-item"><router-link to="register">Бүртгэх</router-link></li>
-            <li class="nav-item"><a class="button"><router-link to="Login">Нэвтрэх</router-link></a></li>
+            <li class="nav-item"><router-link to="/List">Нүүр</router-link></li>
+            <li class="nav-item"><router-link to="/register">Бүртгэх</router-link></li>
+            <li class="nav-item"><a class="button"><router-link to="/Login">Нэвтрэх</router-link></a></li>
             <li v-if="auth=='loggedin'" class="nav-item"><a class="button"><router-link to="/">Гарах</router-link></a></li>
             <li v-if="auth=='loggedin'" class="nav-item"><a class="button"><router-link v-on:click="logout">Profile</router-link></a></li>
           </ul>

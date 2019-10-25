@@ -94,7 +94,7 @@
             ref="stampImage"
             class="custom-file-input"
             name="stampImage"
-            @change="handleFilesUpload($event)"
+            @change="handleFilesUpload"
             multiple
           />
           <label class="custom-file-label" for="inputGroupFile04">Зургаа оруул</label>
@@ -127,37 +127,48 @@ export default {
   },
 
   methods: {
-    handleFileUpload (event) {
-      this.files = this.$refd.stampImage.files
+    handleFilesUpload (event) {
+      this.stampImage = event.target.files[0]
+      console.log(event)
     },
     addNewTask () {
+      let formData = new FormData()
+      formData.append('stampImage', this.stampImage)
       axios
-        .post('/api/task', this.files, {
+        .post('/api/photo', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
-          },
-          lastname: this.lastname,
-          firstname: this.firstname,
-          stamp_name: this.stamp_name,
-          mail: this.mail,
-          password: this.password,
-          location: this.location,
-          date: this.date,
-          define: this.define,
-          stampImage: this.files.path,
-          aimag: this.aimag
+          }
         })
         .then(res => {
-          this.lastname = ''
-          this.firstname = ''
-          this.stamp_name = ''
-          this.mail = ''
-          this.password = ''
-          this.location = ''
-          this.date = ''
-          this.define = ''
-          this.stampImage = ''
-          this.aimag = ''
+          console.log(res)
+          axios.post('/api/task', {
+            stampImage: res.data,
+            lastname: this.lastname,
+            firstname: this.firstname,
+            stamp_name: this.stamp_name,
+            mail: this.mail,
+            password: this.password,
+            location: this.location,
+            date: this.date,
+            define: this.define,
+            aimag: this.aimag
+          })
+            .then(res => {
+              this.lastname = ''
+              this.firstname = ''
+              this.stamp_name = ''
+              this.mail = ''
+              this.password = ''
+              this.location = ''
+              this.date = ''
+              this.define = ''
+              this.stampImage = ''
+              this.aimag = ''
+            })
+            .catch(err => {
+              console.log(err)
+            })
         })
         .catch(err => {
           console.log(err)

@@ -5,9 +5,11 @@ import App from './App'
 import router from './router'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
+import PictureInput from 'vue-picture-input'
 require('../node_modules/bootstrap/dist/css/bootstrap.css')
 Vue.config.productionTip = false
 Vue.use(VueMaterial)
+Vue.use(PictureInput)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

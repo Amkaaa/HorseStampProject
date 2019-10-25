@@ -10,9 +10,10 @@ const cors = require('cors')
 const jwt = require("jsonwebtoken")
 const storage = multer.diskStorage({
   destination: function(req, file, cb){
-    cb(null, './uploads/')
+    cb(null, '../frontend/src/assets/tamga/')
   },
   filename: function(req, file, cb){
+    // console.log(file);
     cb(null, Date.now() + file.originalname)
   }
 })
@@ -54,7 +55,14 @@ router.get('/stamps', (req, res, next) => {
       res.send('error: ' + err)
     })
 })
-router.post('/task', upload.single('stampImage'),(req, res, next) => {
+router.post('/photo',upload.single('stampImage'),(req, res, next) =>{
+  if(req.file){
+    //console.log(req.file);
+    req.body.photo = req.file.filename;
+    res.send(req.file.filename);
+  }
+})
+router.post('/task',(req, res, next) => {
   //res.json(req.file);
   const userData = {
     firstname : req.body.firstname,
@@ -63,16 +71,15 @@ router.post('/task', upload.single('stampImage'),(req, res, next) => {
     password :  req.body.password,
     stamp_name :  req.body.stamp_name,
     define :  req.body.define,
-    stampImage : req.file.path,
+    stampImage : req.body.stampImage,
     mail : req.body.mail,
     aimag : req.body.aimag
   }
-
-  Task.findOne({
-    where: {
-      mail: req.body.mail
-    }
-  })
+   Task.findOne({
+     where: {
+       mail: req.body.mail
+     }
+   })
     .then(tasks => {
       if(!tasks){
           Task.create(userData)

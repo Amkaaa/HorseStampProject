@@ -40,7 +40,7 @@ export default new Router({
       component: photo
     },
     {
-      path: '/stamp',
+      path: '/stamp/:id/:name/:define/:date',
       name: 'stamp',
       component: stamp
     }
