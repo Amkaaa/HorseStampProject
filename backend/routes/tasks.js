@@ -120,8 +120,8 @@ router.post('/tamga', (req, res, next) => {
   const tamgaData = {
     stampname :  req.body.stampname,
     define :  req.body.define,
-    photo : req.body.photo,
-    userid : req.body.photo
+    stampImage : req.body.stampImage,
+    userid : req.body.userid
   }
   if (!tamgaData) {
     res.status(400)
@@ -131,7 +131,7 @@ router.post('/tamga', (req, res, next) => {
   } else {
     tamga.create(tamgaData)
       .then(() => {
-        res.send('Task Added!'+req.body.stampname)
+        res.send('Tamga Added!'+req.body.stampname)
       })
       .catch(err => {
         res.send('error: ' + err)

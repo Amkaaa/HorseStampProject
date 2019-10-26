@@ -11,12 +11,8 @@ module.exports = db.sequelize.define(
     stampname: {
       type: Sequelize.STRING
     },
-    date1: {
-      type: Sequelize.DATE
-    },
-    photo: {
+    stampImage: {
       type: Sequelize.STRING,
-      required: true
     },
     define:{
       type: Sequelize.STRING

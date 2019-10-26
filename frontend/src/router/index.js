@@ -6,6 +6,7 @@ import burtgeh from '@/components/burtgeh'
 import profile from '@/components/profile'
 import photo from '@/components/photo'
 import stamp from '@/components/stamp'
+import createStamp from '@/components/createStamp'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -43,6 +44,11 @@ export default new Router({
       path: '/stamp/:id/:name/:define/:date',
       name: 'stamp',
       component: stamp
+    },
+    {
+      path: '/createstamp',
+      name: 'createStamp',
+      component: createStamp
     }
   ]
 })

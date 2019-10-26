@@ -1,54 +1,66 @@
 <template>
-    <div>
-      <form action="">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputEmail4">Мэйл хаяг</label>
-                <input v-model="mail" type="email" class="form-control" id="inputEmail4" placeholder="Email">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputPassword4">Нууц үг</label>
-                <input v-model="password" type="password" class="form-control" id="inputPassword4" placeholder="Нууц үг">
-            </div>
+    <div id="todo-list-example" class="container">
+        <div class="row">
+        <div class="card" style="width: 18rem; margin:20px" v-for="(todo) in todos" v-bind:key="todo.id" v-bind:define="todo.define" v-bind:firstname="todo.firstname" v-bind:date="todo.date" v-bind:stampname="todo.stamp_name" v-bind:stampImage="todo.stampImage">
+          <img :src="'../assets/tamga/'+todo.stampImage" class="card-img-top" alt="tamga">
+          <div class="card-body">
+            <h5 class="card-title">{{todo.stamp_name}}</h5>
+            <p class="card-text">{{todo.define}}</p>
+            <router-link :to="/stamp/+todo.id+' /'+todo.stamp_name+' /'+todo.define+' /'+todo.date+'/'">
+            <a class="btn btn-primary">Дэлгэрэнгүй</a>
+            </router-link>
+          </div>
         </div>
-        <input type="file" ref="file" id="file" v-on:change="handlingPhoto">
-        <button type="submit" v-on:click="submitPhoto"></button>
-        </form>
+        </div>
     </div>
 </template>
 <script>
 import axios from 'axios'
+
 export default {
   data () {
     return {
-      file: '',
-      mail: '',
-      password: ''
+      todos: [],
+      id: '',
+      lastname: '',
+      firstname: '',
+      stamp_name: '',
+      location: '',
+      date: '',
+      stampImage: '',
+      upload: 'http://localhost:8000/uploads/1571908394930__.png'
     }
   },
+  mounted () {
+    this.getTasks()
+  },
   methods: {
-    handlingPhoto () {
-      this.file = this.$refs.file.files[0]
-    },
-    submitPhoto () {
-      let formData = new FormData()
-      formData.append('file', this.file)
-      axios.post('/api/task',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          },
-          mail: this.mail,
-          password: this.password
+    // getImgUrl (put) {
+    //   var images = require.context('../assets/tamga/', false, /\.png$/)
+    //   return images('./' + put)
+    // },
+    getTasks () {
+      axios.get('/api/tasks').then(
+        result => {
+          this.todos = result.data
+        },
+        error => {
+          console.error(error)
         }
-      ).then(function (data) {
-        console.log(data.data)
-      })
-        .catch(function () {
-          console.log('FAILURE!!')
-        })
+      )
     }
   }
 }
 </script>
+<style>
+.photo{
+  width: 64px;
+  height: 64px;
+}
+.row{
+  grid-template-columns: auto auto auto;
+  width:90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
