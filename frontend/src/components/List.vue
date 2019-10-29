@@ -1,8 +1,9 @@
 <template>
     <div id="todo-list-example" class="container">
         <div class="row">
-        <div class="card" style="width: 18rem; margin:20px" v-for="(todo) in todos" v-bind:key="todo.id" v-bind:define="todo.define" v-bind:firstname="todo.firstname" v-bind:date="todo.date" v-bind:stampname="todo.stamp_name" v-bind:stampImage="todo.stampImage">
-          <img src="#/assets/tamga/se1.png" class="card-img-top" alt="tamga">
+        <div class="card avatar" style="width: 18rem; margin:20px" v-for="(todo) in todos" v-bind:key="todo.id" v-bind:define="todo.define" v-bind:firstname="todo.firstname" v-bind:date="todo.date" v-bind:stampname="todo.stamp_name" v-bind:stampImage="todo.stampImage">
+          <img :src="require('../assets/tamga/'+todo.stampImage)" class="card-img-top g-image" alt="tamga">
+          <div class="card-img-top"></div>
           <div class="card-body">
             <h5 class="card-title">{{todo.stamp_name}}</h5>
             <p class="card-text">{{todo.define}}</p>
@@ -18,6 +19,7 @@
 import axios from 'axios'
 
 export default {
+  props: ['stampImage'],
   data () {
     return {
       todos: [],
@@ -27,17 +29,18 @@ export default {
       stamp_name: '',
       location: '',
       date: '',
-      stampImage: '',
-      upload: 'http://localhost:8000/uploads/1571908394930__.png'
+      img: require('../assets/tamga/1572285648115se2.jpg'),
+      // stampImage: '',
+      upload: 'http://localhost:8000/uploads/1571908394930__.png',
+      publicPath: process.env.BASE_URL
     }
   },
   mounted () {
     this.getTasks()
   },
   methods: {
-    // getImgUrl (put) {
-    //   var images = require.context('../assets/tamga/', false, /\.png$/)
-    //   return images('./' + put)
+    // imges () {
+    //   require('../assets/tamga/se1.png')
     // },
     getTasks () {
       axios.get('/api/tasks').then(

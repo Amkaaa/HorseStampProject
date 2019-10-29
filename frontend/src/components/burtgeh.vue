@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <form v-on:submit.prevent="addNewTask()" enctype="multipart/form-data">
-      <div class="form-group">
+    <div class="form-row">
+      <div class="form-group col-md-6">
         <label for="formGroupExampleInput">Эцэг/Эхийн нэр</label>
         <input
           v-model="lastname"
@@ -11,7 +12,7 @@
           placeholder="lastname"
         />
       </div>
-      <div class="form-group">
+      <div class="form-group col-md-6">
         <label for="formGroupExampleInput2">Өөрийн нэр</label>
         <input
           v-model="firstname"
@@ -21,6 +22,7 @@
           placeholder="firstname"
         />
       </div>
+    </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputEmail4">Мэйл хаяг</label>
@@ -80,12 +82,6 @@
           <input v-model="location" type="text" class="form-control" id="inputCity" />
         </div>
       </div>
-      <div class="form-group">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="gridCheck" required />
-          <label class="form-check-label" for="gridCheck">Оруулсан мэдээлэл үнэн</label>
-        </div>
-      </div>
       <div class="input-group">
         <div class="custom-file">
           <input
@@ -96,9 +92,19 @@
             name="stampImage"
             @change="handleFilesUpload"
             multiple
+            required
           />
           <label class="custom-file-label" for="inputGroupFile04">Зургаа оруул</label>
         </div>
+      </div>
+      <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="gridCheck" required />
+          <label class="form-check-label" for="gridCheck">Оруулсан мэдээлэл үнэн</label>
+        </div>
+      </div>
+      <div class="alert alert-info" role="alert">
+        {{msg}}
       </div>
       <button type="submit" class="btn btn-primary">Бүртгүүлэх</button>
     </form>
@@ -122,7 +128,8 @@ export default {
       stampImage: '',
       define: '',
       aimag: '',
-      files: []
+      files: [],
+      msg: ''
     }
   },
 
@@ -155,6 +162,7 @@ export default {
             aimag: this.aimag
           })
             .then(res => {
+              this.msg = 'Амжилттай бүртгүүллээ.'
               this.lastname = ''
               this.firstname = ''
               this.stamp_name = ''
@@ -167,11 +175,13 @@ export default {
               this.aimag = ''
             })
             .catch(err => {
+              this.msg = 'Бүртгэл алдаатай байна.'
               console.log(err)
             })
         })
         .catch(err => {
           console.log(err)
+          this.msg = 'Бүртгэл алдаатай байна.'
         })
     }
   }

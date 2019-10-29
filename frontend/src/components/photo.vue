@@ -1,66 +1,46 @@
-<template>
-    <div id="todo-list-example" class="container">
-        <div class="row">
-        <div class="card" style="width: 18rem; margin:20px" v-for="(todo) in todos" v-bind:key="todo.id" v-bind:define="todo.define" v-bind:firstname="todo.firstname" v-bind:date="todo.date" v-bind:stampname="todo.stamp_name" v-bind:stampImage="todo.stampImage">
-          <img :src="'../assets/tamga/'+todo.stampImage" class="card-img-top" alt="tamga">
-          <div class="card-body">
-            <h5 class="card-title">{{todo.stamp_name}}</h5>
-            <p class="card-text">{{todo.define}}</p>
-            <router-link :to="/stamp/+todo.id+' /'+todo.stamp_name+' /'+todo.define+' /'+todo.date+'/'">
-            <a class="btn btn-primary">Дэлгэрэнгүй</a>
-            </router-link>
+<!--<template>
+  <vue-clip :options="options">
+    <template slot="clip-uploader-action">
+      <div class="uploader-action">
+        <div class="dz-message">
+          drop and drag file
+        </div>
+      </div>
+    </template>
+    <template slot="clip-uploader-body" scope="props">
+      <div class="uploader-files">
+        <div class="uploader-file" v-for="file in props.files" :key="file">
+          <div class="file-avatar">
+            <img v-bind:src="file.dataUrl" alt="file.data">
+          </div>
+          <div class="file-defaults">
+            <div class="file-name">
+              {{ file.name}}
+            </div>
+            <div class="file-progress">
+              <span class="progress-indicator" v-bind:style="{width: file.progress+'%'}"></span>
+            </div>
+            <div class="file-meta">
+              <span class="file-size">{{file.size}}</span>
+              <span class="file-status">{{file.status}}</span>
+            </div>
           </div>
         </div>
-        </div>
-    </div>
+      </div>
+    </template>
+  </vue-clip>
 </template>
-<script>
-import axios from 'axios'
 
+<script>
 export default {
   data () {
     return {
-      todos: [],
-      id: '',
-      lastname: '',
-      firstname: '',
-      stamp_name: '',
-      location: '',
-      date: '',
-      stampImage: '',
-      upload: 'http://localhost:8000/uploads/1571908394930__.png'
-    }
-  },
-  mounted () {
-    this.getTasks()
-  },
-  methods: {
-    // getImgUrl (put) {
-    //   var images = require.context('../assets/tamga/', false, /\.png$/)
-    //   return images('./' + put)
-    // },
-    getTasks () {
-      axios.get('/api/tasks').then(
-        result => {
-          this.todos = result.data
-        },
-        error => {
-          console.error(error)
-        }
-      )
+      props: '',
+      files: [],
+      options: {
+        url: '../assets'
+      }
     }
   }
 }
 </script>
-<style>
-.photo{
-  width: 64px;
-  height: 64px;
-}
-.row{
-  grid-template-columns: auto auto auto;
-  width:90%;
-  margin-left: auto;
-  margin-right: auto;
-}
-</style>
