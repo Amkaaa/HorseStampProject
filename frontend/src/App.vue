@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <v-stepper-header>
-      <headr/>
-    </v-stepper-header>
+    <headr/>
     <router-view/>
     <footer>
       <span>&copy; Copyright: Ихбаяр, Амартүвшин, Цэлмүүнзаяа</span>

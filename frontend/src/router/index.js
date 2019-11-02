@@ -6,6 +6,7 @@ import burtgeh from '@/components/burtgeh'
 import profile from '@/components/profile'
 import photo from '@/components/photo'
 import stamp from '@/components/stamp'
+import logout from '@/components/logout'
 import createStamp from '@/components/createStamp'
 Vue.use(Router)
 export default new Router({
@@ -49,6 +50,11 @@ export default new Router({
       path: '/createstamp',
       name: 'createStamp',
       component: createStamp
+    },
+    {
+      path: '/logout',
+      name: 'logout',
+      component: logout
     }
   ]
 })

@@ -12,13 +12,25 @@ module.exports = db.sequelize.define(
       type: Sequelize.STRING
     },
     stampImage: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING
     },
     define:{
       type: Sequelize.STRING
     },
     userid:{
         type: Sequelize.INTEGER
+    },
+    uy:{
+      type: Sequelize.INTEGER
+    },
+    bilgedel:{
+      type: Sequelize.STRING
+    },
+    date: {
+      type: Sequelize.DATEONLY
+    },
+    typeStamp: {
+      type: Sequelize.STRING
     }
   },
   {

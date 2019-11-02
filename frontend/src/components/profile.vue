@@ -30,7 +30,7 @@
                 </div>
         </div>
                 <div class="row">
-            <form v-on:submit.prevent="addNewTask()">
+            <!-- <form v-on:submit.prevent="addNewTask()">
                 <input v-model="lastname" type="text" id="lastnameinput" class="form-control mt-4" placeholder="Тамганы нэрээ оруул">
                 <button v-if="this.isEdit==false" type="submit" class="btn btn-success btn-block mt-4">
                     Submit
@@ -38,12 +38,12 @@
                 <button v-else v-on:click="updateTask()" type="button" class="btn btn-primary btn-block mt-4">
                     Update
                 </button>
-            </form>
+            </form> -->
             <table class="table">
                 <tr v-for="(todo) in todos" v-bind:key="todo.id"
-                v-bind:title="todo.lastname">
+                v-bind:stampname="todo.stampname">
                 <td class="text-left">{{todo.id}}</td>
-                <td class="text-left">{{todo.lastname}}</td>
+                <td class="text-left">{{todo.stampname}}</td>
                 <td class="text-right">
                     <button class="btn btn-info" v-on:click="editTask(todo.lastname,todo.id,todo.firstname, todo.stamp_name, todo.mail, todo.location, todo.date, todo.photo)">Edit</button>
                     <button class="btn btn-danger" v-on:click="deleteTask(todo.id)">Delete</button>
@@ -60,7 +60,6 @@
 </style>
 <script>
 import axios from 'axios'
-
 export default {
   data () {
     return {
@@ -68,18 +67,20 @@ export default {
       id: '',
       lastname: '',
       firstname: '',
-      stamp_name: '',
+      stampname: '',
       mail: '',
       password: '',
       location: '',
       date: '',
       stampImage: '',
       upload: 'http://localhost:8000/uploads/1571908394930__.png',
-      isEdit: false
+      isEdit: false,
+      count: 1
     }
   },
   mounted () {
     this.getTasks()
+    // location.reload()
   },
   methods: {
     // getImgUrl (put) {
@@ -87,7 +88,7 @@ export default {
     //   return images('./' + put)
     // },
     getTasks () {
-      axios.get('/api/tasks').then(
+      axios.get('/api/stamps').then(
         result => {
           console.log(result.data)
           this.todos = result.data
@@ -96,6 +97,9 @@ export default {
           console.error(error)
         }
       )
+      // setTimeout(function () {
+      //   location.reload()
+      // }, this.count = this.count * 1000)
     },
     editTask (title, id, firstname, stampname, mail, location, date, photo) {
       this.id = id
@@ -136,7 +140,7 @@ export default {
         })
     },
     deleteTask (id) {
-      axios.delete('/api/task/' + id)
+      axios.delete('/api/tamga/' + id)
         .then((res) => {
           this.lastname = ''
           this.firstname = ''

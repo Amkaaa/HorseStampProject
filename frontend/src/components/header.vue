@@ -8,30 +8,19 @@
         <div id="title"><span>Монгол Адууны Тамга</span></div>
         <div class="nav-bar">
           <ul class="list">
-            <li class="nav-item"><router-link to="/List">Нүүр</router-link></li>
-            <li class="nav-item"><router-link to="/register">Бүртгэх</router-link></li>
-            <li class="nav-item"><a class="button"><router-link to="/Login">Нэвтрэх</router-link></a></li>
-            <li v-if="auth=='loggedin'" class="nav-item"><a class="button"><router-link to="/">Гарах</router-link></a></li>
-            <li v-if="auth=='loggedin'" class="nav-item"><a class="button"><router-link v-on:click="logout">Profile</router-link></a></li>
+            <li class="nav-item"><router-link to="/List" onClick="window.location.reload()">Нүүр</router-link></li>
+            <li v-if="!login" class="nav-item"><router-link to="/register">Бүртгэх</router-link></li>
+            <li v-if="!login" class="nav-item"><a class="button"><router-link to="/Login">Нэвтрэх</router-link></a></li>
+            <li v-if="login" class="nav-item"><router-link to="/createStamp">Тамга бүртгүүлэх</router-link></li>
+            <span v-for="(user) in users" v-bind:key="user.id" v-bind:firstname="user.firstname" v-bind:mail="user.mail">
+              <li class="nav-item" v-if="user.mail==user1">
+                <a class="button">
+                  <router-link to="/profile">{{user.firstname}}</router-link>
+                </a>
+              </li>
+            </span>
+            <li v-if="login" class="nav-item"><a class="button" v-on:submit.prevent="logout()"><router-link to="/logout" onClick="window.location.reload()">Гарах</router-link></a></li>
           </ul>
-          <!-- <ul class="navbar-nav">
-        <li class="nav-item">
-          <router-link class="nav-link" to="List">Home</router-link>
-        </li>
-
-        <li v-if="auth=='' && (token==null || token==undefined)" class="nav-item">
-          <router-link class="nav-link" to="Login">Login</router-link>
-        </li>
-        <li v-if="auth=='' && (token==null || token==undefined)" class="nav-item">
-          <router-link class="nav-link" to="register">Register</router-link>
-        </li>
-        <li v-if="auth=='loggedin' || token!=null || token!=undefined" class="nav-item">
-          <router-link class="nav-link" to="profile">Profile</router-link>
-        </li>
-        <li v-if="auth=='loggedin' || token!=null || token!=undefined" class="nav-item">
-          <a class="nav-link" href="" v-on:click="logout">Logout</a>
-        </li>
-      </ul> -->
         </div>
       </nav>
     </div>
@@ -40,24 +29,50 @@
 
 <script>
 // import EventBus from './EventBus'
-// export default {
-//   data () {
-//     return {
-//       auth: '',
-//       user: ''
-//     }
-//   },
-//   methods: {
-//     logout () {
-//       localStorage.removeItem('usertoken')
-//     }
-//   },
-//   mounted () {
-//     EventBus.$on('logged-in', status => {
-//       this.auth = status
-//     })
-//   }
-// }
+import router from '../router'
+import axios from 'axios'
+export default {
+  data () {
+    return {
+      auth: '',
+      user1: '',
+      login: 0,
+      users: [],
+      firstname: '',
+      id: '',
+      mail: ''
+    }
+  },
+  methods: {
+    logout () {
+      localStorage.removeItem('usertoken')
+      localStorage.removeItem('user')
+      this.login = 0
+      router.push({ name: 'list' })
+    },
+    getUsers () {
+      axios.get('/api/tasks'
+      ).then(
+        result => {
+          this.users = result.data
+        },
+        error => {
+          console.error(error)
+        }
+      )
+    }
+  },
+  mounted () {
+    // EventBus.$on('logged-in', status => {
+    //   this.auth = status
+    // }),
+    if (localStorage.user) {
+      this.user1 = localStorage.user
+      this.login = 1
+    }
+    this.getUsers()
+  }
+}
 </script>
 <style>
 @media only screen and (min-width: 960px){

@@ -1,8 +1,8 @@
 <!--Энд нэг тамганы дэлгэрэнгүй мэдээллийг харуулах болно-->
 <template>
     <div>
-        <div v-for="(todo) in todos" v-bind:key="todo.id" v-bind:define="todo.define" v-bind:firstname="todo.firstname" v-bind:date="todo.date" v-bind:stampname="todo.stamp_name" v-bind:stampImage="todo.stampImage">
-        <div class="card mb-3" style="max-width: 100%;"  v-if="todo.id==$route.params.id">
+        <div v-for="(todo) in stamps" v-bind:key="todo.id" v-bind:define="todo.define" v-bind:date="todo.date" v-bind:stampname="todo.stampname" v-bind:stampImage="todo.stampImage">
+        <div class="card mb-3" style="max-width: 100%;" v-if="$route.params.id==todo.id">
             <div class="row no-gutters">
                 <div class="col-md-4">
                     <img :src="require('../assets/tamga/'+todo.stampImage)" class="card-img" alt="...">
@@ -13,6 +13,7 @@
                         <h5 class="card-title">Бүртгэгдсэн огноо: {{$route.params.date}}</h5>
                         <h5 class="card-title">Хэрэглэгчдийн тоо: {{$route.params.id}}</h5>
                         <p class="card-text">Бусад мэдээлэл: {{$route.params.define}}</p>
+                        <p class="card-text">Энэхүү тамгыг эзэмшигдчид: {{$route.params.define}}</p>
                     </div>
                 </div>
             </div>
@@ -28,20 +29,19 @@ export default {
   data () {
     return {
       todos: [],
+      stamps: [],
       id: '',
       lastname: '',
       firstname: '',
-      stamp_name: '',
+      stampname: '',
       location: '',
       date: '',
-      img: require('../assets/tamga/1572285648115se2.jpg'),
-      // stampImage: '',
-      upload: 'http://localhost:8000/uploads/1571908394930__.png',
       publicPath: process.env.BASE_URL
     }
   },
   mounted () {
     this.getTasks()
+    this.getStamp()
   },
   methods: {
     // imges () {
@@ -51,6 +51,16 @@ export default {
       axios.get('/api/tasks').then(
         result => {
           this.todos = result.data
+        },
+        error => {
+          console.error(error)
+        }
+      )
+    },
+    getStamp () {
+      axios.get('/api/stamps').then(
+        result => {
+          this.stamps = result.data
         },
         error => {
           console.error(error)

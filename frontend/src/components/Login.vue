@@ -1,5 +1,5 @@
 <template>
-    <form v-on:submit.prevent="login()" class="justify-content-md-center">
+    <form v-on:submit.prevent="Userlogin()" class="justify-content-md-center">
     <div class="container ">
         <div class="form-group col col-lg-4">
             <label for="email">Имэйл Хаяг: </label>
@@ -13,6 +13,9 @@
             <label class="form-check-label">
             <input class="form-check-input" type="checkbox"> Remember me
             </label>
+        </div>
+        <div class="alert alert-danger" role="alert">
+          {{msg}}
         </div>
         <button type="submit" class="btn btn-primary">Нэвтрэх</button>
         <router-link to="register"><button type="button" class="btn btn-secondary">Бүртгүүлэх</button></router-link>
@@ -30,33 +33,35 @@
 <script>
 import axios from 'axios'
 import router from '../router'
-import EventBus from './EventBus'
 export default {
   data () {
     return {
       mail: '',
-      password: ''
+      password: '',
+      msg: '',
+      login: ''
     }
   },
   methods: {
-    login () {
+    Userlogin () {
       axios.post('/api/Login',
         {
           mail: this.mail,
           password: this.password
         }
       ).then(res => {
-        localStorage.setItem('usertoken', res.data)
+        this.msg = 'GOOD'
+        localStorage.setItem('user', res.data)
         this.mail = ''
         this.password = ''
-        router.push({ name: 'Profile' })
-      }).catch((err) => {
-        console.log(err)
+        router.push({ name: 'profile' })
+        this.login = 1
       })
+        .catch(err => {
+          this.msg = 'Нэвтрэх нэр болон нууц үгээ зөв хийнэ үү'
+          console.log(err.data)
+        })
       this.emitMethod()
-    },
-    emitMethod () {
-      EventBus.$emit('logged-in', 'loggedin')
     }
   }
 }

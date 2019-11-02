@@ -45,26 +45,6 @@
           />
         </div>
       </div>
-      <div class="form-group">
-        <label for="inputname">Тамганы нэр</label>
-        <input
-          v-model="stamp_name"
-          type="text"
-          class="form-control"
-          id="inputAddress"
-          placeholder="Энд бичнэ үү"
-        />
-      </div>
-      <div class="form-group">
-        <label for="inputAddress2">Тамганы талаарх дэлгэрэнгүй мэдээлэл</label>
-        <input
-          v-model="define"
-          type="text"
-          class="form-control"
-          id="inputAddress2"
-          placeholder="Энд бичнэ үү"
-        />
-      </div>
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="inputState">Аймаг/Дүүрэг</label>
@@ -80,21 +60,6 @@
         <div class="form-group col-md-6">
           <label for="inputCity">Сум, багийн мэдээлэл</label>
           <input v-model="location" type="text" class="form-control" id="inputCity" />
-        </div>
-      </div>
-      <div class="input-group">
-        <div class="custom-file">
-          <input
-            type="file"
-            id="file"
-            ref="stampImage"
-            class="custom-file-input"
-            name="stampImage"
-            @change="handleFilesUpload"
-            multiple
-            required
-          />
-          <label class="custom-file-label" for="inputGroupFile04">Зургаа оруул</label>
         </div>
       </div>
       <div class="form-group">
@@ -120,13 +85,10 @@ export default {
       id: '',
       lastname: '',
       firstname: '',
-      stamp_name: '',
       mail: '',
       password: '',
       location: '',
       date: '',
-      stampImage: '',
-      define: '',
       aimag: '',
       files: [],
       msg: ''
@@ -134,54 +96,33 @@ export default {
   },
 
   methods: {
-    handleFilesUpload (event) {
-      this.stampImage = event.target.files[0]
-      console.log(event)
-    },
     addNewTask () {
-      let formData = new FormData()
-      formData.append('stampImage', this.stampImage)
-      axios
-        .post('/api/photo', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        })
+      axios.post('/api/task', {
+        lastname: this.lastname,
+        firstname: this.firstname,
+        mail: this.mail,
+        password: this.password,
+        location: this.location,
+        date: this.date,
+        aimag: this.aimag
+      })
         .then(res => {
-          console.log(res)
-          axios.post('/api/task', {
-            stampImage: res.data,
-            lastname: this.lastname,
-            firstname: this.firstname,
-            stamp_name: this.stamp_name,
-            mail: this.mail,
-            password: this.password,
-            location: this.location,
-            date: this.date,
-            define: this.define,
-            aimag: this.aimag
-          })
-            .then(res => {
-              this.msg = 'Амжилттай бүртгүүллээ.'
-              this.lastname = ''
-              this.firstname = ''
-              this.stamp_name = ''
-              this.mail = ''
-              this.password = ''
-              this.location = ''
-              this.date = ''
-              this.define = ''
-              this.stampImage = ''
-              this.aimag = ''
-            })
-            .catch(err => {
-              this.msg = 'Бүртгэл алдаатай байна.'
-              console.log(err)
-            })
+          if (res.data === 0) {
+            this.msg = 'Error: "Таны оруулсан мэйл бүртгэлтэй байна."'
+          } else {
+            this.msg = 'Амжилттай бүртгүүллээ'
+          }
+          // this.lastname = ''
+          // this.firstname = ''
+          // this.mail = ''
+          // this.password = ''
+          // this.location = ''
+          // this.date = ''
+          // this.aimag = ''
         })
         .catch(err => {
+          this.msg = err.data
           console.log(err)
-          this.msg = 'Бүртгэл алдаатай байна.'
         })
     }
   }

@@ -69,9 +69,6 @@ router.post('/task',(req, res, next) => {
     lastname :  req.body.lastname,
     location :  req.body.location,
     password :  req.body.password,
-    stamp_name :  req.body.stamp_name,
-    define :  req.body.define,
-    stampImage : req.body.stampImage,
     mail : req.body.mail,
     aimag : req.body.aimag
   }
@@ -82,15 +79,17 @@ router.post('/task',(req, res, next) => {
    })
     .then(tasks => {
       if(!tasks){
+        console.log("yeee");
           Task.create(userData)
           .then(tasks =>{
+            res.send("1")
             res.json({ status: tasks.mail + 'registered'})
           })
           .catch(err => {
             res.send('error: ' + err)
           })
       }else{
-        res.json({error: 'User already exists'})
+        res.send("0")
       }
     })
     .catch(err => {
@@ -107,7 +106,7 @@ router.post('/login',(req, res) => {
   .then(tasks => {
     if(tasks) {
       //res.send(req.body.password)
-      res.send(true)
+      res.send(req.body.mail)
     }else{
       res.status(400).json({error: "User does not exits"})
     }
@@ -116,12 +115,24 @@ router.post('/login',(req, res) => {
     res.status(400).json({error: err})
   })
 })
+router.post('/logout',(req, res) => {
+  tamga.findAll()
+  .then(res => {
+    res.send('1')
+  })
+  .catch(err => {
+    res.send('1')
+  })
+})
 router.post('/tamga', (req, res, next) => {
   const tamgaData = {
     stampname :  req.body.stampname,
     define :  req.body.define,
     stampImage : req.body.stampImage,
-    userid : req.body.userid
+    userid : req.body.userid,
+    typeStamp: req.body.type,
+    uy: req.body.uy,
+    bilgedel: req.body.bilgedel
   }
   if (!tamgaData) {
     res.status(400)
