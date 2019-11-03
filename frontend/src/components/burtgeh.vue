@@ -47,14 +47,29 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-4">
-          <label for="inputState">Аймаг/Дүүрэг</label>
+          <label for="inputState">Аймаг</label>
           <select v-model="aimag" id="inputState" class="form-control">
-            <option selected>Аймаг...</option>
             <option>Архангай</option>
+            <option>Баян-Өлгий</option>
             <option>Булган</option>
             <option>Баянхонгор</option>
             <option>Говь-Алтай</option>
-            <option>Чингэлтэй</option>
+            <option>Говьсүмбэр</option>
+            <option>Дархан-Уул</option>
+            <option>Дорноговь</option>
+            <option>Дорнод</option>
+            <option>Дундговь</option>
+            <option>Завхан</option>
+            <option>Орхон</option>
+            <option>Өвөрхангай</option>
+            <option>Өмнөговь</option>
+            <option>Сүхбаатар</option>
+            <option>Сэлэнгэ</option>
+            <option>Төв</option>
+            <option>Увс</option>
+            <option>Ховд</option>
+            <option>Хөвсгөл</option>
+            <option>Хэнтий</option>
           </select>
         </div>
         <div class="form-group col-md-6">

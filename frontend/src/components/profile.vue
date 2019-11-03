@@ -1,35 +1,37 @@
 <template>
     <div>
-        <div class="container">
+        <div class="container" v-for="(user) in users" v-bind:key="user.id" v-bind:firstname="user.firstname" v-bind:lastname="user.lastname" v-bind:mail="user.mail" v-bind:aimag="user.aimag">
+          <div v-if="user.mail==user1">
             <div class="row justify-content-end">
-                <div class="col-4">
-                    <button type="button" class="btn btn-primary">Засварлах</button>
-                </div>
+              <div class="col-4">
+                  <button type="button" class="btn btn-primary">Засварлах</button>
+              </div>
             </div>
             <div class="row">
-                <div class="col-sm">
-                    Овог, нэр:
-                </div>
-                <div class="col-sm">
-                    Хаяг:
-                </div>
-                <div class="col-sm">
-                    Бусад:
-                </div>
+              <div class="col-sm">
+                  Овог, нэр:
+              </div>
+              <div class="col-sm">
+                  Хаяг:
+              </div>
+              <div class="col-sm">
+                  Бусад:
+              </div>
             </div>
             <div class="row">
-                    <div class="col-sm">
-                        One of three columns
-                    </div>
-                    <div class="col-sm">
-                        One of three columns
-                    </div>
-                    <div class="col-sm">
-                        One of three columns
-                    </div>
-                </div>
+              <div class="col-sm">
+                  {{user.lastname}}&nbsp;{{user.firstname}}
+              </div>
+              <div class="col-sm">
+                  {{user.aimag}}&nbsp;аймаг Галуут сум
+              </div>
+              <div class="col-sm">
+                  {{user.mail}}&nbsp;99111111
+              </div>
+            </div>
+          </div>
         </div>
-                <div class="row">
+        <div class="row">
             <!-- <form v-on:submit.prevent="addNewTask()">
                 <input v-model="lastname" type="text" id="lastnameinput" class="form-control mt-4" placeholder="Тамганы нэрээ оруул">
                 <button v-if="this.isEdit==false" type="submit" class="btn btn-success btn-block mt-4">
@@ -39,17 +41,20 @@
                     Update
                 </button>
             </form> -->
-            <table class="table">
-                <tr v-for="(todo) in todos" v-bind:key="todo.id"
-                v-bind:stampname="todo.stampname">
-                <td class="text-left">{{todo.id}}</td>
-                <td class="text-left">{{todo.stampname}}</td>
-                <td class="text-right">
-                    <button class="btn btn-info" v-on:click="editTask(todo.lastname,todo.id,todo.firstname, todo.stamp_name, todo.mail, todo.location, todo.date, todo.photo)">Edit</button>
-                    <button class="btn btn-danger" v-on:click="deleteTask(todo.id)">Delete</button>
-                </td>
+          <div v-for="(user) in users" v-bind:key="user.id">
+            <div v-for="(todo) in todos" v-bind:key="todo.id" v-bind:userid="todo.userid" v-bind:stampname="todo.stampname">
+              <table class="table" v-if="todo.userid==user.id">
+                <tr>
+                  <td class="text-left">{{todo.id}}</td>
+                  <td class="text-left">{{todo.stampname}}</td>
+                  <td class="text-right">
+                      <button class="btn btn-info" v-on:click="editTask(todo.lastname,todo.id,todo.firstname, todo.stamp_name, todo.mail, todo.location, todo.date, todo.photo)">Edit</button>
+                      <button class="btn btn-danger" v-on:click="deleteTask(todo.id)">Delete</button>
+                  </td>
                 </tr>
-            </table>
+              </table>
+            </div>
+          </div>
         </div>
     </div>
 </template>
@@ -63,8 +68,10 @@ import axios from 'axios'
 export default {
   data () {
     return {
+      users: [],
       todos: [],
       id: '',
+      aimag: '',
       lastname: '',
       firstname: '',
       stampname: '',
@@ -81,12 +88,28 @@ export default {
   mounted () {
     this.getTasks()
     // location.reload()
+    if (localStorage.user) {
+      this.user1 = localStorage.user
+      this.login = 1
+    }
+    this.getUsers()
   },
   methods: {
     // getImgUrl (put) {
     //   var images = require.context('../assets/tamga/', false, /\.png$/)
     //   return images('./' + put)
     // },
+    getUsers () {
+      axios.get('/api/user'
+      ).then(
+        result => {
+          this.users = result.data
+        },
+        error => {
+          console.error(error)
+        }
+      )
+    },
     getTasks () {
       axios.get('/api/stamps').then(
         result => {

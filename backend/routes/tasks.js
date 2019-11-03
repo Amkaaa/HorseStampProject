@@ -46,6 +46,15 @@ router.get('/tasks', (req, res, next) => {
       res.send('error: ' + err)
     })
 })
+router.get('/user', (req, res, next) => {
+  Task.findAll()
+    .then(tasks => {
+      res.json(tasks)
+    })
+    .catch(err => {
+      res.send('error: ' + err)
+    })
+})
 router.get('/stamps', (req, res, next) => {
   tamga.findAll()
     .then(stamps => {
@@ -132,7 +141,8 @@ router.post('/tamga', (req, res, next) => {
     userid : req.body.userid,
     typeStamp: req.body.type,
     uy: req.body.uy,
-    bilgedel: req.body.bilgedel
+    bilgedel: req.body.bilgedel,
+    location: req.body.location
   }
   if (!tamgaData) {
     res.status(400)

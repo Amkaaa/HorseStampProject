@@ -1,21 +1,64 @@
 <template>
   <div class="container">
+    <br>
+    <h1 style="text-align:center">Тамга бүртгэлийн хэсэг</h1>
+    <br>
     <form v-on:submit.prevent="addNewTask()" enctype="multipart/form-data">
-      <div class="form-group">
-        <label for="inputname">Тамганы нэр</label>
-        <input
-          v-model="stampname"
-          type="text"
-          class="form-control"
-          id="inputAddress"
-          placeholder="Энд бичнэ үү"
-        />
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputname">Тамганы нэр</label>
+          <input
+            v-model="stampname"
+            type="text"
+            class="form-control"
+            id="inputAddress"
+            placeholder="Энд бичнэ үү"
+          />
+        </div>
+        <div class="form-group col-md-4">
+          <div v-for="(user) in users" v-bind:key="user.id" v-bind:mail="user.mail">
+            <div v-if="user.mail==user1">
+              <label for="inputId">Хэрэглэгчийн Дугаар &nbsp; {{user.id}}</label>
+              <input v-model="userid" type="number" class="form-control" required/>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <div v-for="(user) in users" v-bind:key="user.id" v-bind:aimag="user.aimag" v-bind:mail="user.mail">
+            <div v-if="user.mail==user1">
+              <label for="inputLocation">Хэрэглэгчийн Хаяг&nbsp; {{user.aimag}}</label>
+              <select v-model="aimag" id="inputState" class="form-control" required>
+                <option v-if="user.aimag=='Архангай'">Архангай</option>
+                <option v-if="user.aimag=='Баян-Өлгий'">Баян-Өлгий</option>
+                <option v-if="user.aimag=='Булган'">Булган</option>
+                <option v-if="user.aimag=='Баянхонгор'">Баянхонгор</option>
+                <option v-if="user.aimag=='Говь-Алтай'">Говь-Алтай</option>
+                <option v-if="user.aimag=='Говьсүмбэр'">Говьсүмбэр</option>
+                <option v-if="user.aimag=='Дархан-Уул'">Дархан-Уул</option>
+                <option v-if="user.aimag=='Дорноговь'">Дорноговь</option>
+                <option v-if="user.aimag=='Дорнод'">Дорнод</option>
+                <option v-if="user.aimag=='Дундговь'">Дундговь</option>
+                <option v-if="user.aimag=='Завхан'">Завхан</option>
+                <option v-if="user.aimag=='Орхон'">Орхон</option>
+                <option v-if="user.aimag=='Өвөрхангай'">Өвөрхангай</option>
+                <option v-if="user.aimag=='Өмнөговь'">Өмнөговь</option>
+                <option v-if="user.aimag=='Сүхбаатар'">Сүхбаатар</option>
+                <option v-if="user.aimag=='Сэлэнгэ'">Сэлэнгэ</option>
+                <option v-if="user.aimag=='Төв'">Төв</option>
+                <option v-if="user.aimag=='Увс'">Увс</option>
+                <option v-if="user.aimag=='Ховд'">Ховд</option>
+                <option v-if="user.aimag=='Хөвсгөл'">Хөвсгөл</option>
+                <option v-if="user.aimag=='Хэнтий'">Хэнтий</option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label for="inputdefine">Тамганы талаарх дэлгэрэнгүй мэдээлэл</label>
         <input
           v-model="define"
-          type="text"
+          type="textarea"
           class="form-control"
           id="inputAddress2"
           placeholder="Хаана хэрхэн үүссэн талаарх мэдээллийг оруулна"
@@ -23,7 +66,7 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-4">
-          <label for="exampleFormControlSelect1">Тухайн тамгыг хэдэн үеээрээ ашиглаж байгаа вэ</label>
+          <label for="exampleFormControlSelect1">Хэдэн үеэрээ ашиглаж байгаа вэ</label>
           <select v-model="uy" class="form-control" id="exampleFormControlSelect1">
             <option>1</option>
             <option>2</option>
@@ -37,7 +80,7 @@
           </select>
         </div>
                 <div class="form-group col-md-4">
-          <label for="inputState">Төрөл буюу ангилал</label>
+          <label for="inputState">Тухайн тамганы төрөл буюу ангилал</label>
           <select v-model="type" id="inputState" class="form-control">
             <option selected>Ургамал</option>
             <option>Ан, амьтан</option>
@@ -46,7 +89,7 @@
           </select>
         </div>
         <div class="form-group col-md-4">
-          <label for="inputCity">Билгэдлийг нь бичнэ үү</label>
+          <label for="inputCity">Энэхүү тамганы Билгэдлийг нь бичнэ үү</label>
           <input v-model="bilgedel" type="text" class="form-control" id="inputCity" placeholder="Билгэдлийг нь энд бичнэ..."/>
         </div>
       </div>
@@ -65,6 +108,7 @@
           <label class="custom-file-label" for="inputGroupFile04">Тамганы Зургаа оруул</label>
         </div>
       </div>
+      <br>
       <div class="form-group">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="gridCheck" required />
@@ -95,10 +139,19 @@ export default {
       msg: '',
       type: '',
       uy: '',
-      files: []
+      files: [],
+      aimag: '',
+      user1: '',
+      users: []
     }
   },
-
+  mounted () {
+    this.getUsers()
+    if (localStorage.user) {
+      this.user1 = localStorage.user
+      this.login = 1
+    }
+  },
   methods: {
     handleFilesUpload (event) {
       this.stampImage = event.target.files[0]
@@ -121,7 +174,9 @@ export default {
             define: this.define,
             type: this.type,
             uy: this.uy,
-            bilgedel: this.bilgedel
+            bilgedel: this.bilgedel,
+            userid: this.userid,
+            location: this.aimag
           })
             .then(res => {
               this.stampname = ''
@@ -140,6 +195,17 @@ export default {
         .catch(err => {
           console.log(err)
         })
+    },
+    getUsers () {
+      axios.get('/api/user'
+      ).then(
+        result => {
+          this.users = result.data
+        },
+        error => {
+          console.error(error)
+        }
+      )
     }
   }
 }

@@ -26,6 +26,9 @@ module.exports = db.sequelize.define(
     bilgedel:{
       type: Sequelize.STRING
     },
+    location:{
+      type: Sequelize.STRING
+    },
     date: {
       type: Sequelize.DATEONLY
     },

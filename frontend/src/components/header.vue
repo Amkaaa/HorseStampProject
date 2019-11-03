@@ -35,7 +35,7 @@ export default {
   data () {
     return {
       auth: '',
-      user1: '',
+      user1: 'haha',
       login: 0,
       users: [],
       firstname: '',
@@ -51,7 +51,7 @@ export default {
       router.push({ name: 'list' })
     },
     getUsers () {
-      axios.get('/api/tasks'
+      axios.get('/api/user'
       ).then(
         result => {
           this.users = result.data
