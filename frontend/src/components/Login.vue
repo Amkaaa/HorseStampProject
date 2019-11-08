@@ -1,26 +1,29 @@
 <template>
-    <form v-on:submit.prevent="Userlogin()" class="justify-content-md-center">
-    <div class="container ">
-        <div class="form-group col col-lg-4">
-            <label for="email">Имэйл Хаяг: </label>
-            <input type="email" v-model="mail" class="form-control" id="email" name="mail" required>
-        </div>
-        <div class="form-group col-lg-4">
-            <label for="pwd">Нууц үг:</label>
-            <input type="password" v-model="password" class="form-control" id="pwd" required>
-        </div>
-        <div class="form-group form-check">
-            <label class="form-check-label">
-            <input class="form-check-input" type="checkbox"> Remember me
-            </label>
-        </div>
-        <div class="alert alert-danger" role="alert">
-          {{msg}}
-        </div>
-        <button type="submit" class="btn btn-primary">Нэвтрэх</button>
-        <router-link to="register"><button type="button" class="btn btn-secondary">Бүртгүүлэх</button></router-link>
+  <div>
+    <Navi/>
+      <form v-on:submit.prevent="Userlogin()" class="justify-content-md-center">
+      <div class="container ">
+          <div class="form-group col col-lg-4">
+              <label for="email">Имэйл Хаяг: </label>
+              <input type="email" v-model="mail" class="form-control" id="email" name="mail" required>
+          </div>
+          <div class="form-group col-lg-4">
+              <label for="pwd">Нууц үг:</label>
+              <input type="password" v-model="password" class="form-control" id="pwd" required>
+          </div>
+          <div class="form-group form-check">
+              <label class="form-check-label">
+              <input class="form-check-input" type="checkbox"> Remember me
+              </label>
+          </div>
+          <div class="alert alert-danger" role="alert">
+            {{msg}}
+          </div>
+          <button type="submit" class="btn btn-primary">Нэвтрэх</button>
+          <router-link to="register"><button type="button" class="btn btn-secondary">Бүртгүүлэх</button></router-link>
+      </div>
+      </form>
     </div>
-    </form>
 </template>
 <style>
 .justify-content-md-center{
@@ -33,6 +36,7 @@
 <script>
 import axios from 'axios'
 import router from '../router'
+import Navi from './header'
 export default {
   data () {
     return {
@@ -41,6 +45,9 @@ export default {
       msg: '',
       login: ''
     }
+  },
+  components: {
+    Navi
   },
   methods: {
     Userlogin () {

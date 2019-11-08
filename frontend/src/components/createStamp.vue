@@ -1,4 +1,6 @@
 <template>
+<div>
+  <Navi/>
   <div class="container">
     <br>
     <h1 style="text-align:center">Тамга бүртгэлийн хэсэг</h1>
@@ -121,10 +123,12 @@
       <button type="submit" class="btn btn-primary">Бүртгүүлэх</button>
     </form>
   </div>
+</div>
 </template>
 
 <script>
 import axios from 'axios'
+import Navi from './header'
 export default {
   data () {
     return {
@@ -144,6 +148,9 @@ export default {
       user1: '',
       users: []
     }
+  },
+  components: {
+    Navi
   },
   mounted () {
     this.getUsers()

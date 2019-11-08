@@ -1,7 +1,8 @@
 <template>
   <div>
+    <Navi/>
     <!-- another version - flat style with animated hover effect -->
-    <div class="breadcrumb flat">
+    <div class="breadcrumb flat row">
         <a href="#" class="active dropdown" v-on:click="bus1()">
           <div class="dropbtn">Бүс</div>
           <div class="dropdown-content">
@@ -48,6 +49,12 @@
         <a href="#" v-if="this.buse2==1 && this.utga2!='' && this.utga1!=''">
           {{this.utga2}}
         </a>
+        <!-- <div class="justify-content-end">
+        <form class="form-inline ml-5">
+          <input class="form-control mr-sm-2" v-model="search" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        </div> -->
     </div>
     <div id="todo-list-example" class="container">
       <div class="row">
@@ -59,7 +66,7 @@
               <h5 class="card-title">{{todo.stampname}}</h5>
               <p class="card-text">{{todo.define}}</p>
               <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
-                <a class="btn btn-primary">Дэлгэрэнгүй</a>
+                <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>
           </div>
@@ -70,7 +77,7 @@
               <h5 class="card-title">{{todo.stampname}}</h5>
               <p class="card-text">{{todo.define}}</p>
               <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
-                <a class="btn btn-primary">Дэлгэрэнгүй</a>
+                <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>
           </div>
@@ -81,7 +88,7 @@
               <h5 class="card-title">{{todo.stampname}}</h5>
               <p class="card-text">{{todo.define}}</p>
               <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
-                <a class="btn btn-primary">Дэлгэрэнгүй</a>
+                <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>
           </div>
@@ -92,7 +99,7 @@
               <h5 class="card-title">{{todo.stampname}}</h5>
               <p class="card-text">{{todo.define}}</p>
               <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
-                <a class="btn btn-primary">Дэлгэрэнгүй</a>
+                <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>
           </div>
@@ -103,7 +110,7 @@
               <h5 class="card-title">{{todo.stampname}}</h5>
               <p class="card-text">{{todo.define}}</p>
               <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
-                <a class="btn btn-primary">Дэлгэрэнгүй</a>
+                <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>
           </div>
@@ -114,7 +121,7 @@
               <h5 class="card-title">{{todo.stampname}}</h5>
               <p class="card-text">{{todo.define}}</p>
               <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
-                <a class="btn btn-primary">Дэлгэрэнгүй</a>
+                <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>
           </div>
@@ -125,7 +132,7 @@
               <h5 class="card-title">{{todo.stampname}}</h5>
               <p class="card-text">{{todo.define}}</p>
               <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
-                <a class="btn btn-primary">Дэлгэрэнгүй</a>
+                <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>
           </div>
@@ -136,7 +143,7 @@
               <h5 class="card-title">{{todo.stampname}}</h5>
               <p class="card-text">{{todo.define}}</p>
               <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
-                <a class="btn btn-primary">Дэлгэрэнгүй</a>
+                <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>
           </div>
@@ -147,7 +154,7 @@
               <h5 class="card-title">{{todo.stampname}}</h5>
               <p class="card-text">{{todo.define}}</p>
               <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
-                <a class="btn btn-primary">Дэлгэрэнгүй</a>
+                <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>
           </div>
@@ -158,6 +165,7 @@
 </template>
 <script>
 import axios from 'axios'
+import Navi from './header'
 export default {
   props: ['stampImage'],
   data () {
@@ -176,6 +184,9 @@ export default {
       publicPath: process.env.BASE_URL,
       counter: true
     }
+  },
+  components: {
+    Navi
   },
   mounted () {
     this.getTasks()

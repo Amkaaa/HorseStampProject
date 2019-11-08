@@ -1,5 +1,6 @@
 <template>
     <div>
+      <Navi/>
         <div class="container" v-for="(user) in users" v-bind:key="user.id" v-bind:firstname="user.firstname" v-bind:lastname="user.lastname" v-bind:mail="user.mail" v-bind:aimag="user.aimag">
           <div v-if="user.mail==user1">
             <div class="row justify-content-end">
@@ -30,7 +31,6 @@
               </div>
             </div>
           </div>
-        </div>
         <div class="row">
             <!-- <form v-on:submit.prevent="addNewTask()">
                 <input v-model="lastname" type="text" id="lastnameinput" class="form-control mt-4" placeholder="Тамганы нэрээ оруул">
@@ -41,9 +41,9 @@
                     Update
                 </button>
             </form> -->
-          <div v-for="(user) in users" v-bind:key="user.id">
+          <div>
             <div v-for="(todo) in todos" v-bind:key="todo.id" v-bind:userid="todo.userid" v-bind:stampname="todo.stampname">
-              <table class="table" v-if="todo.userid==user.id">
+              <table class="table" v-if="todo.userid==user.id && user.mail==user1">
                 <tr>
                   <td class="text-left">{{todo.id}}</td>
                   <td class="text-left">{{todo.stampname}}</td>
@@ -56,6 +56,7 @@
             </div>
           </div>
         </div>
+        </div>
     </div>
 </template>
 <style>
@@ -64,6 +65,7 @@
     }
 </style>
 <script>
+import Navi from './header.vue'
 import axios from 'axios'
 export default {
   data () {
@@ -84,6 +86,9 @@ export default {
       isEdit: false,
       count: 1
     }
+  },
+  components: {
+    Navi
   },
   mounted () {
     this.getTasks()

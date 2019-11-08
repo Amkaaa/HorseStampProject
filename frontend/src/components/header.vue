@@ -1,30 +1,43 @@
 <template>
-  <header class="header">
-    <div class="hcontainer">
-      <nav class="nav">
-        <div class="logo">
-          <nuxt-link to="#"><img src="../assets/logo.jpg" class="logo"></nuxt-link>
-        </div>
-        <div id="title"><span>Монгол Адууны Тамга</span></div>
-        <div class="nav-bar">
-          <ul class="list">
-            <li class="nav-item"><router-link to="/List" onClick="window.location.reload()">Нүүр</router-link></li>
-            <li v-if="!login" class="nav-item"><router-link to="/register">Бүртгэх</router-link></li>
-            <li v-if="!login" class="nav-item"><a class="button"><router-link to="/Login">Нэвтрэх</router-link></a></li>
-            <li v-if="login" class="nav-item"><router-link to="/createStamp">Тамга бүртгүүлэх</router-link></li>
-            <span v-for="(user) in users" v-bind:key="user.id" v-bind:firstname="user.firstname" v-bind:mail="user.mail">
-              <li class="nav-item" v-if="user.mail==user1">
-                <a class="button">
-                  <router-link to="/profile">{{user.firstname}}</router-link>
-                </a>
-              </li>
-            </span>
-            <li v-if="login" class="nav-item"><a class="button" v-on:submit.prevent="logout()"><router-link to="/logout" onClick="window.location.reload()">Гарах</router-link></a></li>
-          </ul>
-        </div>
-      </nav>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="../assets/logo.jpg" width="50" height="50" class="d-inline-block align-top" alt="Тамга" style="border-radius:50%;">
+      Монгол Адууны Тамга</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <router-link to="/List" class="nav-link">Нүүр</router-link>
+        </li>
+        <li v-if="!login" class="nav-item">
+          <router-link to="/register" class="nav-link">Бүртгэх</router-link>
+        </li>
+        <li v-if="!login" class="nav-item">
+          <a class="button"><router-link to="/Login" class="nav-link">Нэвтрэх</router-link></a>
+        </li>
+        <li v-if="login" class="nav-item">
+          <router-link to="/createStamp" class="nav-link">Тамга бүртгүүлэх</router-link>
+        </li>
+        <span v-for="(user) in users" v-bind:key="user.id" v-bind:firstname="user.firstname" v-bind:mail="user.mail">
+          <li class="nav-item mr-2" v-if="user.mail==user1">
+            <router-link to="/profile">
+              <button type="button" class="btn btn-primary ">{{user.firstname}}
+              </button>
+            </router-link>
+          </li>
+        </span>
+        <li v-if="login" class="nav-item" mr-2>
+            <router-link to="/logout"><button type="button" v-on:submit.prevent="logout()" class="btn btn-secondary">Гарах</button></router-link>
+        </li>
+      </ul>
+      <!-- <form class="form-inline" ml-5>
+        <input class="form-control mr-sm-2" v-model="search" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+      </form> -->
     </div>
-  </header>
+  </nav>
 </template>
 
 <script>
@@ -35,12 +48,13 @@ export default {
   data () {
     return {
       auth: '',
-      user1: 'haha',
-      login: 0,
       users: [],
       firstname: '',
       id: '',
-      mail: ''
+      mail: '',
+      login: 0,
+      user1: 'hahah',
+      noots: ''
     }
   },
   methods: {
@@ -51,7 +65,9 @@ export default {
       router.push({ name: 'list' })
     },
     getUsers () {
-      axios.get('/api/user'
+      axios.get('/api/user', {
+        mail: localStorage.user
+      }
       ).then(
         result => {
           this.users = result.data
@@ -75,123 +91,10 @@ export default {
 }
 </script>
 <style>
-@media only screen and (min-width: 960px){
-  .header{
-    width: 100%;
-    height: 80px;
+  .navbar{
     background-image: url("../assets/header/bg.png") !important;
     background-position: right;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
-  .hcontainer{
-    max-width: 960px;
-    width: 100%;
-    margin: auto;
-  }
-  .nav{
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-flow: row;
-  }
-  .logo{
-    flex: 0 1 150px;
-    height: 80px !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-style: inherit;
-    font-size: 30px;
-  }
-  #title{
-    flex: 0 1 150px;
-    height: 80px !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .nav-bar{
-    flex: 1 1 auto;
-    height: 80px;
-  }
-  .list{
-    float: right;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    height: 100%;
-  }
-  .nav-item{
-    float:left;
-    min-width: 50px;
-    padding-right: 15px;
-    padding-left: 15px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .link{
-    text-decoration: none;
-    font-family: 'Roboto Condensed', sans-serif;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 12px;
-    color: #D5DED9;
-  }
-  .nav-item .link{
-    transition: color 0.4s ease;
-  }
-  .active .link{
-    color: black !important;
-  }
-  .nav-item:hover .link{
-    color: black;
-  }
-  .button{
-    height: auto;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 14px;
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-family: 'Roboto Condensed', sans-serif;
-    color: blue;
-    padding-right: 25px;
-    padding-left: 25px;
-    font-weight: 700;
-    border-radius: 34px;
-    background: white;
-    transition: all 0.3s ease;
-  }
-  .button:hover{
-    -webkit-box-shadow: 0px 5px 15px 2px rgba(0,0,0,0.47);
-    -moz-box-shadow: 0px 5px 15px 2px rgba(0,0,0,0.47);
-    box-shadow: 0px 5px 15px 2px rgba(0,0,0,0.47);
-  }
-  .inside{
-    height: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  a{
-      color:#D5DED9;
-      transition: color 0.4s ease;
-  }
-  a:hover{
-      color:black;
-  }
-  .logo{
-      width: 50%;
-      border-radius: 50%;
-  }
-  span{
-    text-align: center;
-  }
-}
 </style>

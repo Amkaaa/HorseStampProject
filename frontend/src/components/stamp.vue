@@ -1,6 +1,7 @@
 <!--Энд нэг тамганы дэлгэрэнгүй мэдээллийг харуулах болно-->
 <template>
     <div>
+      <Navi/>
         <div v-for="(todo) in stamps" v-bind:key="todo.id" v-bind:define="todo.define" v-bind:date="todo.date" v-bind:stampname="todo.stampname" v-bind:stampImage="todo.stampImage">
         <div class="card mb-3" style="max-width: 100%;" v-if="$route.params.id==todo.id">
             <div class="row no-gutters">
@@ -23,7 +24,7 @@
 </template>
 <script>
 import axios from 'axios'
-
+import Navi from './header'
 export default {
   props: ['stampImage'],
   data () {
@@ -38,6 +39,9 @@ export default {
       date: '',
       publicPath: process.env.BASE_URL
     }
+  },
+  components: {
+    Navi
   },
   mounted () {
     this.getTasks()

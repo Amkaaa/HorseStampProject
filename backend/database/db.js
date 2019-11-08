@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const db = {};
 const sequelize = new Sequelize("tamga", "root", "", {
-  host: "localhost",
+  host: "127.0.0.1",
   dialect: "mysql",
   operatorsAliases: false,
 
