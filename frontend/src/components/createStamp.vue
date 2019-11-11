@@ -21,7 +21,7 @@
           <div v-for="(user) in users" v-bind:key="user.id" v-bind:mail="user.mail">
             <div v-if="user.mail==user1">
               <label for="inputId">Хэрэглэгчийн Дугаар &nbsp; {{user.id}}</label>
-              <input v-model="userid" type="number" class="form-control" required/>
+              <input v-model="userid" type="number" class="form-control" value="user.id" required/>
             </div>
           </div>
         </div>

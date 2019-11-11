@@ -2,12 +2,28 @@
   <div>
     <Navi/>
     <!-- another version - flat style with animated hover effect -->
+    <div class="parallax">
+      <div class="row text-center">
+        <div class="col-sm">
+          <div class="display-3 too">{{too}}</div>
+          <div class="text">Тамга</div>
+        </div>
+        <div class="col-sm">
+          <div class="display-3 too">{{too2}}</div>
+          <div class="text">Аймаг</div>
+        </div>
+        <div class="col-sm">
+          <div class="display-3 too">{{toos}}</div>
+          <div class="text">Хэрэглэгч</div>
+        </div>
+      </div>
+    </div>
     <div class="breadcrumb flat row">
-        <a href="#" class="active dropdown" v-on:click="bus1()">
+        <a class="active dropdown" v-on:click="bus1()">
           <div class="dropbtn">Бүс</div>
           <div class="dropdown-content">
             Бүс ...
-            <select v-model="utga1" id="inputState" class="form-control">
+            <select v-model="utga1" id="sell" class="form-control">
             <option>Баруун бүс</option>
             <option>Зүүн бүс</option>
             <option>Төвийн бүс</option>
@@ -16,7 +32,7 @@
           </select>
           </div>
         </a>
-        <a href="#" class="dropdown" v-if="this.bus==1 && this.utga1!=0" v-on:click="bus2()">
+        <a class="dropdown" v-if="this.bus==1 && this.utga1!=0" v-on:click="bus2()">
           <div class="dropbtn">{{this.utga1}}</div>
           <div class="dropdown-content">
             Аймаг ...
@@ -46,25 +62,23 @@
           </select>
           </div>
         </a>
-        <a href="#" v-if="this.buse2==1 && this.utga2!='' && this.utga1!=''">
+        <a v-if="this.buse2==1 && this.utga2!='' && this.utga1!=''">
           {{this.utga2}}
         </a>
-        <!-- <div class="justify-content-end">
-        <form class="form-inline ml-5">
-          <input class="form-control mr-sm-2" v-model="search" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        </div> -->
+        <input class="form-control mr-sm-2 col-md-2 ml-5 search" v-model="search" type="search" placeholder="Тамганы нэрээр хайх ..." aria-label="Search">
     </div>
-    <div id="todo-list-example" class="container">
+    <div v-for="volo in volos" v-bind:key="volo.id">
+      {{increase()}}
+    </div>
+    <div id="todo-list-example" class="container justify-content-center">
       <div class="row">
-        <div v-for="(todo) in todos" v-bind:key="todo.id" v-bind:define="todo.define" v-bind:date="todo.date" v-bind:stampname="todo.stampname" v-bind:stampImage="todo.stampImage" v-bind:location="todo.location">
+        <div v-for="todo in filteredBlogs" v-bind:key="todo.id" v-bind:define="todo.define" v-bind:date="todo.date" v-bind:stampname="todo.stampname" v-bind:stampImage="todo.stampImage" v-bind:location="todo.location">
           <div class="card avatar" style="width: 18rem; margin:20px" v-if="utga1==0">
             <img :src="require('../assets/tamga/'+todo.stampImage)" class="card-img-top g-image" alt="tamga">
             <div class="card-img-top"></div>
             <div class="card-body">
-              <h5 class="card-title">{{todo.stampname}}</h5>
-              <p class="card-text">{{todo.define}}</p>
+              <h5 class="card-title text-center">{{todo.stampname | uppercase}}</h5>
+              <p class="card-text text-truncate font-italic">{{todo.define}}</p>
               <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
@@ -74,8 +88,8 @@
             <img :src="require('../assets/tamga/'+todo.stampImage)" class="card-img-top g-image" alt="tamga">
             <div class="card-img-top"></div>
             <div class="card-body">
-              <h5 class="card-title">{{todo.stampname}}</h5>
-              <p class="card-text">{{todo.define}}</p>
+              <h5 class="card-title text-center">{{todo.stampname}}</h5>
+              <p class="card-text text-truncate font-italic">{{todo.define}}</p>
               <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
@@ -85,8 +99,8 @@
             <img :src="require('../assets/tamga/'+todo.stampImage)" class="card-img-top g-image" alt="tamga">
             <div class="card-img-top"></div>
             <div class="card-body">
-              <h5 class="card-title">{{todo.stampname}}</h5>
-              <p class="card-text">{{todo.define}}</p>
+              <h5 class="card-title text-center">{{todo.stampname}}</h5>
+              <p class="card-text text-truncate font-italic">{{todo.define}}</p>
               <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
@@ -96,8 +110,8 @@
             <img :src="require('../assets/tamga/'+todo.stampImage)" class="card-img-top g-image" alt="tamga">
             <div class="card-img-top"></div>
             <div class="card-body">
-              <h5 class="card-title">{{todo.stampname}}</h5>
-              <p class="card-text">{{todo.define}}</p>
+              <h5 class="card-title text-center">{{todo.stampname}}</h5>
+              <p class="card-text text-truncate font-italic">{{todo.define}}</p>
               <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
@@ -107,8 +121,8 @@
             <img :src="require('../assets/tamga/'+todo.stampImage)" class="card-img-top g-image" alt="tamga">
             <div class="card-img-top"></div>
             <div class="card-body">
-              <h5 class="card-title">{{todo.stampname}}</h5>
-              <p class="card-text">{{todo.define}}</p>
+              <h5 class="card-title text-center">{{todo.stampname}}</h5>
+              <p class="card-text text-truncate font-italic">{{todo.define}}</p>
               <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
@@ -118,8 +132,8 @@
             <img :src="require('../assets/tamga/'+todo.stampImage)" class="card-img-top g-image" alt="tamga">
             <div class="card-img-top"></div>
             <div class="card-body">
-              <h5 class="card-title">{{todo.stampname}}</h5>
-              <p class="card-text">{{todo.define}}</p>
+              <h5 class="card-title text-center">{{todo.stampname}}</h5>
+              <p class="card-text text-truncate font-italic">{{todo.define}}</p>
               <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
@@ -129,8 +143,8 @@
             <img :src="require('../assets/tamga/'+todo.stampImage)" class="card-img-top g-image" alt="tamga">
             <div class="card-img-top"></div>
             <div class="card-body">
-              <h5 class="card-title">{{todo.stampname}}</h5>
-              <p class="card-text">{{todo.define}}</p>
+              <h5 class="card-title text-center">{{todo.stampname}}</h5>
+              <p class="card-text text-truncate font-italic">{{todo.define}}</p>
               <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
@@ -140,8 +154,8 @@
             <img :src="require('../assets/tamga/'+todo.stampImage)" class="card-img-top g-image" alt="tamga">
             <div class="card-img-top"></div>
             <div class="card-body">
-              <h5 class="card-title">{{todo.stampname}}</h5>
-              <p class="card-text">{{todo.define}}</p>
+              <h5 class="card-title text-center">{{todo.stampname}}</h5>
+              <p class="card-text text-truncate font-italic">{{todo.define}}</p>
               <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
@@ -151,8 +165,8 @@
             <img :src="require('../assets/tamga/'+todo.stampImage)" class="card-img-top g-image" alt="tamga">
             <div class="card-img-top"></div>
             <div class="card-body">
-              <h5 class="card-title">{{todo.stampname}}</h5>
-              <p class="card-text">{{todo.define}}</p>
+              <h5 class="card-title text-center">{{todo.stampname}}</h5>
+              <p class="card-text text-truncate font-italic">{{todo.define}}</p>
               <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
@@ -176,13 +190,20 @@ export default {
       utga1: 0,
       utga2: '',
       todos: [],
+      volos: 1,
       id: '',
       stampname: '',
       location: '',
       date: '',
       // stampImage: '',
       publicPath: process.env.BASE_URL,
-      counter: true
+      counter: true,
+      search: '',
+      too: 0,
+      toos: 0,
+      too1: 230,
+      too2: 21,
+      too3: 247
     }
   },
   components: {
@@ -191,7 +212,24 @@ export default {
   mounted () {
     this.getTasks()
   },
+  computed: {
+    filteredBlogs: function () {
+      return this.todos.filter((todo) => {
+        return todo.stampname.match(this.search) || todo.define.match(this.search)
+      })
+    }
+  },
   methods: {
+    increase () {
+      setTimeout(() => {
+        if (this.too < this.too1) {
+          this.too = this.too + 1
+        }
+        if (this.toos < this.too3) {
+          this.toos = this.toos + 1
+        }
+      }, 1)
+    },
     getTasks () {
       axios.get('/api/stamps').then(
         result => {
@@ -214,16 +252,72 @@ export default {
 }
 </script>
 <style>
-.photo{
-  width: 64px;
-  height: 64px;
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+.parallax{
+  width: 100%;
+  background-image: url("../assets/bg/mori3.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.9;
+}
+.col-sm:hover{
+  background: #f1f1f19a;
+}
+.too{
+  background: linear-gradient(to right, rgb(48, 131, 208) 0%, #ab12da 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+  font-family: "Times New Roman", Times, serif;
+}
+.text{
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  color: rgb(255, 192, 56);
+  font-weight: 700;
+  text-transform: uppercase;
+  text-shadow: 4px 2px 4px #000000;
+}
+.col-sm{
+  background: rgba(0, 0, 0, 0.411);
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 200px;
+  padding-top: 2rem;
+}
+@media only screen and (max-width: 767px) {
+  .search{
+    margin-top: 20px;
+    margin-left: 0;
+  }
+  .row{
+    grid-template-columns: auto;
+  }
+  .col-sm{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .row{
+    grid-template-columns: auto auto auto;
+  }
+  .col-sm{
+    margin-left: 30px;
+    margin-right: 30px;
+  }
 }
 .row{
-  grid-template-columns: auto auto auto;
   width:90%;
   margin-left: auto;
   margin-right: auto;
 }
+.photo{
+  width: 64px;
+  height: 64px;
+}
+
 @import url(https://fonts.googleapis.com/css?family=Merriweather+Sans);
 
 * {margin: 0; padding: 0;}

@@ -1,8 +1,8 @@
 <template>
     <div>
       <Navi/>
-        <div class="container" v-for="(user) in users" v-bind:key="user.id" v-bind:firstname="user.firstname" v-bind:lastname="user.lastname" v-bind:mail="user.mail" v-bind:aimag="user.aimag">
-          <div v-if="user.mail==user1">
+      <div v-for="(user) in users" v-bind:key="user.id" v-bind:firstname="user.firstname" v-bind:lastname="user.lastname" v-bind:mail="user.mail" v-bind:aimag="user.aimag">
+        <div class="container" v-if="user.mail==user1">
             <div class="row justify-content-end">
               <div class="col-4">
                   <button type="button" class="btn btn-primary">Засварлах</button>
@@ -30,7 +30,6 @@
                   {{user.mail}}&nbsp;99111111
               </div>
             </div>
-          </div>
         <div class="row">
             <!-- <form v-on:submit.prevent="addNewTask()">
                 <input v-model="lastname" type="text" id="lastnameinput" class="form-control mt-4" placeholder="Тамганы нэрээ оруул">
@@ -57,6 +56,7 @@
           </div>
         </div>
         </div>
+      </div>
     </div>
 </template>
 <style>

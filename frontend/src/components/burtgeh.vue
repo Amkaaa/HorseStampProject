@@ -2,6 +2,9 @@
   <div>
     <Navi/>
     <div class="container">
+      <br>
+      <h1>Хэрэглэгч бүртгэх хэсэг</h1>
+      <br>
       <form v-on:submit.prevent="addNewTask()" enctype="multipart/form-data">
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -12,6 +15,7 @@
             class="form-control"
             id="formGroupExampleInput"
             placeholder="lastname"
+            required
           />
         </div>
         <div class="form-group col-md-6">
@@ -22,6 +26,7 @@
             class="form-control"
             id="formGroupExampleInput2"
             placeholder="firstname"
+            required
           />
         </div>
       </div>
@@ -34,6 +39,7 @@
               class="form-control"
               id="inputEmail4"
               placeholder="Email"
+              required
             />
           </div>
           <div class="form-group col-md-6">
@@ -44,6 +50,7 @@
               class="form-control"
               id="inputPassword4"
               placeholder="Нууц үг"
+              required
             />
           </div>
         </div>
@@ -51,7 +58,7 @@
           <div class="form-group col-md-4">
             <label for="inputState">Аймаг</label>
             <select v-model="aimag" id="inputState" class="form-control">
-              <option>Архангай</option>
+              <option selected>Архангай</option>
               <option>Баян-Өлгий</option>
               <option>Булган</option>
               <option>Баянхонгор</option>
@@ -74,9 +81,13 @@
               <option>Хэнтий</option>
             </select>
           </div>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-4">
             <label for="inputCity">Сум, багийн мэдээлэл</label>
-            <input v-model="location" type="text" class="form-control" id="inputCity" />
+            <input v-model="location" type="text" class="form-control" id="inputCity" required/>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputPhone">Холбоо барих дугаар</label>
+            <input v-model="phone" type="number" class="form-control" id="inputCity" required/>
           </div>
         </div>
         <div class="form-group">
@@ -85,7 +96,7 @@
             <label class="form-check-label" for="gridCheck">Оруулсан мэдээлэл үнэн</label>
           </div>
         </div>
-        <div class="alert alert-info" role="alert">
+        <div class="alert alert-info" role="alert" v-if="msg!=''">
           {{msg}}
         </div>
         <button type="submit" class="btn btn-primary">Бүртгүүлэх</button>
@@ -97,6 +108,7 @@
 <script>
 import axios from 'axios'
 import Navi from './header'
+import router from '../router'
 export default {
   data () {
     return {
@@ -110,7 +122,8 @@ export default {
       date: '',
       aimag: '',
       files: [],
-      msg: ''
+      msg: '',
+      phone: ''
     }
   },
   components: {
@@ -125,13 +138,31 @@ export default {
         password: this.password,
         location: this.location,
         date: this.date,
-        aimag: this.aimag
+        aimag: this.aimag,
+        phone: this.phone
       })
         .then(res => {
           if (res.data === 0) {
             this.msg = 'Error: "Таны оруулсан мэйл бүртгэлтэй байна."'
           } else {
             this.msg = 'Амжилттай бүртгүүллээ'
+            axios.post('/api/Login',
+              {
+                mail: this.mail,
+                password: this.password
+              }
+            ).then(res => {
+              this.msg = 'GOOD'
+              localStorage.setItem('user', res.data)
+              this.mail = ''
+              this.password = ''
+              router.push({ name: 'profile' })
+              this.login = 1
+            })
+              .catch(err => {
+                this.msg = 'Нэвтрэх нэр болон нууц үгээ зөв хийнэ үү'
+                console.log(err.data)
+              })
           }
           // this.lastname = ''
           // this.firstname = ''
@@ -140,6 +171,7 @@ export default {
           // this.location = ''
           // this.date = ''
           // this.aimag = ''
+          // this.phone = ''
         })
         .catch(err => {
           this.msg = err.data

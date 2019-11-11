@@ -28,7 +28,7 @@
             </router-link>
           </li>
         </span>
-        <li v-if="login" class="nav-item" mr-2>
+        <li v-if="login" >
             <router-link to="/logout"><button type="button" v-on:submit.prevent="logout()" class="btn btn-secondary">Гарах</button></router-link>
         </li>
       </ul>

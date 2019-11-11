@@ -79,7 +79,8 @@ router.post('/task',(req, res, next) => {
     location :  req.body.location,
     password :  req.body.password,
     mail : req.body.mail,
-    aimag : req.body.aimag
+    aimag : req.body.aimag,
+    phone : req.body.phone
   }
    Task.findOne({
      where: {

@@ -12,9 +12,6 @@ module.exports = db.sequelize.define(
     lastname: {
       type: Sequelize.STRING
     },
-    stamp_name: {
-      type: Sequelize.STRING
-    },
     mail: {
       type: Sequelize.STRING
     },
@@ -30,10 +27,7 @@ module.exports = db.sequelize.define(
     date: {
       type: Sequelize.DATEONLY
     },
-    stampImage: {
-      type: Sequelize.STRING
-    },
-    define:{
+    phone:{
       type: Sequelize.STRING
     },
     aimag: {
