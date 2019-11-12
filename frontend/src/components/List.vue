@@ -4,15 +4,15 @@
     <!-- another version - flat style with animated hover effect -->
     <div class="parallax">
       <div class="row text-center">
-        <div class="col-sm">
+        <div class="col-sm artal">
           <div class="display-3 too">{{too}}</div>
           <div class="text">Тамга</div>
         </div>
-        <div class="col-sm">
+        <div class="col-sm artal">
           <div class="display-3 too">{{too2}}</div>
           <div class="text">Аймаг</div>
         </div>
-        <div class="col-sm">
+        <div class="col-sm artal">
           <div class="display-3 too">{{toos}}</div>
           <div class="text">Хэрэглэгч</div>
         </div>
@@ -221,14 +221,22 @@ export default {
   },
   methods: {
     increase () {
-      setTimeout(() => {
-        if (this.too < this.too1) {
-          this.too = this.too + 1
+      var width = 0
+      var id = setInterval(frame, 10)
+      function frame () {
+        if (width === 100) {
+          clearInterval(id)
+        } else {
+          width = width + 1
+          this.too = width
         }
-        if (this.toos < this.too3) {
-          this.toos = this.toos + 1
-        }
-      }, 1)
+      }
+      // if (this.too < this.too1) {
+      //   this.too = this.too + 1
+      // }
+      if (this.toos < this.too3) {
+        this.toos = this.toos + 1
+      }
     },
     getTasks () {
       axios.get('/api/stamps').then(
@@ -279,7 +287,7 @@ export default {
   text-transform: uppercase;
   text-shadow: 4px 2px 4px #000000;
 }
-.col-sm{
+.artal{
   background: rgba(0, 0, 0, 0.411);
   margin-left: 20px;
   margin-right: 20px;
