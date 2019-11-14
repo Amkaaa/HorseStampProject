@@ -9,7 +9,10 @@
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <router-link to="/List" class="nav-link">Нүүр</router-link>
+          <router-link to="/" class="nav-link">Нүүр</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/about" class="nav-link">Мэдээлэл</router-link>
         </li>
         <li v-if="!login" class="nav-item">
           <router-link to="/register" class="nav-link">Бүртгэх</router-link>

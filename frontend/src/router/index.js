@@ -8,6 +8,7 @@ import photo from '@/components/photo'
 import stamp from '@/components/stamp'
 import logout from '@/components/logout'
 import createStamp from '@/components/createStamp'
+import about from '@/components/about'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -17,9 +18,9 @@ export default new Router({
       component: Login
     },
     {
-      path: '/list',
-      name: 'List',
-      component: List
+      path: '/about',
+      name: 'about',
+      component: about
     },
     {
       path: '/',

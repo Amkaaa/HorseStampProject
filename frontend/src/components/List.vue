@@ -2,22 +2,6 @@
   <div>
     <Navi/>
     <!-- another version - flat style with animated hover effect -->
-    <div class="parallax">
-      <div class="row text-center">
-        <div class="col-sm artal">
-          <div class="display-3 too">{{too}}</div>
-          <div class="text">Тамга</div>
-        </div>
-        <div class="col-sm artal">
-          <div class="display-3 too">{{too2}}</div>
-          <div class="text">Аймаг</div>
-        </div>
-        <div class="col-sm artal">
-          <div class="display-3 too">{{toos}}</div>
-          <div class="text">Хэрэглэгч</div>
-        </div>
-      </div>
-    </div>
     <div class="breadcrumb flat row">
         <a class="active dropdown" v-on:click="bus1()">
           <div class="dropbtn">Бүс</div>
@@ -66,9 +50,6 @@
           {{this.utga2}}
         </a>
         <input class="form-control mr-sm-2 col-md-2 ml-5 search" v-model="search" type="search" placeholder="Тамганы нэрээр хайх ..." aria-label="Search">
-    </div>
-    <div v-for="volo in volos" v-bind:key="volo.id">
-      {{increase()}}
     </div>
     <div id="todo-list-example" class="container justify-content-center">
       <div class="row">
@@ -190,20 +171,12 @@ export default {
       utga1: 0,
       utga2: '',
       todos: [],
-      volos: 1,
       id: '',
       stampname: '',
       location: '',
       date: '',
-      // stampImage: '',
-      publicPath: process.env.BASE_URL,
       counter: true,
-      search: '',
-      too: 0,
-      toos: 0,
-      too1: 230,
-      too2: 21,
-      too3: 247
+      search: ''
     }
   },
   components: {
@@ -220,24 +193,6 @@ export default {
     }
   },
   methods: {
-    increase () {
-      var width = 0
-      var id = setInterval(frame, 10)
-      function frame () {
-        if (width === 100) {
-          clearInterval(id)
-        } else {
-          width = width + 1
-          this.too = width
-        }
-      }
-      // if (this.too < this.too1) {
-      //   this.too = this.too + 1
-      // }
-      if (this.toos < this.too3) {
-        this.toos = this.toos + 1
-      }
-    },
     getTasks () {
       axios.get('/api/stamps').then(
         result => {
@@ -261,39 +216,6 @@ export default {
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-.parallax{
-  width: 100%;
-  background-image: url("../assets/bg/mori3.jpg");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  opacity: 0.9;
-}
-.col-sm:hover{
-  background: #f1f1f19a;
-}
-.too{
-  background: linear-gradient(to right, rgb(48, 131, 208) 0%, #ab12da 100%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-  font-family: "Times New Roman", Times, serif;
-}
-.text{
-  font-family: 'Roboto', sans-serif;
-  font-size: 2rem;
-  color: rgb(255, 192, 56);
-  font-weight: 700;
-  text-transform: uppercase;
-  text-shadow: 4px 2px 4px #000000;
-}
-.artal{
-  background: rgba(0, 0, 0, 0.411);
-  margin-left: 20px;
-  margin-right: 20px;
-  height: 200px;
-  padding-top: 2rem;
-}
 @media only screen and (max-width: 767px) {
   .search{
     margin-top: 20px;
@@ -302,18 +224,10 @@ export default {
   .row{
     grid-template-columns: auto;
   }
-  .col-sm{
-    margin-left: 10px;
-    margin-right: 10px;
-  }
 }
 @media only screen and (min-width: 768px) {
   .row{
     grid-template-columns: auto auto auto;
-  }
-  .col-sm{
-    margin-left: 30px;
-    margin-right: 30px;
   }
 }
 .row{
@@ -339,6 +253,7 @@ body {
 .breadcrumb {
   counter-reset: flag;
   text-align: center;
+  background: white;
 }
 .breadcrumb a {
   text-decoration: none;
@@ -368,10 +283,11 @@ body {
 .breadcrumb a:after {
   content: '';
   position: absolute;
-  top: 0;
+  top: 1px;
   right: -18px;
   width: 36px;
   height: 36px;
+  background: none;
   transform: scale(0.707) rotate(45deg);
   /*we need to prevent the arrows from getting buried under the next link*/
   z-index: 1;
@@ -400,12 +316,13 @@ body {
   font-weight: bold;
 }
 .flat a, .flat a:after {
-  background: white;
+
+  background-image: linear-gradient(to bottom right, rgb(67, 132, 230) , rgb(162, 96, 201));
   color: black;
   transition: all 0.5s;
 }
 .flat a:before {
-  background: white;
+  background: rgb(255, 255, 255);
   box-shadow: 0 0 0 1px #ccc;
 }
 .flat a:hover, .flat a.active,
