@@ -13,7 +13,7 @@
     <div class="collapse navbar-collapse right" id="navbarNav">
       <ul class="navbar-nav snip1217">
         <li class="nav-item active current">
-          <router-link to="/" class="nav-link font-weight-bold">Нүүр</router-link>
+          <router-link to="/" class="nav-link font-weight-bold" onClick="window.location.reload()">Нүүр</router-link>
         </li>
         <li v-if="!login" class="nav-item">
           <router-link to="/register" class="nav-link">Бүртгэх</router-link>
