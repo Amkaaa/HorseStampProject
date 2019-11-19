@@ -3,7 +3,7 @@
     <!-- <Headr/> -->
     <router-view/>
     <footer>
-      <span>&copy; Copyright: Ихбаяр, Амартүвшин, Цэлмүүнзаяа <br> 2019 он</span>
+      <span>&copy; Copyright: Ихбаяр, Амартайван, Цэлмүүнзаяа <br> 2019 он</span>
     </footer>
   </div>
 </template>
@@ -21,15 +21,22 @@ export default {
 }
 </script>
 <style>
+  @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+  #app{
+    background: rgb(3, 91 ,150);
+    font-family: 'Open Sans', 'Poppins', sans-serif;
+  }
   footer{
-    background: rgba(58, 58, 209, 0.568);
-    background: url("https://kevlynpumps.com/wp-content/uploads/2018/06/Footer_wave.jpg");
+    height: 85px;
+    font-family: 'Open Sans', 'Poppins', sans-serif;
+    background-color: rgb(4, 57, 150);
     background-size: cover;
     text-align: center;
-    color:black;
+    color:white;
     background-repeat: no-repeat;
-    height: auto;
-    padding-top:7px;
+    font-size: 13px;
+    padding-top: 20px;
     margin-top: 30px;
   }
 </style>

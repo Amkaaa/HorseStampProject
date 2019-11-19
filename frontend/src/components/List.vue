@@ -253,7 +253,7 @@ body {
 .breadcrumb {
   counter-reset: flag;
   text-align: center;
-  background: white;
+  background: rgb(100, 151, 177);
 }
 .breadcrumb a {
   text-decoration: none;
@@ -357,4 +357,41 @@ body {
   display: block;
 }
 
+.card {
+  width: 30%;
+  height: 400px;
+  padding: 0;
+  margin: 0;
+}
+.card img{
+  width: 100%;
+  height: 250px;
+  padding: 0;
+  margin: 0;
+}
+.card .card-body{
+  padding: 0;
+  margin: 0;
+}
+.card .card-body h5{
+  height: 50px;
+  padding: 0;
+  margin: 0;
+}
+.card-img-top{
+  padding: 0;
+  margin: 0;
+}
+.card .card-body p{
+  height: 50px;
+  padding: 10px;
+  margin: 0;
+}
+.card .card-body button{
+  height: 40px;
+  float: right;
+  font-size: 15px;
+  padding: 5px 10px;
+  margin-right: 10px;
+}
 </style>

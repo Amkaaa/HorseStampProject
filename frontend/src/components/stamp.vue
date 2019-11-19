@@ -1,38 +1,44 @@
 <!--Энд нэг тамганы дэлгэрэнгүй мэдээллийг харуулах болно-->
+
 <template>
     <div>
       <Navi/>
-      <br>
+      <div class="container">
         <div v-for="(todo) in stamps" v-bind:key="todo.id">
-          <div class="row no-gutters" style="max-width: 100%;" v-if="$route.params.id==todo.id">
-                <div class="col-md-4">
-                  <br>
-                  <p class="display-4 text-capitalize text-center">{{$route.params.name}}</p>
-                    <img :src="require('../assets/tamga/'+todo.stampImage)" class="card-img" alt="...">
+          <div class="row no-gutters" v-if="$route.params.id==todo.id">
+            <div class="stampImg">
+              <img :src="require('../assets/tamga/'+todo.stampImage)" class="card-img" alt="...">
+            </div>
+            <div class="stampName">
+              <h2>{{$route.params.name}}</h2>
+              <h4>Тамганы төрөл: {{todo.typeStamp}}</h4>
+              <h5>Тамганы билгэдэл: {{todo.bilgedel}}</h5>
+              <h5>Байршил: {{todo.location}}</h5>
+              <h5>Бүртгэгдсэн огноо: {{$route.params.date}}</h5>
+            </div>
+            <div class="small-container">
+              <div v-for="user in todos" v-bind:key="user.id" class="stampInfo">
+                <div v-if="todo.userid==user.id">
+                  <h1>Дэлгэрэнгүй</h1>
+                  <p>{{$route.params.define}} Lorem ipsum dolor sit amet,
+                    consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru
+                    d exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis a
+                    ute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat null
+                    a pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
+                    nt mollit anim id est laborum.</p>
+                  <h6>Эзэмшигчийн тухай мэдээлэл: </h6>
+                    <p>{{user.firstname}}, {{user.phone}}, {{user.aimag}}, {{user.location}}</p>
+                  <h6>Хэрэглэгчдийн тоо: </h6>
+                    <p> {{count % 100}}</p>
+                  <h6>Хэдэн үе ашиглаж байгаа: </h6>
+                    <p>{{todo.uy}}</p>
                 </div>
-                <div v-for="stamp in stamps" v-bind:key="stamp.id">
-                  <div v-if="todo.stampname==stamp.stampname">
-                    {{counter(count)}}
-                  </div>
-                </div>
-                <div class="col-md-1"></div>
-                <div class="col-md-5 hoho list-group">
-                  <div v-for="user in todos" v-bind:key="user.id">
-                  <div v-if="todo.userid==user.id">
-                  <p class="display-4 text-capitalize text-center">Мэдээлэл</p>
-                  <p class="list-group-item">Эзэмшигчийн мэдээлэл: <span class="text-primary font-weight-bold lolo"> {{user.firstname}}, {{user.phone}}, {{user.aimag}}, {{user.location}}</span></p>
-                  <p class="list-group-item">Хэрэглэгчдийн тоо: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-primary font-weight-bold lolo"> {{count % 100}}</span></p>
-                  <p class="list-group-item">Бүртгэгдсэн огноо: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-primary font-weight-bold lolo"> {{$route.params.date}}</span></p>
-                  <p class="list-group-item">Тамганы төрөл:&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-primary font-weight-bold lolo"> {{todo.typeStamp}}</span></p>
-                  <p class="list-group-item">Хэдэн үе ашиглаж байгаа: <span class="text-primary font-weight-bold lolo">{{todo.uy}}</span></p>
-                  <p class="list-group-item">Тамганы билгэдэл:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-primary font-weight-bold lolo">{{todo.bilgedel}}</span></p>
-                  <p class="list-group-item">Дэлгэрэнгүй мэдээлэл: <span class="text-primary font-weight-bold lolo"> {{$route.params.define}}</span></p>
-                  <p class="list-group-item">Байршил: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-primary font-weight-bold"> {{todo.location}}</span></p>
-                  </div>
-                  </div>
-                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
     </div>
 </template>
 <script>
@@ -92,13 +98,70 @@ export default {
   }
 }
 </script>
+
 <style>
-  @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
-  .hoho{
-    font-family: 'Roboto Condensed', sans-serif;
+  @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+  .container{
+    font-family: 'Open Sans', 'Poppins', sans-serif;
+    width: 70%;
+    margin-top: 50px;
+    padding: 0;
+    background: rgb(100, 151, 177);
+    box-shadow: 5px 10px 11px rgba(0, 0, 0, 0.5);
   }
-  .lolo{
-    width: 50%;
-    height: 100px;
+  .row{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  h1{
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+  }
+  h2{
+    color: black;
+    font-weight: 650;
+    padding: 20px;
+    margin-left: 30px;
+    margin-top: 30px;
+  }
+  h4{
+    color: gold;
+    font-weight: 500;
+    margin-left: 50px;
+    margin-top: -5px;
+    font-size: 16px;
+  }
+  h5{
+    color: gold;
+    font-weight: 500;
+    margin-left: 50px;
+    font-size: 16px;
+    margin-top: 25px;
+  }
+  h6{
+    font-weight: 700;
+  }
+  .stampImg img{
+    background-color: white;
+    border-radius: 20px 80px 80px;
+    box-shadow: 5px 3px 8px rgb(0,0,0,0.5);
+    width: 250px;
+    height: 250px;
+    margin-top: 50px;
+    margin-left: 50px;
+  }
+  .small-container{
+    background: white;
+    text-align: justify;
+    padding: 20px;
+    margin: 30px 20px;
+    box-shadow: 5px 3px 8px rgb(0,0,0,0.5);
+    width: 100%;
+  }
+  p::first-letter{
+    text-transform: capitalize;
   }
 </style>
