@@ -1,7 +1,7 @@
 <template>
-<div>
+<div class="outside">
   <Navi/>
-  <div class="container">
+  <div class="container-haha">
     <br>
     <h1 style="text-align:center">Тамга бүртгэлийн хэсэг</h1>
     <br>
@@ -219,6 +219,21 @@ export default {
 </script>
 
 <style>
+div.outside{
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.container-haha{
+  font-family: 'Open Sans', 'Poppins', sans-serif;
+  text-align: center;
+  width: 70%;
+  margin: auto;
+  margin-top: 50px;
+  padding: 30px 50px;
+  background: rgb(100, 151, 177);
+  box-shadow: 5px 10px 11px rgba(0, 0, 0, .5);
+}
 .photo {
   width: 64px;
   height: 64px;
