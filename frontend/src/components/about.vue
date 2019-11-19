@@ -1,21 +1,37 @@
 <template>
-    <div>
+    <div class="bg">
         <Navi />
-        <div class="parallax">
-        <div class="row text-center">
-            <div class="col-sm artal">
-            <div class="display-3 too">{{too}}</div>
-            <div class="text">Тамга</div>
+        <div class="container" style="margin-top:2rem;">
+          <div class="row justify-content-md-center">
+            <div class="text-center">
+              Адууг тамгалахад <br> зориулсан урт иш бүхий төмөр хэрэгсэл бөгөөд <br>
+              морины соёлын чухал нэг бүрэлдэхүүн юм. Адууны тамга нь монгол овог аймгийн гарал <br>
+              үүсэл, шашин шүтлэг, хаадын угсаа залгамжлалтай шууд холбогддог. Өмчийн ялгааг илэрхийлэх урт удаан жилийн <br>
+              түүхтэй адууны тамганууд нь гүнзгий утга агуулгатай.  Эрдэмтэн судлаачид 1000 гаруй янзын тамга дүрсийг
+              Монголын өргөн уудам нутаг дээрх хад чулуунуудаас олж илрүүлсэн бөгөөд нүүдэлчдийн соёл, итгэл бишрэл, бэлгэдэл ихэд шингэсэн байдаг.
             </div>
-            <div class="col-sm artal">
-            <div class="display-3 too">{{too2}}</div>
-            <div class="text">Аймаг</div>
-            </div>
-            <div class="col-sm artal">
-            <div class="display-3 too">{{toos}}</div>
-            <div class="text">Хэрэглэгч</div>
-            </div>
+          </div>
         </div>
+        <div class="parallax">
+          <div class="row text-center">
+              <div class="col-sm artal">
+              <div class="display-3 too">{{too}}</div>
+              <div class="text">Тамга</div>
+              </div>
+              <div class="col-sm artal">
+              <div class="display-3 too">{{too2}}</div>
+              <div class="text">Аймаг</div>
+              </div>
+              <div class="col-sm artal">
+              <div class="display-3 too">{{toos}}</div>
+              <div class="text">Хэрэглэгч</div>
+              </div>
+          </div>
+        </div>
+        <div class="text-center" style="margin-top:2rem;">
+          Хамжлагат нийгмийн үед ноёд баячууд адуу малдаа дардаг дүрсийг “тамга”, жирийн эгэл ардууд адуугаа тамгалах эрх авч малдаа дардаг<br>
+          дүрсийг “тэмдэг” хэмээн нэрлэж байв. Тамгыг халаан улайсгаж адууны гуянд дарж үлдээдэг. Монголчуудын адууны тамгаа сонгох, <br>
+          уламжлуулах, тамга салгах ёсон нь нарийн дэг жаягтай ба одоогийн хэрэглэж буй тамганд эртний хаад язгууртны овгийн <br> сүлд хадгалагдсан байдаг.
         </div>
     </div>
 </template>
@@ -54,6 +70,12 @@ export default {
 </script>
 <style>
     @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+.bg{
+  background-size: cover;
+  background: url("../assets/bg/alkhan_khee.jpg");
+  background-repeat: repeat;
+  background-position: center
+}
 .parallax{
   width: 100%;
   background-image: url("../assets/bg/mori3.jpg");
@@ -62,6 +84,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 0.9;
+  margin-top: 1rem;
 }
 .col-sm:hover{
   background: #0000009a;
