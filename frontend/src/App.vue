@@ -24,7 +24,7 @@ export default {
   @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
   @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
   #app{
-    background: rgb(3, 91 ,150);
+    background: url("./assets/bg/alkhan_khee.jpg");
     font-family: 'Open Sans', 'Poppins', sans-serif;
   }
   footer{

@@ -9,6 +9,7 @@ import stamp from '@/components/stamp'
 import logout from '@/components/logout'
 import createStamp from '@/components/createStamp'
 import about from '@/components/about'
+import test from '@/components/test'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -56,6 +57,11 @@ export default new Router({
       path: '/logout',
       name: 'logout',
       component: logout
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: test
     }
   ]
 })

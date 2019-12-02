@@ -3,7 +3,7 @@
 
     <router-link to="/" class="navbar-brand">
       <img src="../assets/logo.jpg" width="75px" height="75px" class="d-inline-block align-top" alt="Тамга" style="border-radius:50%;">
-      <h2>Монгол Адууны Тамга</h2>
+      <h2 style="font-size:20px">Монгол Адууны Тамга</h2>
     </router-link>
         <v-spacer></v-spacer>
 
@@ -25,17 +25,17 @@
           <router-link to="/createStamp" class="nav-link">Тамга бүртгүүлэх</router-link>
         </li>
         <!-- User Profile Icon хийх -->
-        <i class="fa fa-user-circle" aria-hidden="true"></i>
         <span v-for="(user) in users" v-bind:key="user.id" v-bind:firstname="user.firstname" v-bind:mail="user.mail">
           <li class="nav-item mr-2" v-if="user.mail==user1">
             <router-link to="/profile">
-              <button type="button" class="btn btn-primary ">{{user.firstname}}
+              <button type="button" class="btn btn-primary ">
+                <i class="fa fa-user-circle" aria-hidden="true" style="margin-right:10px; color: white"></i>{{user.firstname}}
               </button>
             </router-link>
           </li>
         </span>
         <li v-if="login" >
-            <router-link to="/logout"><button type="button" v-on:submit.prevent="logout()" class="btn btn-secondary">Гарах</button></router-link>
+            <router-link to="/logout"><button type="button" v-on:submit.prevent="logout()" class="btn btn-secondary"> <i class="fa fa-sign-out" aria-hidden="true" style="margin-right:10px; color: white"></i>Гарах</button></router-link>
         </li>
         <li class="nav-item">
           <router-link to="/about" class="nav-link">Бидний тухай</router-link>

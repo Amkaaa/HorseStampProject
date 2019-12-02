@@ -1,37 +1,69 @@
 <template>
-  <div>
-    <Navi/><br><br>
-    <div v-for="(user) in users" v-bind:key="user.id" v-bind:firstname="user.firstname" v-bind:lastname="user.lastname" v-bind:mail="user.mail" v-bind:aimag="user.aimag">
-      <div class="container-fluid container" v-if="user.mail==user1">
-        <div class="row content">
-          <div class="col-sm-3 sidenav text-center pt-3 pl-0">
-            <h4><i class="fa fa-user pro" style="color: blue;"></i>{{user.firstname}}</h4>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Хаяг: {{user.aimag}}</li>
-              <li class="list-group-item"><i class="fa fa-envelope-o" aria-hidden="true"></i> {{user.mail}}</li>
-              <li class="list-group-item"><i class="fa fa-phone" aria-hidden="true"></i> {{user.phone}}</li>
-            </ul>
-          </div>
-          <div class="col-sm-8 ml-3">
-            <h4>Миний бүртгүүлсэн тамга</h4><br>
-            <div v-for="(todo) in todos" v-bind:key="todo.id" v-bind:userid="todo.userid" v-bind:stampname="todo.stampname">
-                <table class="table" v-if="todo.userid==user.id && user.mail==user1">
-                  <tr class="ok">
-                    <td class="stazurag"><img :src="require('../assets/tamga/'+todo.stampImage)" alt=""></td>
-                    <td class="text-left">{{todo.stampname}}</td>
-                    <td class="text-right">
-                        <button class="btn btn-info" v-on:click="editTask(todo.lastname,todo.id,todo.firstname, todo.stamp_name, todo.mail, todo.location, todo.date, todo.photo)">Edit</button>
-                        <button class="btn btn-danger" v-on:click="deleteTask(todo.id)">Delete</button>
-                    </td>
-                  </tr>
-                </table>
+    <div>
+      <Navi/>
+      <div v-for="(user) in users" v-bind:key="user.id" v-bind:firstname="user.firstname" v-bind:lastname="user.lastname" v-bind:mail="user.mail" v-bind:aimag="user.aimag">
+        <div class="container" v-if="user.mail==user1">
+            <div class="row justify-content-end">
+              <div class="col-4">
+                  <button type="button" class="btn btn-primary">Засварлах</button>
               </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                  Овог, нэр:
+              </div>
+              <div class="col-sm">
+                  Хаяг:
+              </div>
+              <div class="col-sm">
+                  Бусад:
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                  {{user.lastname}}&nbsp;{{user.firstname}}
+              </div>
+              <div class="col-sm">
+                  {{user.aimag}}&nbsp;аймаг Галуут сум
+              </div>
+              <div class="col-sm">
+                  {{user.mail}}&nbsp;99111111
+              </div>
+            </div>
+        <div class="row">
+            <!-- <form v-on:submit.prevent="addNewTask()">
+                <input v-model="lastname" type="text" id="lastnameinput" class="form-control mt-4" placeholder="Тамганы нэрээ оруул">
+                <button v-if="this.isEdit==false" type="submit" class="btn btn-success btn-block mt-4">
+                    Submit
+                </button>
+                <button v-else v-on:click="updateTask()" type="button" class="btn btn-primary btn-block mt-4">
+                    Update
+                </button>
+            </form> -->
+          <div>
+            <div v-for="(todo) in todos" v-bind:key="todo.id" v-bind:userid="todo.userid" v-bind:stampname="todo.stampname">
+              <table class="table" v-if="todo.userid==user.id && user.mail==user1">
+                <tr>
+                  <td class="text-left">{{todo.id}}</td>
+                  <td class="text-left">{{todo.stampname}}</td>
+                  <td class="text-right">
+                      <button class="btn btn-info" v-on:click="editTask(todo.lastname,todo.id,todo.firstname, todo.stamp_name, todo.mail, todo.location, todo.date, todo.photo)">Edit</button>
+                      <button class="btn btn-danger" v-on:click="deleteTask(todo.id)">Delete</button>
+                  </td>
+                </tr>
+              </table>
+            </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
-  </div>
 </template>
+<style>
+    .row{
+        margin: 1rem;
+    }
+</style>
 <script>
 import Navi from './header.vue'
 import axios from 'axios'
@@ -157,29 +189,14 @@ export default {
 }
 </script>
 <style>
-  .sidenav {
-    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,253,107,1) 100%);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.37), 0 6px 20px 0 rgba(0, 0, 0, 0.411);
-    border-radius: 30px;
-    height: 100%;
-  }
-  .list-group-item{
-    color: black;
-    background:none;
-  }
-  .list-group-item:hover{
-    opacity: 0.8;
-    background: rgba(255, 255, 255, 0.295);
-  }
-  .stazurag{
-    width: 70px;
-  }
-  .ok{
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.37), 0 6px 20px 0 rgba(0, 0, 0, 0.411);
-  }
-  .pro{
-    font-size: 30px;
-    margin-right: 10px
-  }
+.photo{
+  width: 64px;
+  height: 64px;
+}
+.row{
+  grid-template-columns: auto auto auto;
+  width:90%;
+  margin-left: auto;
+  margin-right: auto;
+}
 </style>
