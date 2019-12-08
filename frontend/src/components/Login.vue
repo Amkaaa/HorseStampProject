@@ -3,72 +3,63 @@
     <Navi/>
       <form v-on:submit.prevent="Userlogin()" class="justify-content-md-center">
         <div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<form class="login100-form validate-form">
-					<span class="login100-form-title p-b-43">
-						Login to continue
-					</span>
-					
-					
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<span class="focus-input100"></span>
-						<span class="label-input100">Имейл хаяг: </span>
+    <div class="container-login100">
+      <div class="wrap-login100">
+        <form class="login100-form validate-form">
+          <span class="login100-form-title p-b-43">
+            Login to continue
+          </span>
+          <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+            <span class="focus-input100"></span>
+            <span class="label-input100">Имейл хаяг: </span>
               <input type="email" v-model="mail" class="form-control" id="email" name="mail" required>
-					</div>
-					
-					
-					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<span class="focus-input100"></span>
-						<span class="label-input100">Password</span>
+          </div>
+          <div class="wrap-input100 validate-input" data-validate="Password is required">
+            <span class="focus-input100"></span>
+            <span class="label-input100">Password</span>
               <input type="password" v-model="password" class="form-control" id="pwd" required>
-					</div>
-
-					<div class="flex-sb-m w-full p-t-3 p-b-32">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Remember me
-							</label>
-						</div>
-
-						<div>
-							<a href="#" class="txt1">
-								Forgot Password?
-							</a>
-						</div>
-					</div>
-			
-
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" @click="Userlogin">
-							Login
-						</button>
-					</div>
-					
-					<div class="text-center p-t-46 p-b-20">
-						<span class="txt2">
-							or sign up using
-						</span>
-					</div>
-
-					<div class="login100-form-social flex-c-m">
-						<a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
-							<i class="fa fa-facebook-f" aria-hidden="true"></i>
-						</a>
-
-						<a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
-							<i class="fa fa-twitter" aria-hidden="true"></i>
-						</a>
-					</div>
-				</form>
-
-				<div class="login100-more" style="background-image: url('bg-01.jpg');">
-				</div>
-			</div>
-		</div>
-	</div>
-      </form>
+          </div>
+          <div class="flex-sb-m w-full p-t-3 p-b-32">
+          <div class="contact100-form-checkbox">
+            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+            <label class="label-checkbox100" for="ckb1">
+              Remember me
+            </label>
+          </div>
+            <div>
+              <a href="#" class="txt1">
+                Forgot Password?
+              </a>
+            </div>
+          </div>
+          <div class="alert alert-info" role="alert" v-if="msg!=''">
+            {{msg}}
+          </div>
+          <div class="container-login100-form-btn">
+            <button class="login100-form-btn" @click="Userlogin">
+              Login
+            </button>
+          </div>
+          <div class="text-center p-t-46 p-b-20">
+            <span class="txt2">
+              or sign up using
+            </span>
+          </div>
+          <div class="login100-form-social flex-c-m">
+          <a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
+            <i class="fa fa-facebook-f" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+          </a>
+          </div>
+        </form>
+          <div class="login100-more">
+        </div>
+      </div>
+    </div>
+  </div>
+    </form>
     </div>
 </template>
 <style>
@@ -79,108 +70,98 @@
     margin-right: auto;
 }
 
-
-
-
-
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
-
 @font-face {
   font-family: Poppins-Regular;
-  src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+  src: url('../fonts/poppins/Poppins-Regular.ttf');
 }
 
 @font-face {
   font-family: Poppins-Medium;
-  src: url('../fonts/poppins/Poppins-Medium.ttf'); 
+  src: url('../fonts/poppins/Poppins-Medium.ttf');
 }
 
 @font-face {
   font-family: Poppins-Bold;
-  src: url('../fonts/poppins/Poppins-Bold.ttf'); 
+  src: url('../fonts/poppins/Poppins-Bold.ttf');
 }
 
 @font-face {
   font-family: Poppins-SemiBold;
-  src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
+  src: url('../fonts/poppins/Poppins-SemiBold.ttf');
 }
 
 @font-face {
   font-family: Montserrat-Bold;
-  src: url('../fonts/montserrat/Montserrat-Bold.ttf'); 
+  src: url('../fonts/montserrat/Montserrat-Bold.ttf');
 }
 
 @font-face {
   font-family: Montserrat-SemiBold;
-  src: url('../fonts/montserrat/Montserrat-SemiBold.ttf'); 
+  src: url('../fonts/montserrat/Montserrat-SemiBold.ttf');
 }
 
 @font-face {
   font-family: Montserrat-Regular;
-  src: url('../fonts/montserrat/Montserrat-Regular.ttf'); 
+  src: url('../fonts/montserrat/Montserrat-Regular.ttf');
 }
-
-
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
 * {
-	margin: 0px; 
-	padding: 0px; 
-	box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
 
 body, html {
-	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
+  height: 100%;
+  font-family: Poppins-Regular, sans-serif;
 }
 
 /*---------------------------------------------*/
 a {
-	font-family: Poppins-Regular;
-	font-size: 14px;
-	line-height: 1.7;
-	color: #666666;
-	margin: 0px;
-	transition: all 0.4s;
-	-webkit-transition: all 0.4s;
+  font-family: Poppins-Regular;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #666666;
+  margin: 0px;
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
 }
 
 a:focus {
-	outline: none !important;
+  outline: none !important;
 }
 
 a:hover {
-	text-decoration: none;
+  text-decoration: none;
   color: #6675df;
 }
 
 /*---------------------------------------------*/
 h1,h2,h3,h4,h5,h6 {
-	margin: 0px;
+  margin: 0px;
 }
 
 p {
-	font-family: Poppins-Regular;
-	font-size: 14px;
-	line-height: 1.7;
-	color: #666666;
-	margin: 0px;
+  font-family: Poppins-Regular;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #666666;
+  margin: 0px;
 }
 
 ul, li {
-	margin: 0px;
-	list-style-type: none;
+  margin: 0px;
+  list-style-type: none;
 }
-
 
 /*---------------------------------------------*/
 input {
-	outline: none;
-	border: none;
+  outline: none;
+  border: none;
 }
 
 textarea {
@@ -196,22 +177,18 @@ input:focus::-webkit-input-placeholder { color:transparent; }
 input:focus:-moz-placeholder { color:transparent; }
 input:focus::-moz-placeholder { color:transparent; }
 input:focus:-ms-input-placeholder { color:transparent; }
-
 textarea:focus::-webkit-input-placeholder { color:transparent; }
 textarea:focus:-moz-placeholder { color:transparent; }
 textarea:focus::-moz-placeholder { color:transparent; }
 textarea:focus:-ms-input-placeholder { color:transparent; }
-
 input::-webkit-input-placeholder { color: #999999;}
 input:-moz-placeholder { color: #999999;}
 input::-moz-placeholder { color: #999999;}
 input:-ms-input-placeholder { color: #999999;}
-
 textarea::-webkit-input-placeholder { color: #999999;}
 textarea:-moz-placeholder { color: #999999;}
 textarea::-moz-placeholder { color: #999999;}
 textarea:-ms-input-placeholder { color: #999999;}
-
 
 label {
   display: block;
@@ -220,24 +197,19 @@ label {
 
 /*---------------------------------------------*/
 button {
-	outline: none !important;
-	border: none;
-	background: transparent;
+  outline: none !important;
+  border: none;
+  background: transparent;
 }
 
 button:hover {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 iframe {
-	border: none !important;
+  border: none !important;
 }
 
-/*//////////////////////////////////////////////////////////////////
-[ utility ]*/
-
-/*==================================================================
-[ Text ]*/
 .txt1 {
   font-family: Montserrat-Regular;
   font-size: 13px;
@@ -251,7 +223,6 @@ iframe {
   line-height: 1.4;
   color: #999999;
 }
-
 
 /*==================================================================
 [ Size ]*/
@@ -270,7 +241,6 @@ iframe {
 .bg2 {background: #1da1f2;}
 .bg3 {background: #cd201f;}
 
-
 /*//////////////////////////////////////////////////////////////////
 [ login ]*/
 .limiter {
@@ -279,7 +249,7 @@ iframe {
 }
 
 .container-login100 {
-  width: 100%;  
+  width: 100%;
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -291,8 +261,6 @@ iframe {
   align-items: center;
   background: #f2f2f2;
 }
-
-
 .wrap-login100 {
   width: 100%;
   background: #fff;
@@ -333,11 +301,6 @@ iframe {
   background: url('bg-01.jpg');
 }
 
-
-
-/*==================================================================
-[ Form ]*/
-
 .login100-form {
   width: 560px;
   min-height: 100vh;
@@ -355,12 +318,6 @@ iframe {
   line-height: 1.5;
   text-align: center;
 }
-
-
-
-/*------------------------------------------------------------------
-[ Input ]*/
-
 .wrap-input100 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -444,72 +401,56 @@ input.input100 {
   -o-transform: scaleX(1.1) scaleY(1.3);
   transform: scaleX(1.1) scaleY(1.3);
 }
-
 .input100:focus + .focus-input100 {
   visibility: visible;
   opacity: 1;
-
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
   -ms-transform: scale(1);
   -o-transform: scale(1);
   transform: scale(1);
 }
-
 .eff-focus-selection {
   visibility: visible;
   opacity: 1;
-
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
   -ms-transform: scale(1);
   -o-transform: scale(1);
   transform: scale(1);
 }
-
 .input100:focus {
   height: 48px;
 }
-
 .input100:focus + .focus-input100 + .label-input100 {
   top: 14px;
   font-size: 13px;
 }
-
 .has-val {
   height: 48px !important;
 }
-
 .has-val + .focus-input100 + .label-input100 {
   top: 14px;
   font-size: 13px;
 }
-
-/*==================================================================
-[ Restyle Checkbox ]*/
-
 .input-checkbox100 {
   display: none;
 }
-
 .label-checkbox100 {
   font-family: Poppins-Regular;
   font-size: 13px;
   color: #999999;
   line-height: 1.4;
-
   display: block;
   position: relative;
   padding-left: 26px;
   cursor: pointer;
 }
-
 .label-checkbox100::before {
   content: "\f00c";
   font-family: FontAwesome;
   font-size: 13px;
   color: transparent;
-
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -531,14 +472,9 @@ input.input100 {
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-
 .input-checkbox100:checked + .label-checkbox100::before {
   color: #6675df;
 }
-
-
-/*------------------------------------------------------------------
-[ Button ]*/
 .container-login100-form-btn {
   width: 100%;
   display: -webkit-box;
@@ -549,7 +485,6 @@ input.input100 {
   flex-wrap: wrap;
   justify-content: center;
 }
-
 .login100-form-btn {
   display: -webkit-box;
   display: -webkit-flex;
@@ -563,51 +498,38 @@ input.input100 {
   height: 50px;
   border-radius: 10px;
   background: #6675df;
-
   font-family: Montserrat-Bold;
   font-size: 12px;
   color: #fff;
   line-height: 1.2;
   text-transform: uppercase;
   letter-spacing: 1px;
-
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
   transition: all 0.4s;
 }
-
 .login100-form-btn:hover {
   background: #333333;
 }
-
-
-
-/*------------------------------------------------------------------
-[ Responsive ]*/
-
 @media (max-width: 992px) {
   .login100-form {
     width: 50%;
     padding-left: 30px;
     padding-right: 30px;
   }
-
   .login100-more {
     width: 50%;
   }
 }
-
 @media (max-width: 768px) {
   .login100-form {
     width: 100%;
   }
-
   .login100-more {
     display: none;
   }
 }
-
 @media (max-width: 576px) {
   .login100-form {
     padding-left: 15px;
@@ -615,15 +537,9 @@ input.input100 {
     padding-top: 70px;
   }
 }
-
-
-/*------------------------------------------------------------------
-[ Alert validate ]*/
-
 .validate-input {
   position: relative;
 }
-
 .alert-validate::before {
   content: attr(data-validate);
   position: absolute;
@@ -641,22 +557,18 @@ input.input100 {
   transform: translateY(-50%);
   right: 12px;
   pointer-events: none;
-
   font-family: Poppins-Regular;
   color: #c80000;
   font-size: 13px;
   line-height: 1.4;
   text-align: left;
-
   visibility: hidden;
   opacity: 0;
-
   -webkit-transition: opacity 0.4s;
   -o-transition: opacity 0.4s;
   -moz-transition: opacity 0.4s;
   transition: opacity 0.4s;
 }
-
 .alert-validate::after {
   content: "\f12a";
   font-family: FontAwesome;
@@ -673,23 +585,16 @@ input.input100 {
   transform: translateY(-50%);
   right: 18px;
 }
-
 .alert-validate:hover:before {
   visibility: visible;
   opacity: 1;
 }
-
 @media (max-width: 992px) {
   .alert-validate::before {
     visibility: visible;
     opacity: 1;
   }
 }
-
-
-
-/*==================================================================
-[ Social ]*/
 .login100-form-social-item {
   width: 36px;
   height: 36px;
@@ -697,12 +602,10 @@ input.input100 {
   color: #fff;
   border-radius: 50%;
 }
-
 .login100-form-social-item:hover {
   background: #333333;
   color: #fff;
 }
-
 </style>
 <script>
 import axios from 'axios'

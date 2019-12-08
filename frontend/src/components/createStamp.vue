@@ -117,10 +117,10 @@
           <label class="form-check-label" for="gridCheck">Оруулсан мэдээлэл үнэн</label>
         </div>
       </div>
-      <div class="alert alert-info" role="alert">
+      <div class="alert alert-info" role="alert" v-if="msg!=''">
         {{msg}}
       </div>
-      <button type="submit" class="btn btn-primary">Бүртгүүлэх</button>
+      <button type="submit" class="btn btn-primary burtguul">Бүртгүүлэх</button>
     </form>
   </div>
 </div>
@@ -238,7 +238,7 @@ div.outside{
   width: 64px;
   height: 64px;
 }
-button {
+.burtguul {
   margin-top: 20px;
 }
 </style>
