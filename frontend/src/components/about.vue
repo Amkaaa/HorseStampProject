@@ -76,6 +76,9 @@ export default {
   background-repeat: repeat;
   background-position: center
 }
+.row.center{
+  min-width: 100%;
+}
 .parallax{
   width: 100%;
   background-image: url("../assets/bg/mori3.jpg");

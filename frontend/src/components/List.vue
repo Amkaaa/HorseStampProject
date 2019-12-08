@@ -58,9 +58,9 @@
             <img :src="require('../assets/tamga/'+todo.stampImage)" class="card-img-top g-image" alt="tamga">
             <div class="card-img-top"></div>
             <div class="card-body">
-              <h5 class="card-title text-center">{{todo.stampname | uppercase}}</h5>
+              <h5 class="card-title text-center">{{todo.stampname}}</h5>
               <p class="card-text text-truncate font-italic">{{todo.define}}</p>
-              <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
+              <router-link :to="/stamp/+todo.id+'/'+todo.stampname+'/'+todo.date+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>

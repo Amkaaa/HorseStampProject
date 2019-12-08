@@ -20,7 +20,7 @@
               <div v-for="user in todos" v-bind:key="user.id" class="stampInfo">
                 <div v-if="todo.userid==user.id">
                   <h1>Дэлгэрэнгүй</h1>
-                  <p>{{$route.params.define}} Lorem ipsum dolor sit amet,
+                  <p>{{todo.define}} Lorem ipsum dolor sit amet,
                     consectetur adipiscing elit, sed do eiusmod tempor incididunt
                     ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru
                     d exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis a

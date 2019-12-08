@@ -62,6 +62,46 @@
     </form>
     </div>
 </template>
+<script>
+import axios from 'axios'
+import router from '../router'
+import Navi from './header'
+export default {
+  data () {
+    return {
+      mail: '',
+      password: '',
+      msg: '',
+      login: ''
+    }
+  },
+  components: {
+    Navi
+  },
+  methods: {
+    Userlogin () {
+      axios.post('/api/Login',
+        {
+          mail: this.mail,
+          password: this.password
+        }
+      ).then(res => {
+        this.msg = 'GOOD'
+        localStorage.setItem('user', res.data)
+        this.mail = ''
+        this.password = ''
+        router.push({ name: 'profile' })
+        this.login = 1
+      })
+        .catch(err => {
+          this.msg = 'Нэвтрэх нэр болон нууц үгээ зөв хийнэ үү'
+          console.log(err.data)
+        })
+      this.emitMethod()
+    }
+  }
+}
+</script>
 <style>
 .justify-content-md-center{
     margin-top: 40px;
@@ -607,43 +647,3 @@ input.input100 {
   color: #fff;
 }
 </style>
-<script>
-import axios from 'axios'
-import router from '../router'
-import Navi from './header'
-export default {
-  data () {
-    return {
-      mail: '',
-      password: '',
-      msg: '',
-      login: ''
-    }
-  },
-  components: {
-    Navi
-  },
-  methods: {
-    Userlogin () {
-      axios.post('/api/Login',
-        {
-          mail: this.mail,
-          password: this.password
-        }
-      ).then(res => {
-        this.msg = 'GOOD'
-        localStorage.setItem('user', res.data)
-        this.mail = ''
-        this.password = ''
-        router.push({ name: 'profile' })
-        this.login = 1
-      })
-        .catch(err => {
-          this.msg = 'Нэвтрэх нэр болон нууц үгээ зөв хийнэ үү'
-          console.log(err.data)
-        })
-      this.emitMethod()
-    }
-  }
-}
-</script>

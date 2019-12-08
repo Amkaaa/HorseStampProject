@@ -11,7 +11,7 @@
 <script>
 // import Headr from './components/header'
 window.onload = function () {
-  //location.reload()
+  // location.reload()
 }
 export default {
   name: 'App',
