@@ -18,42 +18,34 @@
           />
         </div>
         <div class="form-group col-md-4">
-          <div v-for="(user) in users" v-bind:key="user.id" v-bind:mail="user.mail">
-            <div v-if="user.mail==user1">
-              <label for="inputId">Хэрэглэгчийн Дугаар &nbsp; {{user.id}}</label>
-              <input v-model="userid" type="number" class="form-control" value="user.id" required/>
-            </div>
-          </div>
+          <label for="inputId">Хэрэглэгчийн Дугаар &nbsp;</label>
+          <input v-model="user.id" type="number" class="form-control" disabled/>
         </div>
         <div class="form-group col-md-4">
-          <div v-for="(user) in users" v-bind:key="user.id" v-bind:aimag="user.aimag" v-bind:mail="user.mail">
-            <div v-if="user.mail==user1">
-              <label for="inputLocation">Хэрэглэгчийн Хаяг&nbsp; {{user.aimag}}</label>
-              <select v-model="aimag" id="inputState" class="form-control" required>
-                <option v-if="user.aimag=='Архангай'">Архангай</option>
-                <option v-if="user.aimag=='Баян-Өлгий'">Баян-Өлгий</option>
-                <option v-if="user.aimag=='Булган'">Булган</option>
-                <option v-if="user.aimag=='Баянхонгор'">Баянхонгор</option>
-                <option v-if="user.aimag=='Говь-Алтай'">Говь-Алтай</option>
-                <option v-if="user.aimag=='Говьсүмбэр'">Говьсүмбэр</option>
-                <option v-if="user.aimag=='Дархан-Уул'">Дархан-Уул</option>
-                <option v-if="user.aimag=='Дорноговь'">Дорноговь</option>
-                <option v-if="user.aimag=='Дорнод'">Дорнод</option>
-                <option v-if="user.aimag=='Дундговь'">Дундговь</option>
-                <option v-if="user.aimag=='Завхан'">Завхан</option>
-                <option v-if="user.aimag=='Орхон'">Орхон</option>
-                <option v-if="user.aimag=='Өвөрхангай'">Өвөрхангай</option>
-                <option v-if="user.aimag=='Өмнөговь'">Өмнөговь</option>
-                <option v-if="user.aimag=='Сүхбаатар'">Сүхбаатар</option>
-                <option v-if="user.aimag=='Сэлэнгэ'">Сэлэнгэ</option>
-                <option v-if="user.aimag=='Төв'">Төв</option>
-                <option v-if="user.aimag=='Увс'">Увс</option>
-                <option v-if="user.aimag=='Ховд'">Ховд</option>
-                <option v-if="user.aimag=='Хөвсгөл'">Хөвсгөл</option>
-                <option v-if="user.aimag=='Хэнтий'">Хэнтий</option>
-              </select>
-            </div>
-          </div>
+          <label for="inputLocation">Хэрэглэгчийн Хаяг&nbsp; {{user.aimag}}</label>
+          <select v-model="aimag" id="inputState" class="form-control" required>
+            <option v-if="user.aimag=='Архангай'">Архангай</option>
+            <option v-if="user.aimag=='Баян-Өлгий'">Баян-Өлгий</option>
+            <option v-if="user.aimag=='Булган'">Булган</option>
+            <option v-if="user.aimag=='Баянхонгор'">Баянхонгор</option>
+            <option v-if="user.aimag=='Говь-Алтай'">Говь-Алтай</option>
+            <option v-if="user.aimag=='Говьсүмбэр'">Говьсүмбэр</option>
+            <option v-if="user.aimag=='Дархан-Уул'">Дархан-Уул</option>
+            <option v-if="user.aimag=='Дорноговь'">Дорноговь</option>
+            <option v-if="user.aimag=='Дорнод'">Дорнод</option>
+            <option v-if="user.aimag=='Дундговь'">Дундговь</option>
+            <option v-if="user.aimag=='Завхан'">Завхан</option>
+            <option v-if="user.aimag=='Орхон'">Орхон</option>
+            <option v-if="user.aimag=='Өвөрхангай'">Өвөрхангай</option>
+            <option v-if="user.aimag=='Өмнөговь'">Өмнөговь</option>
+            <option v-if="user.aimag=='Сүхбаатар'">Сүхбаатар</option>
+            <option v-if="user.aimag=='Сэлэнгэ'">Сэлэнгэ</option>
+            <option v-if="user.aimag=='Төв'">Төв</option>
+            <option v-if="user.aimag=='Увс'">Увс</option>
+            <option v-if="user.aimag=='Ховд'">Ховд</option>
+            <option v-if="user.aimag=='Хөвсгөл'">Хөвсгөл</option>
+            <option v-if="user.aimag=='Хэнтий'">Хэнтий</option>
+          </select>
         </div>
       </div>
       <div class="form-group">
@@ -146,18 +138,18 @@ export default {
       files: [],
       aimag: '',
       user1: '',
-      users: []
+      user: ''
     }
   },
   components: {
     Navi
   },
   mounted () {
-    this.getUsers()
     if (localStorage.user) {
       this.user1 = localStorage.user
       this.login = 1
     }
+    this.getUsers()
   },
   methods: {
     handleFilesUpload (event) {
@@ -182,7 +174,7 @@ export default {
             type: this.type,
             uy: this.uy,
             bilgedel: this.bilgedel,
-            userid: this.userid,
+            userid: this.user.id,
             location: this.aimag
           })
             .then(res => {
@@ -204,10 +196,11 @@ export default {
         })
     },
     getUsers () {
-      axios.get('/api/user'
+      axios.get('/api/user/' + this.user1
       ).then(
         result => {
-          this.users = result.data
+          this.user = result.data
+          console.log(this.user)
         },
         error => {
           console.error(error)

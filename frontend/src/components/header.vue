@@ -24,15 +24,13 @@
           <router-link to="/createStamp" class="nav-link">Тамга бүртгүүлэх</router-link>
         </li>
         <!-- User Profile Icon хийх -->
-        <span v-for="(user) in users" v-bind:key="user.id">
-          <li class="nav-item mr-2" v-if="user.mail==user1">
-            <router-link to="/profile">
-              <button type="button" class="btn btn-primary ">
-                <i class="fa fa-user-circle" aria-hidden="true" style="margin-right:10px; color: white"></i>{{user.firstname}}
-              </button>
-            </router-link>
-          </li>
-        </span>
+        <li class="nav-item mr-2" v-if="user.mail==user1">
+          <router-link to="/profile">
+            <button type="button" class="btn btn-primary ">
+              <i class="fa fa-user-circle" aria-hidden="true" style="margin-right:10px; color: white"></i>{{user.firstname}}
+            </button>
+          </router-link>
+        </li>
         <li v-if="login" >
           <router-link to="/logout">
             <button type="button" v-on:submit.prevent="logout()" class="btn btn-secondary">
@@ -64,10 +62,8 @@ import axios from 'axios'
 window.onload = function () {
   var header = document.getElementById('navbarlol')
   var btns = header.getElementsByClassName('nav-item')
-  console.log(btns)
   for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener('click', function () {
-      console.log('bey')
       var current = document.getElementsByClassName('current')
       current[0].className = current[0].className.replace(' current', '')
       this.className += ' current'
@@ -78,7 +74,7 @@ export default {
   data () {
     return {
       auth: '',
-      users: [],
+      user: '',
       firstname: '',
       id: '',
       mail: '',
@@ -95,12 +91,12 @@ export default {
       router.push({ name: 'list' })
     },
     getUsers () {
-      axios.get('/api/user', {
+      axios.get('/api/user/' + this.user1, {
         mail: localStorage.user
       }
       ).then(
         result => {
-          this.users = result.data
+          this.user = result.data
         },
         error => {
           console.error(error)

@@ -1,21 +1,20 @@
 <template>
   <div>
     <Navi/><br><br>
-    <div v-for="(user) in users" v-bind:key="user.id" v-bind:firstname="user.firstname" v-bind:lastname="user.lastname" v-bind:mail="user.mail" v-bind:aimag="user.aimag">
-      <div class="container-fluid container" v-if="user.mail==user1">
+      <div class="container-fluid container">
         <div class="row content">
           <div class="col-sm-3 sidenav text-center pt-3 pl-0">
-            <h4><i class="fa fa-user pro" style="color: blue;"></i>{{user.firstname}}</h4>
+            <h4><i class="fa fa-user pro" style="color: blue;"></i>{{users.firstname}}</h4>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Хаяг: {{user.aimag}}</li>
-              <li class="list-group-item"><i class="fa fa-envelope-o" aria-hidden="true"></i> {{user.mail}}</li>
-              <li class="list-group-item"><i class="fa fa-phone" aria-hidden="true"></i> {{user.phone}}</li>
+              <li class="list-group-item">Хаяг: {{users.aimag}}</li>
+              <li class="list-group-item"><i class="fa fa-envelope-o" aria-hidden="true"></i> {{users.mail}}</li>
+              <li class="list-group-item"><i class="fa fa-phone" aria-hidden="true"></i> {{users.phone}}</li>
             </ul>
           </div>
           <div class="col-sm-8 ml-3">
             <h4>Миний бүртгүүлсэн тамга</h4><br>
-            <div v-for="(todo) in todos" v-bind:key="todo.id" v-bind:userid="todo.userid" v-bind:stampname="todo.stampname">
-                <table class="table" v-if="todo.userid==user.id && user.mail==user1">
+            <div v-for="(todo) in todos" v-bind:key="todo.id">
+                <table class="table">
                   <tr class="ok">
                     <td class="stazurag"><img :src="require('../assets/tamga/'+todo.stampImage)" alt=""></td>
                     <td class="text-left">{{todo.stampname}}</td>
@@ -29,7 +28,6 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 <script>
@@ -38,7 +36,7 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      users: [],
+      users: '',
       todos: [],
       id: '',
       aimag: '',
@@ -50,7 +48,6 @@ export default {
       location: '',
       date: '',
       stampImage: '',
-      upload: 'http://localhost:8000/uploads/1571908394930__.png',
       isEdit: false,
       count: 1
     }
@@ -59,7 +56,6 @@ export default {
     Navi
   },
   mounted () {
-    this.getTasks()
     // location.reload()
     if (localStorage.user) {
       this.user1 = localStorage.user
@@ -73,20 +69,20 @@ export default {
     //   return images('./' + put)
     // },
     getUsers () {
-      axios.get('/api/user'
+      axios.get('/api/user/' + this.user1
       ).then(
         result => {
           this.users = result.data
+          this.getTasks(result.data.id)
         },
         error => {
           console.error(error)
         }
       )
     },
-    getTasks () {
-      axios.get('/api/stamps').then(
+    getTasks (id) {
+      axios.get('/api/tamgas/' + id).then(
         result => {
-          console.log(result.data)
           this.todos = result.data
         },
         error => {

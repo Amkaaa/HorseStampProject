@@ -174,6 +174,49 @@ router.delete('/task/:id', (req, res, next) => {
       res.send('error: ' + err)
     })
 })
+//get one row value
+router.get('/tamgas/:id',(req,res,next)=>{
+  tamga.findAll({
+    where: {
+      userid: req.params.id
+    }
+  })
+  .then(tamga=>{
+    res.json(tamga)
+  })
+  .catch(err => {
+    res.send('error: '+err)
+  })
+})
+
+router.get('/user/:mail',(req,res,next)=>{
+  Task.findOne({
+    where: {
+      mail: req.params.mail
+    }
+  })
+  .then(tamga=>{
+    res.json(tamga)
+  })
+  .catch(err => {
+    res.send('error: '+err)
+  })
+})
+
+router.get('/tamga/:id',(req,res,next)=>{
+  tamga.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(tamga=>{
+    res.json(tamga)
+  })
+  .catch(err => {
+    res.send('error: '+err)
+  })
+})
+
 router.delete('/tamga/:id', (req, res, next) => {
   tamga.destroy({
     where: {
@@ -213,6 +256,7 @@ router.put('/task/:id', (req, res, next) => {
       .error(err => handleError(err))
   }
 })
+
 router.put('/tamga/:id', (req, res, next) => {
   if (!req.body.lastname) {
     res.status(400)
