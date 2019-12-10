@@ -7,7 +7,7 @@
       <div class="wrap-login100">
         <form class="login100-form validate-form">
           <span class="login100-form-title p-b-43">
-            Login to continue
+            Нэвтрэх
           </span>
           <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
             <span class="focus-input100"></span>
@@ -325,7 +325,6 @@ iframe {
   background-position: center;
   position: relative;
   z-index: 1;
-  background: url('bg-01.jpg');
 }
 
 .login100-more::before {
@@ -338,15 +337,15 @@ iframe {
   top: 0;
   left: 0;
   background: rgba(0,0,0,0.1);
-  background: url('bg-01.jpg');
+  background: url('bg-02.jpg');
 }
 
 .login100-form {
   width: 560px;
-  min-height: 100vh;
+  min-height: 200px;
   display: block;
   background: linear-gradient(0deg, rgba(34,193,195,0.2) 0%, rgba(45,253,107,0.2) 100%);
-  padding: 120px 55px 55px 55px;
+  padding: 20px 80px 40px 80px;
 }
 
 .login100-form-title {
@@ -645,5 +644,11 @@ input.input100 {
 .login100-form-social-item:hover {
   background: #333333;
   color: #fff;
+}
+.container-login100{
+  background: transparent;
+}
+.justify-content-md-center{
+  margin-top: -20px;
 }
 </style>

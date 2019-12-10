@@ -56,7 +56,7 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
-            <label for="inputState">Аймаг</label>
+            <label for="inputState"><center>Аймаг</center></label><br><br>
             <select v-model="aimag" id="inputState" class="form-control">
               <option selected>Архангай</option>
               <option>Баян-Өлгий</option>
@@ -92,8 +92,10 @@
         </div>
         <div class="form-group">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck" required />
-            <label class="form-check-label" for="gridCheck">Оруулсан мэдээлэл үнэн</label>
+            <label class="form-check-label" for="gridCheck">Оруулсан мэдээлэл үнэн
+              <input class="form-check-input" type="checkbox" id="gridCheck" required />
+              <span class="checkmark"></span>
+            </label>
           </div>
         </div>
         <div class="alert alert-info" role="alert" v-if="msg!=''">
@@ -182,12 +184,78 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.container{
+  width: 40%;
+  background: linear-gradient(0deg, rgba(34,193,195,0.2) 0%, rgba(45,253,107,0.2) 100%);
+  margin: auto;
+  padding: 20px;
+}
+.form-row{
+  height: auto;
+}
 .photo {
   width: 64px;
   height: 64px;
 }
 button {
   margin-top: 20px;
+}
+
+/* Hide the browser's default checkbox */
+.form-check-label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  margin-top: 5px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.form-check-label:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.form-check-label input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.form-check-label input:checked ~ .checkmark:after {
+  display: block;
+}
+.form-check-label{
+  margin-left: 10px;
+}
+/* Style the checkmark/indicator */
+.form-check-label .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 </style>
