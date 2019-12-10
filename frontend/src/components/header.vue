@@ -50,7 +50,7 @@
     </div>
   </nav>
   <div id="pathname">
-    <router-link to="/">Нүүр</router-link><router-link :to="$route.path">{{$route.path}}</router-link>
+    <router-link to="/"><span>Нүүр</span></router-link><router-link :to="$route.path"><span class="ggg">{{$route.path}}</span></router-link>
   </div>
 </nav>
 </template>
@@ -119,11 +119,35 @@ export default {
 <style>
   @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
   @import url('https://fonts.googleapis.com/css?family=Raleway:400,500,800');
-#pathname{
+#pathname a{
+  font-family: Montserrat, sans-serif !important;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #111111;
+  text-transform: capitalize;
+  padding: 5px 10px;
+  margin-bottom: 50px;
+}
+#pathname {
+  font-family: Montserrat, sans-serif !important;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #111111;
+  text-transform: capitalize;
   background: #bebebe6c;
+  padding: 5px 10px;
+  margin-bottom: 30px;
+}
+#pathname span.ggg{
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: capitalize;
+  color: #111111;
 }
 .snip1217 {
-  font-family: 'Raleway', Arial, sans-serif;
   text-align: center;
   text-transform: uppercase;
   font-weight: 300;
@@ -184,7 +208,6 @@ export default {
   .navbar{
     /* background-image: url("../assets/header/bg.png") !important; */
     background-color: rgb(3, 31, 75) !important;
-    font-family: 'Montserrat', sans-serif;
     background-size: cover;
     background-repeat: no-repeat;
     position: sticky;
