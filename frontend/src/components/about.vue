@@ -69,7 +69,9 @@ export default {
 }
 </script>
 <style>
-    @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Raleway:400,500,800');
 .bg{
   background-size: cover;
   background: url("../assets/bg/alkhan_khee.jpg");
@@ -95,12 +97,10 @@ export default {
 }
 .too{
   color: rgb(48, 131, 208);
-  font-family: "Times New Roman", Times, serif;
   text-shadow: 1px 0 2px rgb(48, 131, 208), 2px 0 9px #ab12da;
   font-size: 5rem;
 }
 .text{
-  font-family: 'Roboto', sans-serif;
   font-size: 2rem;
   color: rgb(255, 192, 56);
   font-weight: 700;

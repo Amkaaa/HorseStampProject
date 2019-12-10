@@ -185,6 +185,8 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500,800');
 .container{
   width: 40%;
   background: linear-gradient(0deg, rgba(34,193,195,0.2) 0%, rgba(45,253,107,0.2) 100%);
@@ -220,6 +222,7 @@ button {
   width: 20px;
   margin-top: 5px;
   background-color: #eee;
+  padding-bottom: 20px;
 }
 
 /* On mouse-over, add a grey background color */

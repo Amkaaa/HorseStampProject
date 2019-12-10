@@ -109,41 +109,9 @@ export default {
     margin-left: auto;
     margin-right: auto;
 }
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500,800');
 
-@font-face {
-  font-family: Poppins-Regular;
-  src: url('../fonts/poppins/Poppins-Regular.ttf');
-}
-
-@font-face {
-  font-family: Poppins-Medium;
-  src: url('../fonts/poppins/Poppins-Medium.ttf');
-}
-
-@font-face {
-  font-family: Poppins-Bold;
-  src: url('../fonts/poppins/Poppins-Bold.ttf');
-}
-
-@font-face {
-  font-family: Poppins-SemiBold;
-  src: url('../fonts/poppins/Poppins-SemiBold.ttf');
-}
-
-@font-face {
-  font-family: Montserrat-Bold;
-  src: url('../fonts/montserrat/Montserrat-Bold.ttf');
-}
-
-@font-face {
-  font-family: Montserrat-SemiBold;
-  src: url('../fonts/montserrat/Montserrat-SemiBold.ttf');
-}
-
-@font-face {
-  font-family: Montserrat-Regular;
-  src: url('../fonts/montserrat/Montserrat-Regular.ttf');
-}
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
@@ -155,12 +123,10 @@ export default {
 
 body, html {
   height: 100%;
-  font-family: Poppins-Regular, sans-serif;
 }
 
 /*---------------------------------------------*/
 a {
-  font-family: Poppins-Regular;
   font-size: 14px;
   line-height: 1.7;
   color: #666666;
@@ -186,7 +152,6 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 p {
-  font-family: Poppins-Regular;
   font-size: 14px;
   line-height: 1.7;
   color: #666666;
@@ -251,14 +216,12 @@ iframe {
 }
 
 .txt1 {
-  font-family: Montserrat-Regular;
   font-size: 13px;
   line-height: 1.4;
   color: #555555;
 }
 
 .txt2 {
-  font-family: Montserrat-Regular;
   font-size: 13px;
   line-height: 1.4;
   color: #999999;
@@ -351,7 +314,6 @@ iframe {
 .login100-form-title {
   width: 100%;
   display: block;
-  font-family: Poppins-Regular;
   font-size: 35px;
   color: #333333;
   line-height: 1.5;
@@ -374,7 +336,6 @@ iframe {
 }
 
 .label-input100 {
-  font-family: Montserrat-Regular;
   font-size: 18px;
   height: 80px;
   color: #999999;
@@ -398,7 +359,6 @@ iframe {
   display: block;
   width: 100%;
   background: transparent;
-  font-family: Montserrat-Regular;
   font-size: 18px;
   color: #555555;
   line-height: 1.2;
@@ -476,7 +436,6 @@ input.input100 {
   display: none;
 }
 .label-checkbox100 {
-  font-family: Poppins-Regular;
   font-size: 13px;
   color: #999999;
   line-height: 1.4;
@@ -487,7 +446,6 @@ input.input100 {
 }
 .label-checkbox100::before {
   content: "\f00c";
-  font-family: FontAwesome;
   font-size: 13px;
   color: transparent;
   display: -webkit-box;
@@ -537,7 +495,6 @@ input.input100 {
   height: 50px;
   border-radius: 10px;
   background: #6675df;
-  font-family: Montserrat-Bold;
   font-size: 12px;
   color: #fff;
   line-height: 1.2;
@@ -596,7 +553,6 @@ input.input100 {
   transform: translateY(-50%);
   right: 12px;
   pointer-events: none;
-  font-family: Poppins-Regular;
   color: #c80000;
   font-size: 13px;
   line-height: 1.4;
@@ -610,7 +566,6 @@ input.input100 {
 }
 .alert-validate::after {
   content: "\f12a";
-  font-family: FontAwesome;
   display: block;
   position: absolute;
   z-index: 110;

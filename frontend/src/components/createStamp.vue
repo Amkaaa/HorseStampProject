@@ -215,7 +215,6 @@ div.outside{
   width: 100%;
 }
 .container-haha{
-  font-family: 'Open Sans', 'Poppins', sans-serif;
   text-align: center;
   width: 70%;
   margin: auto;
