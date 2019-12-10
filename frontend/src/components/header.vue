@@ -49,8 +49,8 @@
       </form> -->
     </div>
   </nav>
-  <div>
-    {{$route.path}}
+  <div id="pathname">
+    <router-link to="/">Нүүр</router-link><router-link :to="$route.path">{{$route.path}}</router-link>
   </div>
 </nav>
 </template>
@@ -119,6 +119,9 @@ export default {
 <style>
   @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
   @import url('https://fonts.googleapis.com/css?family=Raleway:400,500,800');
+#pathname{
+  background: #bebebe6c;
+}
 .snip1217 {
   font-family: 'Raleway', Arial, sans-serif;
   text-align: center;

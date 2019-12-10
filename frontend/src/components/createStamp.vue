@@ -18,9 +18,21 @@
           />
         </div>
         <div class="form-group col-md-4">
-          <label for="inputId">Хэрэглэгчийн Дугаар &nbsp;</label>
-          <input v-model="user.id" type="number" class="form-control" disabled/>
+          <label for="exampleFormControlSelect1">Хэдэн үеэрээ ашиглаж байгаа вэ</label>
+          <select v-model="uy" class="form-control" id="exampleFormControlSelect1">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+          </select>
         </div>
+          <!-- <label for="inputId">Хэрэглэгчийн Дугаар &nbsp;</label> -->
+          <input hidden v-model="user.id" type="number" class="form-control" disabled/>
         <div class="form-group col-md-4">
           <label for="inputLocation">Хэрэглэгчийн Хаяг&nbsp; {{user.aimag}}</label>
           <select v-model="aimag" id="inputState" class="form-control" required>
@@ -49,30 +61,15 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="inputdefine">Тамганы талаарх дэлгэрэнгүй мэдээлэл</label>
-        <input
+        <label for="exampleFormControlTextarea1">Тамганы талаарх дэлгэрэнгүй мэдээлэл</label>
+        <textarea
           v-model="define"
-          type="textarea"
           class="form-control"
           id="inputAddress2"
           placeholder="Хаана хэрхэн үүссэн талаарх мэдээллийг оруулна"
-        />
+        ></textarea>
       </div>
       <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="exampleFormControlSelect1">Хэдэн үеэрээ ашиглаж байгаа вэ</label>
-          <select v-model="uy" class="form-control" id="exampleFormControlSelect1">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-          </select>
-        </div>
                 <div class="form-group col-md-4">
           <label for="inputState">Тухайн тамганы төрөл буюу ангилал</label>
           <select v-model="type" id="inputState" class="form-control">

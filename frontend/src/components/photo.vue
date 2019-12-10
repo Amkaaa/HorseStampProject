@@ -1,4 +1,4 @@
-<!-- <template>
+ <template>
  <vue-clip :options="options">
     <template slot="clip-uploader-action">
       <div class="uploader-action">
@@ -28,4 +28,4 @@
         </div>
       </div>
     </template>
-  </vue-clip> -->
+  </vue-clip>
