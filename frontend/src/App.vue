@@ -41,6 +41,6 @@ export default {
     font-size: 13px;
     padding-top: 20px;
     margin-top: 30px;
-    top:100vh;
+    top:300px;
   }
 </style>

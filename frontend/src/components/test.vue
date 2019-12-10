@@ -1,42 +1,25 @@
 <template>
-    <div>
-      <!-- multistep form -->
-      <form id="msform" v-on:submit.prevent="addNewTask()" enctype="multipart/form-data">
-        <!-- progressbar -->
-        <ul id="progressbar">
-          <li class="active">Account Setup</li>
-          <li>Social Profiles</li>
-          <li>Personal Details</li>
-        </ul>
-        <!-- fieldsets -->
-        <fieldset>
-          <h2 class="fs-title">Тамга бүртгэх</h2>
-          <h3 class="fs-subtitle">1-р хэсэг</h3>
-          <input type="text" v-model="stampname" placeholder="Тамганы нэр" />
-          <select v-model="type" id="inputState" class="form-control">
-            <option selected>Төрөл сонгох ...</option>
-            <option>Ургамал</option>
-            <option>Ан, амьтан</option>
-            <option>Газар, ус</option>
-            <option>Эд зүйлс</option>
-          </select>
-          <textarea
-          v-model="bilgedel"
-          class="form-control mt-2"
-          id="inputAddress2"
-          placeholder="Энэхүү тамганы билгэдлийг нь бичнэ үү"
-        ></textarea>
-          <input type="button" name="next" class="next action-button" value="Next" />
-        </fieldset>
-        <fieldset>
-          <h2 class="fs-title">Тамга бүртгэх</h2>
-          <h3 class="fs-subtitle">2-р хэсэг</h3>
-          <select v-model="aimag" class="form-control" required>
-            <option selected>Газар нутаг</option>
-            <option>{{user.aimag}}</option>
-          </select>
-          <select v-model="uy" class="form-control mt-2" id="exampleFormControlSelect1">
-            <option selected>Хэдэн үе ашиглаж байгаа вэ?</option>
+<div class="outside">
+  <Navi/>
+  <div class="container-haha">
+    <br>
+    <h1 style="text-align:center">Тамга бүртгэлийн хэсэг</h1>
+    <br>
+    <form v-on:submit.prevent="addNewTask()" enctype="multipart/form-data">
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputname">Тамганы нэр</label>
+          <input
+            v-model="stampname"
+            type="text"
+            class="form-control"
+            id="inputAddress"
+            placeholder="Энд бичнэ үү"
+          />
+        </div>
+        <div class="form-group col-md-4">
+          <label for="exampleFormControlSelect1">Хэдэн үеэрээ ашиглаж байгаа вэ</label>
+          <select v-model="uy" class="form-control" id="exampleFormControlSelect1">
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -47,39 +30,91 @@
             <option>8</option>
             <option>9</option>
           </select>
-          <textarea
+        </div>
+          <!-- <label for="inputId">Хэрэглэгчийн Дугаар &nbsp;</label> -->
+          <input hidden v-model="user.id" type="number" class="form-control" disabled/>
+        <div class="form-group col-md-4">
+          <label for="inputLocation">Хэрэглэгчийн Хаяг&nbsp; {{user.aimag}}</label>
+          <select v-model="aimag" id="inputState" class="form-control" required>
+            <option v-if="user.aimag=='Архангай'">Архангай</option>
+            <option v-if="user.aimag=='Баян-Өлгий'">Баян-Өлгий</option>
+            <option v-if="user.aimag=='Булган'">Булган</option>
+            <option v-if="user.aimag=='Баянхонгор'">Баянхонгор</option>
+            <option v-if="user.aimag=='Говь-Алтай'">Говь-Алтай</option>
+            <option v-if="user.aimag=='Говьсүмбэр'">Говьсүмбэр</option>
+            <option v-if="user.aimag=='Дархан-Уул'">Дархан-Уул</option>
+            <option v-if="user.aimag=='Дорноговь'">Дорноговь</option>
+            <option v-if="user.aimag=='Дорнод'">Дорнод</option>
+            <option v-if="user.aimag=='Дундговь'">Дундговь</option>
+            <option v-if="user.aimag=='Завхан'">Завхан</option>
+            <option v-if="user.aimag=='Орхон'">Орхон</option>
+            <option v-if="user.aimag=='Өвөрхангай'">Өвөрхангай</option>
+            <option v-if="user.aimag=='Өмнөговь'">Өмнөговь</option>
+            <option v-if="user.aimag=='Сүхбаатар'">Сүхбаатар</option>
+            <option v-if="user.aimag=='Сэлэнгэ'">Сэлэнгэ</option>
+            <option v-if="user.aimag=='Төв'">Төв</option>
+            <option v-if="user.aimag=='Увс'">Увс</option>
+            <option v-if="user.aimag=='Ховд'">Ховд</option>
+            <option v-if="user.aimag=='Хөвсгөл'">Хөвсгөл</option>
+            <option v-if="user.aimag=='Хэнтий'">Хэнтий</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Тамганы талаарх дэлгэрэнгүй мэдээлэл</label>
+        <textarea
           v-model="define"
-          class="form-control mt-2"
+          class="form-control"
           id="inputAddress2"
           placeholder="Хаана хэрхэн үүссэн талаарх мэдээллийг оруулна"
         ></textarea>
-          <input type="button" name="previous" class="previous action-button" value="Previous" />
-          <input type="button" name="next" class="next action-button" value="Next" />
-        </fieldset>
-        <fieldset>
-          <h2 class="fs-title">Тамганы зураг</h2>
-          <h3 class="fs-subtitle">3-р хэсэг</h3>
-          <i class="fa fa-camera" aria-hidden="true" style="margin-right:10px;text-align: center; font-size: 100px">
-          </i>
-          <div class="file-upload-wrapper">
-            <input type="file"
-            class="file-upload" 
+      </div>
+      <div class="form-row">
+                <div class="form-group col-md-4">
+          <label for="inputState">Тухайн тамганы төрөл буюу ангилал</label>
+          <select v-model="type" id="inputState" class="form-control">
+            <option selected>Ургамал</option>
+            <option>Ан, амьтан</option>
+            <option>Газар, ус</option>
+            <option>Эд зүйлс</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputCity">Энэхүү тамганы Билгэдлийг нь бичнэ үү</label>
+          <input v-model="bilgedel" type="text" class="form-control" id="inputCity" placeholder="Билгэдлийг нь энд бичнэ..."/>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="custom-file">
+          <input
+            type="file"
             id="file"
+            ref="stampImage"
+            class="custom-file-input"
             name="stampImage"
             @change="handleFilesUpload"
             multiple
             required
-            />
-          </div>
-          <div class="alert alert-info" role="alert" v-if="msg!=''">
-            {{msg}}
-          </div>
-          <input type="button" name="previous" class="previous action-button" value="Previous" />
-          <input type="submit" name="submit" class="submit action-button" value="Submit" />
-        </fieldset>
-      </form>
-    </div>
+          />
+          <label class="custom-file-label" for="inputGroupFile04">Тамганы Зургаа оруул</label>
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="gridCheck" required />
+          <label class="form-check-label" for="gridCheck">Оруулсан мэдээлэл үнэн</label>
+        </div>
+      </div>
+      <div class="alert alert-info" role="alert" v-if="msg!=''">
+        {{msg}}
+      </div>
+      <button type="submit" class="btn btn-primary burtguul">Бүртгүүлэх</button>
+    </form>
+  </div>
+</div>
 </template>
+
 <script>
 import axios from 'axios'
 import Navi from './header'
@@ -95,10 +130,10 @@ export default {
       define: '',
       userid: '',
       msg: '',
-      type: 'Төрөл сонгох ...',
-      uy: 'Хэдэн үе ашиглаж байгаа вэ?',
+      type: '',
+      uy: '',
       files: [],
-      aimag: 'Газар нутаг',
+      aimag: '',
       user1: '',
       user: ''
     }
@@ -172,127 +207,28 @@ export default {
   }
 }
 </script>
+
 <style>
-/*custom font*/
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
-
-/*basic reset*/
-* {margin: 0; padding: 0;}
-
-body {
-  font-family: montserrat, arial, verdana;
-}
-/*form styles*/
-#msform {
-  width: 400px;
-  margin: 50px auto;
-  text-align: center;
-  position: relative;
-}
-#msform fieldset {
-  background: white;
-  border: 0 none;
-  border-radius: 3px;
-  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-  padding: 20px 30px;
-  box-sizing: border-box;
-  width: 80%;
-  margin: 0 10%;
-
-  /*stacking fieldsets above each other*/
-  position: relative;
-}
-/*Hide all except first fieldset*/
-#msform fieldset:not(:first-of-type) {
-  display: none;
-}
-/*inputs*/
-#msform input, #msform textarea {
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  margin-bottom: 10px;
+div.outside{
+  padding: 0;
+  margin: 0;
   width: 100%;
-  box-sizing: border-box;
-  font-family: montserrat;
-  color: #2C3E50;
-  font-size: 13px;
 }
-/*buttons*/
-#msform .action-button {
-  width: 100px;
-  background: #27AE60;
-  font-weight: bold;
-  color: white;
-  border: 0 none;
-  border-radius: 1px;
-  cursor: pointer;
-  padding: 10px 5px;
-  margin: 10px 5px;
+.container-haha{
+  font-family: 'Open Sans', 'Poppins', sans-serif;
+  text-align: center;
+  width: 70%;
+  margin: auto;
+  margin-top: 50px;
+  padding: 30px 50px;
+  background: rgb(100, 151, 177);
+  box-shadow: 5px 10px 11px rgba(0, 0, 0, .5);
 }
-#msform .action-button:hover, #msform .action-button:focus {
-  box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+.photo {
+  width: 64px;
+  height: 64px;
 }
-/*headings*/
-.fs-title {
-  font-size: 15px;
-  text-transform: uppercase;
-  color: #2C3E50;
-  margin-bottom: 10px;
-}
-.fs-subtitle {
-  font-weight: normal;
-  font-size: 13px;
-  color: #666;
-  margin-bottom: 20px;
-}
-/*progressbar*/
-#progressbar {
-  margin-bottom: 30px;
-  overflow: hidden;
-  /*CSS counters to number the steps*/
-  counter-reset: step;
-}
-#progressbar li {
-  list-style-type: none;
-  color: white;
-  text-transform: uppercase;
-  font-size: 9px;
-  width: 33.33%;
-  float: left;
-  position: relative;
-}
-#progressbar li:before {
-  content: counter(step);
-  counter-increment: step;
-  width: 20px;
-  line-height: 20px;
-  display: block;
-  font-size: 10px;
-  color: #333;
-  background: white;
-  border-radius: 3px;
-  margin: 0 auto 5px auto;
-}
-/*progressbar connectors*/
-#progressbar li:after {
-content: '';
-width: 100%;
-height: 2px;
-background: white;
-position: absolute;
-left: -50%;
-top: 9px;
-z-index: -1; /*put it behind the numbers*/
-}
-#progressbar li:first-child:after {
-/*connector not needed before the first step*/
-  content: none;
-}
-/*marking active/completed steps green*/
-/*The number of the step and the connector before it = green*/
-#progressbar li.active:before,  #progressbar li.active:after{
-  background: #27AE60;
-  color: white
+.burtguul {
+  margin-top: 20px;
 }
 </style>
