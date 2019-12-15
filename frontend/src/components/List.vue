@@ -60,7 +60,7 @@
             <div class="card-body">
               <h5 class="card-title text-center">{{todo.stampname}}</h5>
               <p class="card-text text-truncate font-italic">{{todo.define}}</p>
-              <router-link :to="/stamp/+todo.id+'/'+todo.stampname+'/'+todo.date+'/'">
+              <router-link :to="/stamp/+todo.id+' /'+todo.stampname+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>
@@ -71,7 +71,7 @@
             <div class="card-body">
               <h5 class="card-title text-center">{{todo.stampname}}</h5>
               <p class="card-text text-truncate font-italic">{{todo.define}}</p>
-              <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
+              <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>
@@ -82,7 +82,7 @@
             <div class="card-body">
               <h5 class="card-title text-center">{{todo.stampname}}</h5>
               <p class="card-text text-truncate font-italic">{{todo.define}}</p>
-              <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
+              <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>
@@ -93,7 +93,7 @@
             <div class="card-body">
               <h5 class="card-title text-center">{{todo.stampname}}</h5>
               <p class="card-text text-truncate font-italic">{{todo.define}}</p>
-              <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
+              <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>
@@ -104,7 +104,7 @@
             <div class="card-body">
               <h5 class="card-title text-center">{{todo.stampname}}</h5>
               <p class="card-text text-truncate font-italic">{{todo.define}}</p>
-              <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
+              <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>
@@ -115,7 +115,7 @@
             <div class="card-body">
               <h5 class="card-title text-center">{{todo.stampname}}</h5>
               <p class="card-text text-truncate font-italic">{{todo.define}}</p>
-              <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
+              <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>
@@ -126,7 +126,7 @@
             <div class="card-body">
               <h5 class="card-title text-center">{{todo.stampname}}</h5>
               <p class="card-text text-truncate font-italic">{{todo.define}}</p>
-              <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
+              <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>
@@ -137,7 +137,7 @@
             <div class="card-body">
               <h5 class="card-title text-center">{{todo.stampname}}</h5>
               <p class="card-text text-truncate font-italic">{{todo.define}}</p>
-              <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
+              <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>
@@ -148,7 +148,7 @@
             <div class="card-body">
               <h5 class="card-title text-center">{{todo.stampname}}</h5>
               <p class="card-text text-truncate font-italic">{{todo.define}}</p>
-              <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+' /'+todo.date+'/'">
+              <router-link :to="/stamp/+todo.id+' /'+todo.stampname+' /'+todo.define+'/'">
                 <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button>
               </router-link>
             </div>

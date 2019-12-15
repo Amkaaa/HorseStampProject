@@ -19,7 +19,7 @@
                     <td class="stazurag"><img :src="require('../assets/tamga/'+todo.stampImage)" alt=""></td>
                     <td class="text-left">{{todo.stampname}}</td>
                     <td class="text-right">
-                        <button class="btn btn-info" v-on:click="editTask(todo.lastname,todo.id,todo.firstname, todo.stamp_name, todo.mail, todo.location, todo.date, todo.photo)">Edit</button>
+                        <button class="btn btn-info" v-on:click="editTask(todo.id)">Edit</button>
                         <button class="btn btn-danger" v-on:click="deleteTask(todo.id)">Delete</button>
                     </td>
                   </tr>
@@ -31,8 +31,9 @@
   </div>
 </template>
 <script>
-import Navi from './header.vue'
+import Navi from '@/components/header.vue'
 import axios from 'axios'
+import router from '@/router'
 export default {
   data () {
     return {
@@ -93,16 +94,8 @@ export default {
       //   location.reload()
       // }, this.count = this.count * 1000)
     },
-    editTask (title, id, firstname, stampname, mail, location, date, photo) {
-      this.id = id
-      this.lastname = title
-      this.firstname = firstname
-      this.stamp_name = stampname
-      this.mail = mail
-      this.location = location
-      this.date = date
-      this.photo = photo
-      this.isEdit = true
+    editTask (id) {
+      router.push({ path: '/stampEdit/' + id + '/' })
     },
     updateTask () {
       axios.put('/api/task/' + this.id,

@@ -3,24 +3,23 @@
 <template>
     <div>
       <Navi/>
-      <div class="container">
-        <div v-for="(todo) in stamps" v-bind:key="todo.id">
-          <div class="row no-gutters" v-if="$route.params.id==todo.id">
+      <div class="container stamp">
+          <div class="row no-gutters">
             <div class="stampImg">
-              <img :src="require('../assets/tamga/'+todo.stampImage)" class="card-img" alt="...">
+              <img :src="require('../assets/tamga/'+stamps.stampImage)" class="card-img" alt="...">
             </div>
             <div class="stampName">
               <h2>{{$route.params.name}}</h2>
-              <h4>Тамганы төрөл: {{todo.typeStamp}}</h4>
-              <h5>Тамганы билгэдэл: {{todo.bilgedel}}</h5>
-              <h5>Байршил: {{todo.location}}</h5>
-              <h5>Бүртгэгдсэн огноо: {{$route.params.date}}</h5>
+              <h4>Тамганы төрөл: {{stamps.typeStamp}}</h4>
+              <h5>Тамганы билгэдэл: {{stamps.bilgedel}}</h5>
+              <h5>Байршил: {{stamps.location}}</h5>
+              <h5>Бүртгэгдсэн огноо: {{stamps.date}}</h5>
             </div>
             <div class="small-container">
-              <div v-for="user in todos" v-bind:key="user.id" class="stampInfo">
-                <div v-if="todo.userid==user.id">
+              <div class="stampInfo">
+                <div>
                   <h1>Дэлгэрэнгүй</h1>
-                  <p>{{todo.define}} Lorem ipsum dolor sit amet,
+                  <p>{{stamps.define}} Lorem ipsum dolor sit amet,
                     consectetur adipiscing elit, sed do eiusmod tempor incididunt
                     ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru
                     d exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis a
@@ -28,28 +27,26 @@
                     a pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                     nt mollit anim id est laborum.</p>
                   <h6>Эзэмшигчийн тухай мэдээлэл: </h6>
-                    <p>{{user.firstname}}, {{user.phone}}, {{user.aimag}}, {{user.location}}</p>
+                    <p>{{todos.firstname}}, {{todos.phone}}, {{todos.aimag}}, {{todos.location}}</p>
                   <h6>Хэрэглэгчдийн тоо: </h6>
                     <p> {{count % 100}}</p>
                   <h6>Хэдэн үе ашиглаж байгаа: </h6>
-                    <p>{{todo.uy}}</p>
+                    <p>{{stamps.uy}}</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 </template>
 <script>
 import axios from 'axios'
 import Navi from './header'
 export default {
-  props: ['stampImage'],
   data () {
     return {
-      todos: [],
-      stamps: [],
+      todos: '',
+      stamps: '',
       id: '',
       lastname: '',
       firstname: '',
@@ -65,7 +62,6 @@ export default {
     Navi
   },
   mounted () {
-    this.getTasks()
     this.getStamp()
   },
   methods: {
@@ -76,7 +72,7 @@ export default {
       (this.count = (count + 1))
     },
     getTasks () {
-      axios.get('/api/tasks').then(
+      axios.get('/api/usera/' + this.stamps.userid).then(
         result => {
           this.todos = result.data
         },
@@ -86,9 +82,10 @@ export default {
       )
     },
     getStamp () {
-      axios.get('/api/stamps').then(
+      axios.get('/api/tamga/' + this.$route.params.id).then(
         result => {
           this.stamps = result.data
+          this.getTasks()
         },
         error => {
           console.error(error)
@@ -103,11 +100,12 @@ export default {
   @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
   @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
   .container{
+  }
+  .stamp{
     font-family: 'Open Sans', 'Poppins', sans-serif;
     width: 70%;
     margin-top: 50px;
     padding: 0;
-    background: rgb(100, 151, 177);
     box-shadow: 5px 10px 11px rgba(0, 0, 0, 0.5);
   }
   .row{
