@@ -45,7 +45,7 @@
               or sign up using
             </span>
           </div>
-          <div class="login100-form-social flex-c-m">
+          <div class="login100-form-social">
           <a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
             <i class="fa fa-facebook-f" aria-hidden="true"></i>
           </a>
@@ -588,6 +588,11 @@ input.input100 {
     visibility: visible;
     opacity: 1;
   }
+}
+.login100-form-social {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 .login100-form-social-item {
   width: 36px;
