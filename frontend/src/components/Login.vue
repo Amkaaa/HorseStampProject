@@ -97,7 +97,7 @@ export default {
           this.msg = 'Нэвтрэх нэр болон нууц үгээ зөв хийнэ үү'
           console.log(err.data)
         })
-      this.emitMethod()
+    // this.emitMethod()
     }
   }
 }

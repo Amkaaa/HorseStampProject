@@ -202,6 +202,19 @@ router.get('/user/:mail',(req,res,next)=>{
     res.send('error: '+err)
   })
 })
+router.get('/usera/:id',(req,res,next)=>{
+  Task.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(tamga=>{
+    res.json(tamga)
+  })
+  .catch(err => {
+    res.send('error: '+err)
+  })
+})
 
 router.get('/tamga/:id',(req,res,next)=>{
   tamga.findOne({
@@ -258,18 +271,22 @@ router.put('/task/:id', (req, res, next) => {
 })
 
 router.put('/tamga/:id', (req, res, next) => {
-  if (!req.body.lastname) {
+  if (!req.body.stampname) {
     res.status(400)
     res.json({
       error: 'Bad Data'
     })
   } else {
     tamga.update(
-      { stamp_name: req.body.stamp_name},
-      { location: req.body.location},
-      { define: req.body.define},
-      { userid: req.body.userid},
-      { where: { id: req.params.id } }
+      { stampname: req.body.stampname,
+      location: req.body.aimag,
+      define: req.body.define,
+      userid: req.body.userid,
+      stampImage : req.body.stampImage,
+      typeStamp: req.body.type,
+      uy: req.body.uy,
+      bilgedel: req.body.bilgedel},
+      {where: { id: req.params.id } }
     )
       .then(() => {
         res.send('Task Updated!')

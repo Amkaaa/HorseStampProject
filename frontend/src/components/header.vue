@@ -59,17 +59,7 @@
 // import EventBus from './EventBus'
 import router from '../router'
 import axios from 'axios'
-window.onload = function () {
-  var header = document.getElementById('navbarlol')
-  var btns = header.getElementsByClassName('nav-item')
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].addEventListener('click', function () {
-      var current = document.getElementsByClassName('current')
-      current[0].className = current[0].className.replace(' current', '')
-      this.className += ' current'
-    })
-  }
-}
+
 export default {
   data () {
     return {
@@ -77,7 +67,7 @@ export default {
       user: '',
       firstname: '',
       id: '',
-      mail: '',
+      mail: 'haha',
       login: 0,
       user1: 'hahah',
       noots: ''

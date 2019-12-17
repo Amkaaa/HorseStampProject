@@ -10,6 +10,7 @@ import logout from '@/components/logout'
 import createStamp from '@/components/createStamp'
 import about from '@/components/about'
 import test from '@/components/test'
+import stampEdit from '@/components/stampEdit'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -44,7 +45,7 @@ export default new Router({
       component: photo
     },
     {
-      path: '/stamp/:id/:name/:date',
+      path: '/stamp/:id/:name',
       name: 'stamp',
       component: stamp
     },
@@ -62,6 +63,11 @@ export default new Router({
       path: '/test',
       name: 'test',
       component: test
+    },
+    {
+      path: '/stampEdit/:id',
+      name: 'stampEdit',
+      component: stampEdit
     }
   ]
 })

@@ -2,6 +2,7 @@
     <div>
       <Navi/>
       <!-- multistep form -->
+      <div id="nomarg">
       <form id="msform" v-on:submit.prevent="addNewTask()" enctype="multipart/form-data">
         <!-- progressbar -->
         <ul id="progressbar">
@@ -80,11 +81,13 @@
           <input type="submit" name="submit" class="submit action-button" value="Submit" />
         </fieldset>
       </form>
+      </div>
     </div>
 </template>
 <script>
 import axios from 'axios'
 import Navi from './header'
+// import router from '../router'
 export default {
   data () {
     return {
@@ -149,6 +152,7 @@ export default {
               this.bilgedel = ''
               this.uy = ''
               this.type = ''
+              this.stampImage = ''
               this.msg = 'Амжилттай бүртгүүллээ...'
             })
             .catch(err => {
@@ -164,7 +168,6 @@ export default {
       ).then(
         result => {
           this.user = result.data
-          console.log(this.user)
         },
         error => {
           console.error(error)
@@ -175,6 +178,9 @@ export default {
 }
 </script>
 <style>
+#nomarg{
+  height: 100vh;
+}
 /*custom font*/
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 

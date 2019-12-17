@@ -21,8 +21,17 @@
   </body>
 </html>
 <script>
-window.onload = function () {
+//var myVar = setInterval(myTimer, 1000);
+var myVar = setInterval(sign,500);
+var coutn = 0;
+function sign() {
     //jQuery time
+  console.log("OK!!")
+  if(coutn==1){
+    clearInterval(myVar);
+  }else{
+    coutn++;
+  }
   var current_fs, next_fs, previous_fs; //fieldsets
   var left, opacity, scale; //fieldset properties which we will animate
   var animating; //flag to prevent quick multi-click glitches
@@ -95,10 +104,6 @@ window.onload = function () {
       // this comes from the custom easing plugin
       easing: 'easeInOutBack'
     })
-  })
-
-  $('.submit').click(function () {
-    return false
   })
 }
 </script>
