@@ -30,6 +30,7 @@
           />
         </div>
       </div>
+      <hr>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputEmail4">Мэйл хаяг</label>
@@ -54,6 +55,7 @@
             />
           </div>
         </div>
+        <hr>
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="inputState"><center>Аймаг</center></label><br><br>
@@ -90,6 +92,7 @@
             <input v-model="phone" type="number" class="form-control" id="inputCity" required/>
           </div>
         </div>
+        <hr>
         <div class="form-group">
           <div class="form-check">
             <label class="form-check-label" for="gridCheck">Оруулсан мэдээлэл үнэн
